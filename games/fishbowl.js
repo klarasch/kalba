@@ -117,7 +117,7 @@
     const ownLower = new Set(own.map((w) => w.toLowerCase()));
     const fill = PB.pool(s.decks, s.levels).filter((w) => !ownLower.has(w.toLowerCase()));
     const words = PB.shuffle(own.concat(fill.slice(0, Math.max(0, s.cards - own.length))));
-    if (words.length < 3) { alert(L('Málo slov. Vyber víc balíčků nebo obtížností.', 'Not enough words. Pick more decks or levels.')); return; }
+    if (words.length < 3) { PB.toast(L('Málo slov. Vyber víc balíčků nebo obtížností.', 'Not enough words. Pick more decks or levels.')); return; }
     G = {
       lang: PB.lang,
       settings: { time: s.time, skip: s.skip },

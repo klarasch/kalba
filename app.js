@@ -44,10 +44,25 @@
   // Wire the back/close button. confirmExit asks before leaving a running game.
   PB.bindTop = (root, onBack, confirmExit) => {
     PB.on(root, '[data-back]', () => {
-      if (confirmExit && !confirm(PB.L('Ukončit hru?', 'Quit the game?'))) return;
-      PB.stopAll();
-      onBack ? onBack() : PB.home();
+      const leave = () => { PB.stopAll(); onBack ? onBack() : PB.home(); };
+      if (confirmExit) PB.ask(PB.L('Ukončit hru?', 'Quit the game?'), leave); else leave();
     });
+  };
+
+  // In-page dialogs (native confirm/alert are blocked in some embeds).
+  PB.ask = (msg, onYes) => {
+    const d = document.createElement('div');
+    d.className = 'dlg';
+    d.innerHTML = `<div class="dlgbox"><p>${PB.esc(msg)}</p><div class="row"><button class="btn secondary" data-no>${PB.L('Ne', 'No')}</button><button class="btn" data-yes>${PB.L('Ano', 'Yes')}</button></div></div>`;
+    document.body.appendChild(d);
+    d.querySelector('[data-no]').onclick = () => d.remove();
+    d.querySelector('[data-yes]').onclick = () => { d.remove(); onYes(); };
+  };
+  PB.toast = (msg) => {
+    const t = document.createElement('div');
+    t.className = 'toast'; t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2600);
   };
 
   // ---------- running things that must stop when leaving a screen ----------

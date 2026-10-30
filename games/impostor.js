@@ -29,7 +29,7 @@
       PB.ui.bindStepper(root, 'impostors', s, { min: 1, max: 3 });
       PB.ui.bindToggle(root, 'hint', s);
       PB.on(root, '[data-go]', () => {
-        if (s.players.length < 3) return alert(L('Potřebujete aspoň 3 hráče.', 'You need at least 3 players.'));
+        if (s.players.length < 3) return PB.toast(L('Potřebujete aspoň 3 hráče.', 'You need at least 3 players.'));
         s.impostors = Math.min(s.impostors, Math.max(1, Math.floor((s.players.length - 1) / 2)));
         save();
         deal(s);
