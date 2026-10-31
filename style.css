@@ -172,12 +172,14 @@ button.btn .i { width: 24px; height: 24px; }
   border: 2px solid var(--key); background: var(--card); color: var(--ink);
   border-radius: 999px; padding: 9px 15px 9px 11px; font: 600 15px var(--body); cursor: pointer;
 }
-/* Selection pills carry a checkbox (or a radio dot for single choice) so the state never depends on colour alone. */
+/* Selection pills carry a checkbox (or a radio dot for single choice: add `radio` to .chips, Bomb's data-fuse does the same) so the state never depends on colour alone. */
 .chip::before { content: ""; width: 19px; height: 19px; flex: none; box-sizing: border-box; border: 2px solid currentColor; border-radius: 6px; opacity: .5; }
 .chip.on { background: var(--y); color: var(--on-y); }
 .chip.on::before { opacity: 1; border-color: #18161c; background: #18161c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5 9.5 17 19 7' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 15px no-repeat; }
-[data-fuse] .chip::before { border-radius: 50%; }
-[data-fuse] .chip.on::before { background: #18161c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5' fill='white'/%3E%3C/svg%3E") center / 19px no-repeat; }
+[data-fuse] .chip::before, .chips.radio .chip::before { border-radius: 50%; }
+[data-fuse] .chip.on::before, .chips.radio .chip.on::before { background: #18161c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5' fill='white'/%3E%3C/svg%3E") center / 19px no-repeat; }
+
+.chips.radio[data-guess] .chip { min-width: 64px; justify-content: center; font-size: 18px; }
 
 /* Name pills: type a name, Enter or comma turns it into a pill. */
 .tags { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; background: var(--card); color: var(--ink); border: 2px solid var(--key); border-radius: var(--r); padding: 8px; }

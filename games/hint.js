@@ -137,7 +137,7 @@
       <div class="word">${PB.esc(R.hand[R.secret])}</div>
       <h2>${L(`Kolik z ${m} ostatních to uhodne?`, `How many of the other ${m} will get it?`)}</h2>
       <p class="muted small">${L(`Body jen když 1 až ${m - 1}. Trefa počtu = bonus.`, `You only score with 1 to ${m - 1}. Exact count = bonus.`)}</p>
-      <div class="chips" data-guess>
+      <div class="chips radio" data-guess>
         ${[...Array(m + 1).keys()].map((k) => `<button class="chip ${R.guess === k ? 'on' : ''}" data-k="${k}">${k}</button>`).join('')}
       </div>
       <div class="grow"></div>
