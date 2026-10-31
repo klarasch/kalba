@@ -1,9 +1,9 @@
 // Offline cache. Bump VERSION when files change.
-const VERSION = 'pb-v4';
+const VERSION = 'pb-v5';
 const FILES = [
   './', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest',
-  'data/decks-cs.js', 'data/decks-en.js', 'data/bomb-cs.js', 'data/bomb-en.js',
-  'games/fishbowl.js', 'games/impostor.js', 'games/bomb.js', 'games/guess.js',
+  'data/decks-cs.js', 'data/decks-en.js', 'data/bomb-cs.js', 'data/bomb-en.js', 'data/gap-cs.js', 'data/gap-en.js',
+  'games/fishbowl.js', 'games/impostor.js', 'games/bomb.js', 'games/guess.js', 'games/gap.js',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png',
 ];
 self.addEventListener('install', (e) => {
