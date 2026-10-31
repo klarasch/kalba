@@ -1,5 +1,5 @@
 // Offline cache. Bump VERSION when files change.
-const VERSION = 'pb-v17';
+const VERSION = 'pb-v18';
 const FILES = [
   './', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest',
   'data/gap-cs.js', 'data/gap-en.js', 'data/vabank-cs.js', 'data/vabank-en.js', 'data/index.txt',
