@@ -1,8 +1,8 @@
 // Offline cache. Bump VERSION when files change.
-const VERSION = 'pb-v14';
+const VERSION = 'pb-v15';
 const FILES = [
   './', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest',
-  'data/gap-cs.js', 'data/gap-en.js', 'data/index.txt',
+  'data/gap-cs.js', 'data/gap-en.js', 'data/vabank-cs.js', 'data/vabank-en.js', 'data/index.txt',
   'data/decks/cs/osobnosti.txt',
   'data/decks/cs/postavy.txt',
   'data/decks/cs/filmy.txt',
@@ -22,7 +22,7 @@ const FILES = [
   'data/names/cs.txt', 'data/names/en.txt',
   'data/bomb/cs.txt',
   'data/bomb/en.txt',
-  'games/fishbowl.js', 'games/impostor.js', 'games/bomb.js', 'games/guess.js', 'games/gap.js',
+  'games/fishbowl.js', 'games/impostor.js', 'games/bomb.js', 'games/guess.js', 'games/gap.js', 'games/vabank.js',
   'fonts/bricolage-latin.woff2', 'fonts/bricolage-latin-ext.woff2', 'fonts/figtree-latin.woff2', 'fonts/figtree-latin-ext.woff2',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png',
 ];
