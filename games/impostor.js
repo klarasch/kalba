@@ -1,7 +1,7 @@
 // Impostor: everyone sees the secret word except the impostor(s). Talk, then vote.
 (function () {
   const L = (a, b) => PB.L(a, b);
-  const defaults = { decks: null, levels: [1, 2], players: ['', '', '', ''], impostors: 1, hint: true };
+  const defaults = { decks: null, levels: [1, 2], know: null, players: ['', '', '', ''], impostors: 1, hint: true };
   const used = new Set();
   const pname = (s, i) => (s.players[i] || '').trim() || L('Hráč ', 'Player ') + (i + 1);
 
@@ -25,7 +25,7 @@
     `, (root) => {
       PB.bindTop(root, () => { save(); PB.home(); });
       PB.ui.bindNames(root, 'players', s, draw, { min: 3, max: 20 });
-      PB.ui.bindDeckPicker(root, s);
+      PB.ui.bindDeckPicker(root, s, null, 'impostor', draw);
       PB.ui.bindStepper(root, 'impostors', s, { min: 1, max: 3 });
       PB.ui.bindToggle(root, 'hint', s);
       PB.on(root, '[data-go]', () => {
@@ -40,14 +40,11 @@
 
   function deal(s) {
     // Pick a deck first so the category hint matches the word.
-    const decks = PB_DECKS.filter((d) => s.decks.includes(d.id));
-    let word, deck;
-    for (let tries = 0; tries < 50; tries++) {
-      deck = PB.pick(decks);
-      const words = s.levels.flatMap((l) => deck.words[l] || []);
-      word = PB.pick(words);
-      if (word && !used.has(word)) break;
-    }
+    const decks = PB_DECKS.filter((d) => s.decks.includes(d.id)).map((d) => ({ d, words: PB.deckWords(d, s.levels, s.know) })).filter((x) => x.words.length);
+    if (!decks.length) return PB.toast(L('Málo slov. Vyber víc balíčků nebo obtížností.', 'Not enough words. Pick more decks or levels.')) || setup();
+    const pickD = PB.pick(decks), deck = pickD.d;
+    const fresh = pickD.words.filter((w) => !used.has(w));
+    const word = PB.pick(fresh.length ? fresh : pickD.words);
     used.add(word);
     const n = s.players.length;
     const imp = new Set(PB.shuffle([...Array(n).keys()]).slice(0, s.impostors));
@@ -112,6 +109,7 @@
               <div class="who slam">${[...imp].map((i) => PB.esc(pname(s, i))).join(', ')}</div>
               <p class="muted">${L('Tajné slovo', 'Secret word')}</p>
               <div class="word">${PB.esc(word)}</div>
+              <button class="btn secondary small" data-disc>${PB.hidden.has('w', word) ? L('Vrátit slovo', 'Bring this word back') : L('Vyřadit toto slovo', 'Never show this word again')}</button>
             </div>
             <div class="stack"><button class="btn" data-again>${L('Další kolo', 'Next round')}</button><button class="btn secondary" data-set>${L('Nastavení', 'Settings')}</button></div>
           `, (r2) => {
@@ -119,6 +117,12 @@
             PB.fx.burstAt(PB.$('.who', r2), 70, { speed: 8, g: .16, life: 70, size: 4.5 });
             PB.on(r2, '[data-again]', () => deal(s));
             PB.on(r2, '[data-set]', setup);
+            PB.on(r2, '[data-disc]', (e, el) => {
+              const label = () => { el.textContent = PB.hidden.has('w', word) ? L('Vrátit slovo', 'Bring this word back') : L('Vyřadit toto slovo', 'Never show this word again'); };
+              if (PB.hidden.has('w', word)) { PB.hidden.remove('w', word); label(); return; }
+              PB.hidden.add('w', word); label(); PB.sfx.skip();
+              PB.toast(L('Slovo vyřazeno.', 'Word discarded.'), { action: L('Zpět', 'Undo'), onAction: () => { PB.hidden.remove('w', word); label(); } });
+            });
           });
         };
         if (PB.reduced()) return result();
