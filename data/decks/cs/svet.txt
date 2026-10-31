@@ -1,0 +1,107 @@
+# Svět: slavné osobnosti a postavy
+id: cs-svet
+lang: cs
+games: fishbowl, guess
+knowledge: worldwide
+
+[easy]
+Albert Einstein
+Harry Potter
+Kleopatra
+Napoleon
+Michael Jackson
+Elvis Presley
+Marilyn Monroe
+Leonardo da Vinci
+Spider-Man
+Batman
+Superman
+Mickey Mouse
+Kačer Donald
+Darth Vader
+Gandalf
+Cristiano Ronaldo
+Lionel Messi
+Matka Tereza
+Mahátma Gándhí
+Charlie Chaplin
+Sherlock Holmes
+James Bond
+Santa Claus
+Indiana Jones
+Robin Hood
+Tarzan
+Dracula
+Kryštof Kolumbus
+Papež František
+Shakira
+
+[medium]
+Wolfgang Amadeus Mozart
+Ludwig van Beethoven
+Pablo Picasso
+William Shakespeare
+Isaac Newton
+Julius Caesar
+Alexandr Veliký
+Jana z Arku
+Freddie Mercury
+John Lennon
+Madonna
+Bob Marley
+Muhammad Ali
+Michael Jordan
+Mike Tyson
+Usain Bolt
+Barack Obama
+Winston Churchill
+Che Guevara
+Frida Kahlo
+Salvador Dalí
+Vincent van Gogh
+Nikola Tesla
+Steve Jobs
+Bill Gates
+Elon Musk
+Walt Disney
+Stephen Hawking
+Neil Armstrong
+Jurij Gagarin
+Hercule Poirot
+Yoda
+Super Mario
+Pikachu
+Homer Simpson
+
+[hard]
+Archimédes
+Sókratés
+Aristotelés
+Marie Curie-Skłodowská
+Charles Darwin
+Galileo Galilei
+Mikuláš Koperník
+Johannes Kepler
+Tycho Brahe
+Nostradamus
+Antoni Gaudí
+Rembrandt
+Claude Monet
+Johann Sebastian Bach
+Frédéric Chopin
+Giuseppe Verdi
+Ernest Hemingway
+Franz Kafka
+Lev Nikolajevič Tolstoj
+Fjodor Dostojevskij
+Don Quijote
+Hamlet
+Mata Hari
+Jack Rozparovač
+Al Capone
+Nelson Mandela
+Martin Luther King
+Sigmund Freud
+Karel Veliký
+Attila
+Čingischán

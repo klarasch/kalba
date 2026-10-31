@@ -1,0 +1,107 @@
+# Fictional characters
+id: en-characters
+lang: en
+games: fishbowl, guess
+knowledge: worldwide
+
+[easy]
+Mickey Mouse
+Harry Potter
+Spider-Man
+Batman
+Superman
+Santa Claus
+Cinderella
+Snow White
+Shrek
+Donald Duck
+Winnie the Pooh
+Pinocchio
+Peter Pan
+Mario
+Pikachu
+Elsa
+Simba
+Buzz Lightyear
+Woody
+Darth Vader
+Sherlock Holmes
+Dracula
+Frankenstein
+Tarzan
+Bugs Bunny
+Homer Simpson
+SpongeBob
+Little Red Riding Hood
+Alice in Wonderland
+Robin Hood
+James Bond
+
+[medium]
+Gandalf
+Frodo
+Hermione Granger
+Lord Voldemort
+Captain Jack Sparrow
+Indiana Jones
+Yoda
+Luke Skywalker
+Princess Leia
+Wonder Woman
+Iron Man
+Hulk
+Thor
+Joker
+Catwoman
+Donkey Kong
+Sonic
+Lara Croft
+Mowgli
+Baloo
+Nemo
+Dory
+Olaf
+Rapunzel
+Ariel
+Aladdin
+Cruella de Vil
+Scooby-Doo
+Tom and Jerry
+Garfield
+Popeye
+Wile E. Coyote
+Bart Simpson
+
+[hard]
+Gollum
+Bilbo Baggins
+Dumbledore
+Severus Snape
+Hagrid
+Don Quixote
+Captain Ahab
+Hercule Poirot
+Miss Marple
+Zorro
+Mad Hatter
+Cheshire Cat
+Peter Rabbit
+Paddington Bear
+Gru
+Wall-E
+Ratatouille
+Shaggy
+Link
+Kratos
+Master Chief
+Pac-Man
+Rocky Balboa
+Forrest Gump
+Hannibal Lecter
+Norman Bates
+Ebenezer Scrooge
+Oliver Twist
+Heidi
+Pippi Longstocking
+Moby Dick
+Mr. Bean

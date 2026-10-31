@@ -1,0 +1,104 @@
+# České filmy, seriály a písničky
+id: cs-filmy
+lang: cs
+games: fishbowl, guess
+knowledge: czech
+
+[easy]
+Pelíšky
+Kolja | european
+Tmavomodrý svět
+Vesničko má středisková | european
+Slunce, seno, jahody
+Trhák
+Limonádový Joe
+Marečku, podejte mi pero
+Obecná škola | european
+Tři oříšky pro Popelku | european
+Pyšná princezna
+Anděl Páně
+Rok ďábla
+Samotáři
+Nemocnice na kraji města
+Návštěvníci
+Bylo nás pět
+Arabela
+Chalupáři
+Vyprávěj
+Comeback
+Policajti z předměstí
+Panelák
+Četnické humoresky
+Lady Carneval
+Hlídač krav
+Mám malý stan
+Účastníci zájezdu
+Pupendo
+Ať žijí duchové
+
+[medium]
+Šíleně smutná princezna
+Jak vytrhnout velrybě stoličku
+Jak básníci přicházejí o iluze
+Cesta do pravěku
+Zdivočelá země
+Most!
+Ordinace v růžové zahradě
+Taková normální rodinka
+Světáci
+Pěnička a Paraplíčko
+Hospoda
+Mohlo by se zdát
+Zvonky štěstí
+Pár havraních vlasů
+Medvídek
+Holka modrýma očima
+Kamarád do deště
+Vrchní, prchni!
+Dobrá voda
+Černí baroni
+Báječná léta pod psa
+Musíme si pomáhat | european
+Zelary | european
+Horem pádem
+Díra u Hanušovic
+Jak se krade milion
+Kulový blesk
+Hurá na Měsíc
+Přítelkyně z domu smutku
+Ten, kdo tě miluje
+Páni kluci
+Cirkus Humberto
+Kameňák
+
+[hard]
+Postřižiny
+Ostře sledované vlaky | european
+Obchod na korze | european
+Spalovač mrtvol
+Farářův konec
+Sedmikrásky | european
+Všichni dobří rodáci
+Konec agenta W4C
+Až přijde kocour
+Adéla ještě nevečeřela
+Lásky jedné plavovlásky
+Hoří, má panenko
+Žert
+Kuře melancholik
+Tankový prapor
+Jára Cimrman ležící, spící
+Rozpuštěný a vypuštěný
+Skřivánci na niti | european
+Údolí včel
+Markéta Lazarová
+Démanty noci
+Kytice
+Ucho
+Případ pro začínajícího kata
+Noc na Karlštejně
+Dařbuján a Pandrhola
+Kulhavý ďábel
+Fantom Morrisvillu
+Smrt krásných srnců
+Pěsti ve tmě

@@ -1,0 +1,106 @@
+# Famous people
+id: en-celebs
+lang: en
+games: fishbowl, guess
+knowledge: worldwide
+
+[easy]
+Albert Einstein
+Michael Jackson
+Elvis Presley
+Marilyn Monroe
+Leonardo DiCaprio
+Cristiano Ronaldo
+Lionel Messi
+Barack Obama
+Queen Elizabeth II
+Napoleon
+Cleopatra
+Charlie Chaplin
+Madonna
+Beyoncé
+Taylor Swift
+Michael Jordan
+Muhammad Ali
+Mahatma Gandhi
+Leonardo da Vinci
+William Shakespeare
+Walt Disney
+Steve Jobs
+Bill Gates
+Elon Musk
+Tom Cruise
+Brad Pitt
+Angelina Jolie
+Lady Gaga
+Julius Caesar
+Abraham Lincoln
+Martin Luther King
+
+[medium]
+Audrey Hepburn
+Freddie Mercury
+David Bowie
+Bob Marley
+Frida Kahlo
+Pablo Picasso
+Vincent van Gogh
+Isaac Newton
+Marie Curie
+Nikola Tesla
+Stephen Hawking
+Serena Williams
+Usain Bolt
+Roger Federer
+Tiger Woods
+Diego Maradona
+Pelé
+Winston Churchill
+Nelson Mandela
+Mother Teresa
+Joan of Arc
+Genghis Khan
+Charles Darwin
+Mozart
+Ludwig van Beethoven
+Bruce Lee
+Arnold Schwarzenegger
+Meryl Streep
+Robin Williams
+Oprah Winfrey
+Amelia Earhart
+Neil Armstrong
+
+[hard]
+Galileo Galilei
+Ada Lovelace
+Alan Turing
+Rosa Parks
+Amy Winehouse
+Jimi Hendrix
+Johnny Cash
+Nina Simone
+Salvador Dalí
+Claude Monet
+Andy Warhol
+Ernest Hemingway
+Agatha Christie
+Jane Austen
+Charles Dickens
+Mark Twain
+Sigmund Freud
+Confucius
+Socrates
+Marco Polo
+Christopher Columbus
+Ferdinand Magellan
+Florence Nightingale
+Sir Edmund Hillary
+Jesse Owens
+Simone Biles
+Michael Phelps
+Wayne Gretzky
+Ayrton Senna
+Buster Keaton
+Orson Welles
+Alfred Hitchcock

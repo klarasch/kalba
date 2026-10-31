@@ -1,0 +1,101 @@
+# Places & landmarks
+id: en-places
+lang: en
+games: fishbowl, guess, impostor
+knowledge: worldwide
+
+[easy]
+Eiffel Tower
+Statue of Liberty
+Big Ben
+Pyramids of Giza
+Great Wall of China
+Colosseum
+Taj Mahal
+Sahara Desert
+Niagara Falls
+Mount Everest
+Amazon Rainforest
+Disneyland
+Times Square
+Hollywood
+Venice
+London
+Paris
+New York
+Rome
+Tokyo
+Egypt
+Australia
+Antarctica
+Hawaii
+Grand Canyon
+Golden Gate Bridge
+Buckingham Palace
+North Pole
+Dead Sea
+Alps
+
+[medium]
+Machu Picchu
+Stonehenge
+Leaning Tower of Pisa
+Sydney Opera House
+Acropolis
+Petra
+Angkor Wat
+Burj Khalifa
+Mount Fuji
+Great Barrier Reef
+Bermuda Triangle
+Las Vegas
+Santorini
+Amsterdam
+Barcelona
+Istanbul
+Kilimanjaro
+Victoria Falls
+Panama Canal
+Brooklyn Bridge
+Loch Ness
+Cape Town
+Rio de Janeiro
+Moscow Red Square
+Versailles
+Vatican
+Easter Island
+Galápagos Islands
+Yellowstone
+Chernobyl
+
+[hard]
+Chichen Itza
+Alhambra
+Neuschwanstein Castle
+Mont Saint-Michel
+Cappadocia
+Ha Long Bay
+Uluru
+Table Mountain
+Zanzibar
+Timbuktu
+Atlantis
+Pompeii
+Troy
+Mount Rushmore
+Hoover Dam
+Alcatraz
+Area 51
+Silk Road
+Suez Canal
+Strait of Gibraltar
+Patagonia
+Svalbard
+Lake Baikal
+Iguazu Falls
+Forbidden City
+Hagia Sophia
+Sagrada Família
+Cliffs of Moher
+Giant's Causeway
+Mariana Trench

@@ -1,0 +1,101 @@
+# Jobs & activities
+id: en-actions
+lang: en
+games: fishbowl, guess, impostor
+knowledge: worldwide
+
+[easy]
+Doctor
+Teacher
+Firefighter
+Police officer
+Chef
+Farmer
+Pilot
+Dentist
+Singer
+Dancer
+Painter
+Swimming
+Running
+Cooking
+Sleeping
+Brushing teeth
+Driving
+Fishing
+Skiing
+Reading
+Shopping
+Clapping
+Cycling
+Football
+Playing guitar
+Taking a photo
+Washing dishes
+Knitting
+Gardening
+Surfing
+
+[medium]
+Plumber
+Electrician
+Carpenter
+Mechanic
+Waiter
+Barber
+Astronaut
+Detective
+Magician
+Clown
+Lifeguard
+Judge
+Veterinarian
+Fashion designer
+Bungee jumping
+Skateboarding
+Yoga
+Karaoke
+Juggling
+Playing chess
+Rock climbing
+Bowling
+Ironing
+Sneezing
+Hiccupping
+Sunbathing
+Camping
+Parachuting
+Ice skating
+Baking bread
+
+[hard]
+Archaeologist
+Auctioneer
+Blacksmith
+Translator
+Air traffic controller
+Sommelier
+Beekeeper
+Puppeteer
+Lumberjack
+Stuntman
+Taxidermist
+Referee
+Conductor
+Mime
+Fencing
+Curling
+Synchronized swimming
+Archery
+Sleepwalking
+Pole vaulting
+Breakdancing
+Origami
+Haggling
+Eavesdropping
+Procrastinating
+Tightrope walking
+Snorkeling
+Sword swallowing
+Moonwalking
+Bartending

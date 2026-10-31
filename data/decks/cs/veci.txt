@@ -1,0 +1,107 @@
+# Běžné věci a místa
+id: cs-veci
+lang: cs
+games: impostor, guess, fishbowl
+knowledge: worldwide
+
+[easy]
+supermarket
+kino
+nemocnice
+pláž
+ponorka
+svatba
+vysavač
+škola
+letiště
+divadlo
+knihovna
+restaurace
+zoo
+hřiště
+bazén
+nádraží
+autobus
+lednička
+televize
+postel
+pračka
+deštník
+mobil
+kolo
+auto
+dort
+pošta
+banka
+hřbitov
+zahrada
+koupelna
+kuchyně
+
+[medium]
+kemp
+tržnice
+lunapark
+sauna
+knihkupectví
+pekárna
+řeznictví
+půjčovna kol
+čistírna
+kadeřnictví
+lékárna
+hasičská zbrojnice | european
+autoservis
+benzinka
+galerie
+muzeum
+hotel
+výtah
+eskalátor
+žehlička
+fén
+mikrovlnka
+rychlovarná konvice
+kávovar
+brýle
+hodinky
+batoh
+kufr
+stan
+spacák
+ohniště
+žebřík
+
+[hard]
+dálnice
+parkoviště
+přístav
+maják
+rozhledna | european
+hvězdárna
+planetárium
+důl
+elektrárna
+čistírna odpadních vod | european
+sběrný dvůr | european
+autobazar | european
+klášter
+kostel
+katedrála
+věznice
+soud
+radnice
+parlament
+kasárna
+internát | european
+jídelna
+kantýna | european
+tunel
+most
+přehrada
+vodárna
+solárium
+koupaliště
+zimní stadion
+sklad
+skládka

@@ -43,6 +43,9 @@
     talk: '<path d="M4 5h16v11h-9l-5 4v-4H4z"/><path d="M8 10h8"/>',
     hand: '<path d="M9 12V5a1.5 1.5 0 0 1 3 0v6M12 11V4a1.5 1.5 0 0 1 3 0v7M15 11V6a1.5 1.5 0 0 1 3 0v7c0 4.5-2.7 8-7 8-3 0-5-1.8-6.2-4.5L3.3 13a1.5 1.5 0 0 1 2.6-1.5L9 15"/>',
     warn: '<path d="M12 4 2.5 20h19z"/><path d="M12 10v4M12 17v.5"/>',
+    trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v5M14 11v5"/>',
+    swap: '<path d="M4 9h14l-4-4M20 15H6l4 4"/>',
+    undo: '<path d="M9 5 4 10l5 5"/><path d="M4 10h10a6 6 0 0 1 0 12h-3"/>',
   };
   PB.ico = (n) => `<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${UI[n] || ''}</svg>`;
   // Game art: s = the shape printed twice (two inks, out of register), x = ink line details on top.
@@ -110,6 +113,7 @@
   const app = () => document.getElementById('app');
   PB.render = (html, bind) => {
     const root = app();
+    PB.$$('.toast.act').forEach((x) => x.remove()); // an Undo belongs to the screen it was shown on
     root.innerHTML = html;
     window.scrollTo(0, 0);
     if (bind) bind(root);
@@ -149,11 +153,20 @@
     PB.track(() => d.remove());
   };
   PB.pauseBtn = () => `<button class="iconbtn" data-pause aria-label="pause">${PB.ico('pause')}</button>`;
-  PB.toast = (msg) => {
+  // PB.toast(msg, {action: 'Undo', onAction}): with an action the toast stays longer and has a button.
+  PB.toast = (msg, o = {}) => {
+    PB.$$('.toast').forEach((x) => x.remove());
     const t = document.createElement('div');
-    t.className = 'toast'; t.textContent = msg;
+    t.className = 'toast' + (o.action ? ' act' : '');
+    t.setAttribute('role', 'status');
+    const m = document.createElement('span'); m.textContent = msg; t.appendChild(m);
+    if (o.action) {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = o.action;
+      b.onclick = () => { t.remove(); o.onAction && o.onAction(); };
+      t.appendChild(b);
+    }
     document.body.appendChild(t);
-    setTimeout(() => t.remove(), 2600);
+    setTimeout(() => t.remove(), o.action ? 5200 : 2600);
   };
 
   // ---------- running things that must stop when leaving a screen ----------
@@ -245,18 +258,112 @@
   PB.keepAwake = (on = true) => { wantLock = on; if (on) grab(); else if (lock) { lock.release().catch(() => {}); lock = null; } };
   document.addEventListener('visibilitychange', grab);
 
+  // ---------- content: text files loaded at startup ----------
+  // data/index.txt lists the files. Decks live in data/decks/, Bomb categories in data/bomb/.
+  // See data/README.md for the format.
+  const LEVELS = { easy: 1, medium: 2, hard: 3, 1: 1, 2: 2, 3: 3 };
+  const cleanLines = (txt) => String(txt).replace(/^﻿/, '').split(/\r?\n/).map((l) => l.trim()).filter((l) => l && !l.startsWith('//'));
+  // Parse one text file: header keys, then [easy]/[medium]/[hard] sections of cards.
+  PB.parseCards = (txt) => {
+    const meta = { name: '' }, items = { 1: [], 2: [], 3: [] }, tags = {};
+    let level = 0;
+    const dflt = () => String(meta.knowledge || 'worldwide').toLowerCase();
+    cleanLines(txt).forEach((line) => {
+      const sec = line.match(/^\[\s*([^\]]+?)\s*\]$/);
+      if (sec) { level = LEVELS[sec[1].toLowerCase()] || 0; return; }
+      if (!level) {
+        if (line.startsWith('#')) { meta.name = line.replace(/^#+\s*/, ''); return; }
+        const kv = line.match(/^([A-Za-z]+)\s*:\s*(.*)$/);
+        if (kv) meta[kv[1].toLowerCase()] = kv[2].trim();
+        return;
+      }
+      const cut = line.lastIndexOf(' | ');
+      const text = (cut > 0 ? line.slice(0, cut) : line).trim();
+      if (!text) return;
+      items[level].push(text);
+      if (cut > 0) { const tg = line.slice(cut + 3).trim().toLowerCase(); if (tg && tg !== dflt()) tags[text] = tg; }
+    });
+    meta.knowledge = dflt();
+    return { meta, items, tags };
+  };
+  PB.loadData = async () => {
+    const get = async (url) => { const r = await fetch(url); if (!r.ok) throw new Error(url + ' ' + r.status); return r.text(); };
+    const files = cleanLines(await get('data/index.txt'));
+    const texts = await Promise.all(files.map((f) => get('data/' + f).then((t) => [f, t])));
+    PB_DECKS.length = 0; PB_BOMB.length = 0;
+    texts.forEach(([f, txt]) => {
+      const { meta, items, tags } = PB.parseCards(txt);
+      const lang = (meta.lang || (f.match(/(?:^|\/)(cs|en)(?:\/|\.)/) || [])[1] || 'en').toLowerCase();
+      if (f.startsWith('bomb/')) PB_BOMB.push({ lang, knowledge: meta.knowledge, items, tags });
+      else PB_DECKS.push({ id: meta.id || f.replace(/\.txt$/, '').replace(/\//g, '-'), lang, name: meta.name || f, knowledge: meta.knowledge,
+        games: (meta.games || 'fishbowl, guess, impostor').split(',').map((x) => x.trim()).filter(Boolean), words: items, tags });
+    });
+  };
+
+  // ---------- knowledge tags: what the cards assume you know (separate from the UI language) ----------
+  const KNOW = { czech: ['Česko', 'Czech'], european: ['Evropa', 'European'], worldwide: ['Svět', 'Worldwide'] };
+  PB.knowLabel = (tag) => (KNOW[tag] ? PB.L(KNOW[tag][0], KNOW[tag][1]) : tag);
+  // Known tags first, in a fixed order, then any new ones alphabetically.
+  PB.knowSort = (tags) => Array.from(new Set(tags)).sort((a, b) => {
+    const ia = Object.keys(KNOW).indexOf(a), ib = Object.keys(KNOW).indexOf(b);
+    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || (a < b ? -1 : 1);
+  });
+  // Czech UI: everything on. Other UIs: everything except Czech-only cards.
+  PB.knowDefault = (tags) => { const d = PB.lang === 'cs' ? tags : tags.filter((t) => t !== 'czech'); return d.length ? d : tags; };
+  // Make s.know a valid selection of the tags that exist in this content.
+  PB.knowFix = (s, tags) => {
+    s.know = Array.isArray(s.know) ? s.know.filter((t) => tags.includes(t)) : [];
+    if (!s.know.length) s.know = PB.knowDefault(tags);
+    return s.know;
+  };
+  PB.tagOf = (d, w) => (d.tags && d.tags[w]) || d.knowledge || 'worldwide';
+  PB.deckTags = (decks) => PB.knowSort(decks.flatMap((d) => [d.knowledge || 'worldwide'].concat(Object.values(d.tags || {}))));
+  PB.bombEntries = () => PB_BOMB.filter((b) => b.lang === PB.lang);
+  PB.bombTags = () => PB.knowSort(PB.bombEntries().flatMap((b) => [b.knowledge || 'worldwide'].concat(Object.values(b.tags || {}))));
+  PB.bombCats = (levels, know) => PB.bombEntries().flatMap((b) => levels.flatMap((l) => (b.items[l] || [])
+    .filter((c) => (!know || know.includes((b.tags && b.tags[c]) || b.knowledge)) && !PB.hidden.has('b', c))));
+
+  // ---------- discarded cards (per device, per language) ----------
+  // kind: 'w' deck words and names, 'b' Bomb categories, 'g' Gap facts (by id).
+  PB.hidden = (() => {
+    const key = (kind) => (kind === 'w' ? 'hidden:' : 'hidden:' + kind + ':') + PB.lang;
+    const norm = (kind, t) => (kind === 'g' ? String(t) : String(t).trim().toLowerCase());
+    const read = (kind) => { const v = PB.store.get(key(kind), []); return Array.isArray(v) ? v : []; };
+    const api = {
+      norm: (t) => norm('w', t),
+      list: (kind) => read(kind),
+      has: (kind, t) => read(kind).includes(norm(kind, t)),
+      add(kind, t) { const l = read(kind), k = norm(kind, t); if (!l.includes(k)) { l.push(k); PB.store.set(key(kind), l); } },
+      remove(kind, t) { const k = norm(kind, t); PB.store.set(key(kind), read(kind).filter((x) => x !== k)); },
+      removeMany(kind, ts) { const ks = ts.map((t) => norm(kind, t)); PB.store.set(key(kind), read(kind).filter((x) => !ks.includes(x))); },
+    };
+    return api;
+  })();
+
   // ---------- decks ----------
   PB.decksFor = (game) => PB_DECKS.filter((d) => d.lang === PB.lang && d.games.includes(game));
   PB.levelNames = () => [PB.L('Lehká', 'Easy'), PB.L('Střední', 'Medium'), PB.L('Těžká', 'Hard')];
-  // Unique, shuffled words from the chosen decks and levels.
-  PB.pool = (deckIds, levels) => {
+  // Words of one deck for these levels and knowledge tags, minus discarded ones.
+  PB.deckWords = (d, levels, know) => levels.flatMap((l) => d.words[l] || [])
+    .filter((w) => (!know || know.includes(PB.tagOf(d, w))) && !PB.hidden.has('w', w));
+  // Unique, shuffled words from the chosen decks, levels and knowledge tags.
+  PB.pool = (deckIds, levels, know) => {
     const seen = new Set(), out = [];
     PB_DECKS.filter((d) => deckIds.includes(d.id)).forEach((d) =>
-      levels.forEach((l) => (d.words[l] || []).forEach((w) => {
+      PB.deckWords(d, levels, know).forEach((w) => {
         const k = w.toLowerCase();
         if (!seen.has(k)) { seen.add(k); out.push(w); }
-      })));
+      }));
     return PB.shuffle(out);
+  };
+  // Discarded words that belong to these decks, for the restore list: [{key, text}].
+  PB.hiddenWords = (decks) => {
+    const hid = PB.hidden.list('w'), seen = new Set(), out = [];
+    decks.forEach((d) => [1, 2, 3].forEach((l) => (d.words[l] || []).forEach((w) => {
+      const k = PB.hidden.norm(w);
+      if (hid.includes(k) && !seen.has(k)) { seen.add(k); out.push({ key: k, text: w }); }
+    })));
+    return out;
   };
 
   // Settings saved per game and language.
@@ -268,7 +375,8 @@
 
   // ---------- shared setup widgets ----------
   PB.ui = {
-    // Deck chips + difficulty chips. s.decks and s.levels are arrays.
+    // Deck chips, difficulty chips, knowledge chips, word counter and the discarded-cards line.
+    // s.decks, s.levels and s.know are arrays.
     deckPicker(game, s) {
       const decks = PB.decksFor(game);
       if (!s.decks || !s.decks.some((id) => decks.find((d) => d.id === id))) s.decks = decks.map((d) => d.id);
@@ -280,23 +388,69 @@
         <h3>${PB.L('Obtížnost', 'Difficulty')}</h3>
         <div class="chips" data-levels>
           ${PB.levelNames().map((n, i) => `<button class="chip ${s.levels.includes(i + 1) ? 'on' : ''}" data-l="${i + 1}">${n}</button>`).join('')}
-        </div>`;
+        </div>
+        ${PB.ui.knowPicker(s, PB.deckTags(decks))}
+        <p class="muted small" data-avail></p>
+        ${PB.ui.hiddenBar()}`;
     },
-    bindDeckPicker(root, s, onChange) {
+    bindDeckPicker(root, s, onChange, game, back) {
+      const decks = game ? PB.decksFor(game) : [];
+      const refresh = () => {
+        const el = PB.$('[data-avail]', root);
+        if (el) el.textContent = PB.L('Dostupných slov: ', 'Available words: ') + PB.pool(s.decks, s.levels, s.know).length;
+        PB.ui.updateHidden(root);
+        onChange && onChange();
+      };
       PB.on(root, '[data-decks] .chip', (e, el) => {
         const id = el.dataset.id;
         if (s.decks.includes(id)) { if (s.decks.length > 1) s.decks = s.decks.filter((x) => x !== id); }
         else s.decks.push(id);
         PB.$$('[data-decks] .chip', root).forEach((c) => c.classList.toggle('on', s.decks.includes(c.dataset.id)));
-        onChange && onChange();
+        refresh();
       });
       PB.on(root, '[data-levels] .chip', (e, el) => {
         const l = +el.dataset.l;
         if (s.levels.includes(l)) { if (s.levels.length > 1) s.levels = s.levels.filter((x) => x !== l); }
         else s.levels.push(l);
         PB.$$('[data-levels] .chip', root).forEach((c) => c.classList.toggle('on', s.levels.includes(+c.dataset.l)));
+        refresh();
+      });
+      PB.ui.bindKnow(root, s, refresh);
+      PB.ui.bindHiddenBar(root, () => PB.hiddenWords(decks), (keys) => PB.hidden.removeMany('w', keys), back, refresh);
+      refresh();
+    },
+    // "What do you know" chips, generated from the tags present in the content (tags = sorted array).
+    knowPicker(s, tags) {
+      PB.knowFix(s, tags);
+      return `<h3>${PB.L('Znalosti', 'Knowledge')}</h3>
+        <div class="chips" data-know>
+          ${tags.map((k) => `<button class="chip ${s.know.includes(k) ? 'on' : ''}" data-k="${PB.esc(k)}">${PB.esc(PB.knowLabel(k))}</button>`).join('')}
+        </div>`;
+    },
+    bindKnow(root, s, onChange) {
+      PB.on(root, '[data-know] .chip', (e, el) => {
+        const k = el.dataset.k;
+        if (s.know.includes(k)) { if (s.know.length > 1) s.know = s.know.filter((x) => x !== k); }
+        else s.know.push(k);
+        PB.$$('[data-know] .chip', root).forEach((c) => c.classList.toggle('on', s.know.includes(c.dataset.k)));
         onChange && onChange();
       });
+    },
+    // "Discarded: N [Show]" line. Hidden when nothing is discarded.
+    hiddenBar() {
+      return `<div class="hidbar" data-hidbar hidden><span>${PB.L('Vyřazeno', 'Discarded')}: <b data-hidn>0</b></span><button class="btn secondary small" data-hidopen>${PB.L('Zobrazit', 'Show')}</button></div>`;
+    },
+    // items() returns [{key, text}] of discarded cards in this game's content; restore(keys) brings them back.
+    bindHiddenBar(root, items, restore, back, onChange) {
+      const bar = PB.$('[data-hidbar]', root); if (!bar) return;
+      bar._items = items;
+      PB.on(bar, '[data-hidopen]', () => PB.hiddenScreen(items, restore, () => { back && back(); }));
+    },
+    updateHidden(root) {
+      const bar = PB.$('[data-hidbar]', root); if (!bar || !bar._items) return;
+      const n = bar._items().length;
+      PB.$('[data-hidn]', bar).textContent = n;
+      bar.hidden = n === 0;
     },
     stepper(key, label, value, unit = '') {
       return `<div class="stepper" data-step="${key}"><span>${label}</span>
@@ -385,6 +539,26 @@
     });
   };
 
+  // The list of discarded cards with a restore button per row. back() returns to the setup screen.
+  PB.hiddenScreen = (items, restore, back) => {
+    const draw = () => {
+      const list = items();
+      PB.render(`
+        ${PB.top(PB.L('Vyřazeno', 'Discarded'), { close: true })}
+        ${list.length ? `<div class="list">${list.map((it, i) => `<div class="it" data-row="${i}"><span>${PB.esc(it.text)}</span><button class="btn secondary small" data-restore="${i}">${PB.L('Obnovit', 'Restore')}</button></div>`).join('')}</div>`
+          : `<p class="muted center">${PB.L('Nic tu není.', 'Nothing here.')}</p>`}
+        <div class="spacer"></div>
+        ${list.length ? `<button class="btn big" data-all>${PB.L('Obnovit vše', 'Restore all')}</button>` : `<button class="btn big" data-done>${PB.L('Zpět', 'Back')}</button>`}
+      `, (root) => {
+        PB.bindTop(root, back);
+        PB.on(root, '[data-restore]', (e, el) => { restore([list[+el.dataset.restore].key]); PB.sfx.good(); draw(); });
+        PB.on(root, '[data-all]', () => { restore(list.map((x) => x.key)); PB.sfx.good(); back(); });
+        PB.on(root, '[data-done]', () => back());
+      });
+    };
+    draw();
+  };
+
   // ---------- games registry + home ----------
   // Each game registers { id, icon, ink: [main, second], onInk?, name(), tagline(), start }.
   // A new game only needs its two inks and an icon; the whole look follows from them.
@@ -422,8 +596,22 @@
     });
   };
 
-  window.addEventListener('DOMContentLoaded', () => {
-    PB.home();
+  // Load the text files, then show home. Safe to call more than once.
+  let booted = null;
+  PB.boot = () => {
+    if (booted) return booted;
+    PB.render('<div class="center muted" style="padding-top:40vh">…</div>');
+    booted = PB.loadData().then(() => PB.home(), () => {
+      booted = null;
+      PB.render(`<div class="play"><h2>${PB.L('Nepodařilo se načíst data.', 'Could not load the data.')}</h2><p class="muted">${PB.L('Zkontroluj připojení a zkus to znovu.', 'Check your connection and try again.')}</p></div>
+        <button class="btn big" data-retry>${PB.L('Zkusit znovu', 'Try again')}</button>`, (root) => PB.on(root, '[data-retry]', () => PB.boot()));
+    });
+    return booted;
+  };
+  const go = () => {
+    PB.boot();
     if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
-  });
+  };
+  if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', go);
+  else if (document.querySelector('#app')) setTimeout(go, 0);
 })();

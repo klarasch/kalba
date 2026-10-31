@@ -1,0 +1,103 @@
+# Zvířata a jídlo
+id: cs-zvirata-jidlo
+lang: cs
+games: impostor, guess, fishbowl
+knowledge: worldwide
+
+[easy]
+pes
+kočka
+kráva
+kůň
+prase
+slepice
+ovce
+lev
+slon
+žirafa
+opice
+medvěd
+tučňák
+delfín
+žralok
+pizza
+špagety
+hamburger
+párek v rohlíku | czech
+chleba
+sýr
+jablko
+banán
+čokoláda
+zmrzlina
+polévka
+vejce
+brambory
+řízek | european
+bábovka | czech
+
+[medium]
+vlk
+liška
+jelen
+srnec | european
+zajíc
+ježek | european
+veverka
+netopýr
+sova
+orel
+papoušek
+krokodýl
+chameleon
+medúza
+chobotnice
+kapr
+pstruh
+hlemýžď
+lasagne
+sushi
+guláš | european
+palačinky | european
+koláč | czech
+burrito
+kebab
+smažený sýr | czech
+nakládané okurky | european
+med
+ořechy
+houby | european
+popcorn
+hranolky
+
+[hard]
+kapybara
+lenochod
+luskoun
+narval
+surikata
+mravenečník
+vydra
+bobr
+rys | european
+kuna | european
+tchoř | european
+sup
+pštros
+mořský koník
+ratatouille | european
+tiramisu
+paella
+pečená kachna
+svíčková | czech
+fondue | european
+guacamole
+křupavá slanina
+švestkové knedlíky | czech
+koprovka | czech
+čočka
+tvaroh | european
+hořčice
+ementál | european
+kaviár
+ústřice

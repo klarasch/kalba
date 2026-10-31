@@ -235,7 +235,20 @@ input[type=text]:focus, textarea:focus { outline: 3px solid var(--g2); outline-o
 .list { display: flex; flex-direction: column; gap: 8px; }
 .list .it { display: flex; justify-content: space-between; align-items: center; border-width: 2px; padding: 12px 14px; cursor: pointer; font-weight: 600; }
 .list .it .i { width: 22px; height: 22px; }
-.list .it.off { opacity: .5; text-decoration: line-through; }
+.list .it.off > span:first-child { opacity: .5; text-decoration: line-through; }
+.list .it > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.list .it .acts { display: flex; align-items: center; gap: 8px; flex: none; margin-left: 10px; }
+.list .it .iconbtn { height: 38px; min-width: 38px; padding: 0 8px; box-shadow: none; border-width: 2px; }
+.list .it .iconbtn .i { width: 20px; height: 20px; }
+.list .it .iconbtn.on { background: var(--y); color: var(--on-y); }
+.list .it.cur { cursor: default; }
+.list .it .own { font: 700 12px var(--body); background: var(--y); color: var(--on-y); border: 2px solid var(--key); border-radius: 999px; padding: 1px 8px; margin-left: 8px; white-space: nowrap; }
+button.btn.small { width: auto; flex: none; padding: 8px 14px; font-size: 15px; box-shadow: 3px 3px 0 var(--key); white-space: nowrap; }
+.hidbar > span { white-space: nowrap; }
+.hidbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-weight: 700; margin: 6px 0 4px; }
+.hidbar[hidden] { display: none; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; font-size: 14px; }
+.legend .i { width: 18px; height: 18px; }
 
 /* Impostor: hold-to-peek card */
 .reveal {
@@ -293,6 +306,10 @@ input[type=text]:focus, textarea:focus { outline: 3px solid var(--g2); outline-o
 .dlgbox { padding: 20px; width: 100%; max-width: 360px; text-align: center; font: 800 22px var(--disp); display: flex; flex-direction: column; gap: 14px; box-shadow: 6px 6px 0 var(--key); rotate: -1deg; }
 .dlgbox p { margin: 0 0 4px; }
 .toast { position: fixed; left: 16px; right: 16px; bottom: max(24px, env(safe-area-inset-bottom)); margin: 0 auto; max-width: 420px; background: var(--ink); color: var(--paper); border: 2.5px solid var(--key); padding: 14px 16px; border-radius: var(--r); text-align: center; font-weight: 700; z-index: 60; animation: toast-in .25s ease-out; }
+/* Toast with an action (Undo): sits under the top bar so it never covers the main buttons. */
+.toast { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.toast.act { bottom: auto; top: calc(env(safe-area-inset-top) + 64px); text-align: left; justify-content: space-between; }
+.toast button { background: var(--paper); color: var(--ink); border: 2px solid var(--paper); border-radius: 10px; padding: 6px 12px; font: 800 15px var(--body); cursor: pointer; flex: none; }
 @keyframes toast-in { from { transform: translateY(20px); opacity: 0; } }
 .fxlayer { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 70; }
 .flash { position: fixed; inset: 0; pointer-events: none; z-index: 69; background: var(--y); animation: flash .55s ease-out forwards; }

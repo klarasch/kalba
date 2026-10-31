@@ -1,0 +1,129 @@
+# Categories for Bomb
+lang: en
+knowledge: worldwide
+
+[easy]
+Fruits
+Vegetables
+Farm animals
+Colors
+Countries
+Pets
+Sports
+Fast food
+Drinks
+Things in a kitchen
+Things in a bathroom
+Body parts
+Clothes
+Musical instruments
+School subjects
+Jobs
+Vehicles
+Toys
+Candy and sweets
+Things at the beach
+Wild animals
+Birds
+Furniture
+Things in a school bag
+Months and days
+Holidays | european
+Pizza toppings
+Ice cream flavors
+Cartoon characters
+Superheroes
+Disney movies
+Things that are red
+Things that are round
+Things you can wear
+Breakfast foods
+Insects
+Fish and sea animals
+Board games
+Things in a park
+Tools
+
+[medium]
+European capital cities | european
+Car brands
+Famous singers
+Famous actors
+Football teams | european
+Dog breeds
+Things in a supermarket
+Things in a hospital
+Cheeses | european
+Pasta shapes
+Herbs and spices
+Flowers
+Trees
+Things that fly
+Things that make noise
+Famous painters
+Harry Potter characters
+Disney characters
+Video games
+Social media apps
+Things in an airport
+Languages | european
+Rivers
+Islands
+Mountains
+Olympic sports
+Card games | european
+Cocktails | european
+Boy names
+Girl names
+Things you find in a garden
+Superhero movies
+Things in a toolbox
+Famous scientists
+Pop bands
+Clothing brands
+Things in a bedroom
+Things that are cold
+Things with wheels
+Gemstones and metals
+
+[hard]
+Capital cities in Asia
+Capital cities in Africa
+US states | european
+Countries in South America
+Chemical elements
+Greek gods | european
+Roman emperors | european
+Famous composers | european
+Nobel Prize winners
+Shakespeare plays | european
+Famous philosophers | european
+Dinosaurs
+Breeds of cats
+Types of bridges
+Famous architects | european
+Currencies
+Programming languages
+Bones of the human body
+Types of clouds
+Planets and moons
+Constellations
+Famous poets | european
+Tennis players
+Formula 1 drivers
+Oscar-winning films
+Fashion designers
+Wines and grape varieties | european
+Types of dance
+Cheese from France | european
+Lakes of the world
+Deserts
+Famous explorers
+Famous inventors
+Famous novels
+Types of boats
+Typefaces and fonts
+Units of measurement
+Medical specialties
+Mythical creatures
+Types of hats

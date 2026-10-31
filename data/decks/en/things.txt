@@ -1,0 +1,101 @@
+# Everyday things & places
+id: en-things
+lang: en
+games: impostor, guess, fishbowl
+knowledge: worldwide
+
+[easy]
+Supermarket
+Cinema
+Hospital
+Beach
+Airport
+School
+Restaurant
+Swimming pool
+Library
+Zoo
+Bakery
+Train station
+Bus
+Kitchen
+Bedroom
+Vacuum cleaner
+Refrigerator
+Television
+Umbrella
+Toothbrush
+Bicycle
+Car
+Park
+Church
+Farm
+Bank
+Hotel
+Playground
+Football stadium
+Birthday party
+
+[medium]
+Submarine
+Wedding
+Circus
+Museum
+Casino
+Lighthouse
+Greenhouse
+Fire station
+Police station
+Laundromat | european
+Barbershop
+Gym
+Campsite
+Ski resort
+Amusement park
+Aquarium
+Theater
+Night club
+Pharmacy
+Post office
+Elevator
+Escalator
+Hot air balloon
+Cruise ship
+Treehouse
+Windmill
+Sauna
+Tent
+Backpack
+Washing machine
+
+[hard]
+Observatory
+Planetarium
+Courthouse
+Morgue
+Monastery
+Bunker
+Oil rig
+Space station
+Dentist office
+Laboratory
+Parliament
+Art gallery
+Pawn shop | european
+Drive-in | european
+Roller coaster
+Cable car
+Ferris wheel
+Hostel | european
+Orphanage
+Stock exchange
+Auction house
+Lumberyard | european
+Fish market
+Vineyard
+Quarry
+Shipyard
+Control tower
+Boiler room | european
+Attic
+Cellar

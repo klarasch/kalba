@@ -1,0 +1,102 @@
+# České reálie a věci
+id: cs-realie
+lang: cs
+games: fishbowl, guess, impostor
+knowledge: czech
+
+[easy]
+Kofola
+Tatranka
+chata | european
+houbaření
+Spartakiáda
+rohlík
+tramping
+svíčková
+knedlíky
+hospoda
+Budvar | european
+Pilsner Urquell | worldwide
+Becherovka | european
+hokej | european
+vánoční kapr
+Mikuláš | european
+pomlázka
+Ježíšek
+masopust | european
+pálení čarodějnic | european
+Studentská pečeť
+Škodovka | european
+Tatra | european
+Baťa
+párek v rohlíku
+klobása | european
+řízek | european
+bramborový salát | european
+vánočka
+trabant | european
+
+[medium]
+ČEZ
+Fernet Stock
+tuzemák
+utopenec
+nakládaný hermelín
+trdelník
+Mattoni
+Lentilky
+Fidorka
+Orion
+Hašlerky
+panelák
+fronta na banány
+pionýr | european
+sametová revoluce | european
+ČSA
+Česká televize
+Večerníček
+vepřo knedlo zelo
+bramboráky
+smažený sýr
+koleda
+Dušičky | european
+Silvestr | european
+štědrovečerní večeře
+tlačenka
+jelito
+zabijačka
+Hospoda U Fleků | european
+pivo s limonádou | european
+kolotoč na pouti | european
+pouť | european
+
+[hard]
+Vltavín
+slivovice | european
+moravské víno
+mazanec
+Pražský věnec
+Krampus | european
+dožínky
+svatováclavské slavnosti
+Zlatý slavík
+Pražská šunka
+Olomoucké tvarůžky
+Karlovarské oplatky
+Hořické trubičky
+Znojemské okurky
+kmín | european
+Svijany
+Staropramen | european
+Gambrinus
+Radegast
+Koruna
+Baťovy závody
+Jednota
+Tuzex
+Mánes
+Sokol | european
+Skaut | worldwide
+Pionýrský tábor | european
+Tichá pošta | worldwide
+Hradčanské náměstí
