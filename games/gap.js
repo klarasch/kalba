@@ -30,7 +30,7 @@
     const saved = PB.store.get(SAVE, null);
     if (saved && saved.lang === PB.lang) {
       PB.render(`${PB.top(NAME())}
-        <div class="play"><div class="huge">🕳️</div><h2>${L('Máte rozehranou hru', 'You have a game in progress')}</h2>
+        <div class="play">${PB.art('gap')}<h2>${L('Máte rozehranou hru', 'You have a game in progress')}</h2>
         <p class="muted">${L('Kolo', 'Round')} ${saved.round + 1}/${saved.facts.length}</p></div>
         <div class="stack"><button class="btn" data-c>${L('Pokračovat', 'Continue')}</button><button class="btn secondary" data-n>${L('Nová hra', 'New game')}</button></div>`,
       (root) => {
@@ -191,10 +191,10 @@
   function starVote() {
     const fakes = G.opts.map((o, k) => ({ o, k })).filter(({ o }) => o.authors.some((a) => typeof a === 'number'));
     board({
-      title: L('⭐ Která lež je nejvtipnější?', '⭐ Which fake is the funniest?'),
+      title: L('Která lež je nejvtipnější?', 'Which fake is the funniest?'),
       fact: '',
       opts: fakes.map(({ o, k }) => ({ k, text: o.text })),
-      chip: (i) => '⭐ ' + pname(i),
+      chip: (i) => '★ ' + pname(i),
       allowed: (i, k) => !G.opts[k].authors.includes(i),
       denied: L('Sám sobě hvězdu nedáš', "You can't star your own"),
       votes: G.starsGiven,
@@ -336,7 +336,7 @@
       const by = isTruth(o) ? L('PRAVDA', 'TRUE')
         : o.authors.map((a) => (a === 'house' ? L('lež od Partyboxu', "Partybox's own lie") : PB.esc(pname(a)))).join(', ');
       return `<div class="gp-rev ${isTruth(o) ? 'truth' : ''}">
-        <div class="gp-rev-a">${PB.esc(o.text)}${st ? ` <span class="pill">⭐ ${st}</span>` : ''}</div>
+        <div class="gp-rev-a">${PB.esc(o.text)}${st ? ` <span class="pill">${PB.ico('star')} ${st}</span>` : ''}</div>
         <div class="small"><b>${by}</b></div>
         <div class="muted small">${v.length ? (isTruth(o) ? L('Uhodli: ', 'Found it: ') : L('Napálil/a: ', 'Fooled: ')) + who(v) : (isTruth(o) ? L('Nikdo neuhodl!', 'Nobody found it!') : L('Nikoho nenapálil/a', 'Fooled nobody'))}</div>
       </div>`;
@@ -346,7 +346,7 @@
       const done = shown >= order.length;
       PB.render(`${topbar()}
         <div class="gp-fact small">${blank(f.q, done ? f.a : '', done ? 'filled' : '')}</div>
-        ${done ? `<div class="box small">${PB.esc(f.why || '')}${f.src ? `<div class="muted small">${L('Zdroj: ', 'Source: ')}${PB.esc(f.src)}</div>` : ''}${f.ok === false ? `<div class="muted small">⚠️ ${L('Fakt zatím není ověřený ze zdrojů.', 'This fact is not verified against sources yet.')}</div>` : ''}</div>` : ''}
+        ${done ? `<div class="box small">${PB.esc(f.why || '')}${f.src ? `<div class="muted small">${L('Zdroj: ', 'Source: ')}${PB.esc(f.src)}</div>` : ''}${f.ok === false ? `<div class="muted small">${PB.ico('warn')} ${L('Fakt zatím není ověřený ze zdrojů.', 'This fact is not verified against sources yet.')}</div>` : ''}</div>` : ''}
         <div class="stack gp-revs">${order.slice(0, shown).reverse().map(card).join('')}</div>
         <div class="grow"></div>
         <button class="btn big" data-next>${done ? L('Body za kolo', 'Round scores') : shown === order.length - 1 ? L('Odhalit pravdu', 'Reveal the truth') : L('Další odpověď', 'Next answer')}</button>`,
@@ -397,7 +397,7 @@
     const best = Math.max(...G.scores);
     const winners = G.players.map((p, i) => i).filter((i) => G.scores[i] === best);
     PB.render(`${PB.top(L('Výsledky', 'Results'))}
-      <div class="play" style="flex:0"><div class="huge">🏆</div><div class="who">${winners.map((i) => PB.esc(pname(i))).join(', ')}</div></div>
+      <div class="play" style="flex:0">${PB.art('trophy')}<div class="who">${winners.map((i) => PB.esc(pname(i))).join(', ')}</div></div>
       ${standings()}
       <div class="grow"></div>
       <div class="stack"><button class="btn" data-again>${L('Hrát znovu', 'Play again')}</button><button class="btn secondary" data-home>${L('Menu', 'Menu')}</button></div>`,
@@ -408,6 +408,6 @@
     });
   }
 
-  PB.register({ id: 'gap', emoji: '🕳️', name: NAME,
+  PB.register({ id: 'gap', icon: 'gap', ink: ['#1592d6', '#ff5a5f'], name: NAME,
     tagline: () => L('Skutečný fakt s dírou. Vymysli lež, najdi pravdu.', 'A true fact with a hole. Make up a fake, find the truth.'), start });
 })();

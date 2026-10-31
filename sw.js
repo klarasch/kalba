@@ -1,9 +1,10 @@
 // Offline cache. Bump VERSION when files change.
-const VERSION = 'pb-v6';
+const VERSION = 'pb-v7';
 const FILES = [
   './', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest',
   'data/decks-cs.js', 'data/decks-en.js', 'data/bomb-cs.js', 'data/bomb-en.js', 'data/gap-cs.js', 'data/gap-en.js',
   'games/fishbowl.js', 'games/impostor.js', 'games/bomb.js', 'games/guess.js', 'games/gap.js',
+  'fonts/bricolage-latin.woff2', 'fonts/bricolage-latin-ext.woff2', 'fonts/figtree-latin.woff2', 'fonts/figtree-latin-ext.woff2',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png',
 ];
 self.addEventListener('install', (e) => {

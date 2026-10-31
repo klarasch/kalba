@@ -46,7 +46,7 @@
       <div class="corner" data-c></div>
       <div class="word" data-w>${L('Mobil na čelo!', 'Phone on forehead!')}</div>
       <div class="tapzones"><div data-skip></div><div data-ok></div></div>
-      <div class="hint">${L('Vlevo přeskočit, vpravo uhodnuto.', 'Left: skip. Right: got it.')} <span data-quit style="text-decoration:underline">${L('konec', 'stop')}</span></div>
+      <div class="hint"><span>${L('Vlevo přeskočit, vpravo uhodnuto.', 'Left: skip. Right: got it.')}</span><button class="quit" data-quit>${L('Konec', 'Stop')}</button></div>
     </div>`, (root) => {
       const fh = PB.$('[data-fh]', root), w = PB.$('[data-w]', root), c = PB.$('[data-c]', root);
       let armed = false;
@@ -59,7 +59,7 @@
         state = 'flash';
         results.push({ w: words[i], ok }); i++;
         fh.className = 'fh ' + (ok ? 'good' : 'bad');
-        w.textContent = ok ? '✓' : L('Dál', 'Pass');
+        if (ok) w.innerHTML = PB.ico('check'); else w.textContent = L('Dál', 'Pass');
         ok ? PB.sfx.good() : PB.sfx.skip();
         PB.vibrate(ok ? 60 : [30, 40, 30]);
         setTimeout(() => { if (state === 'flash') next(); }, 700);
@@ -106,8 +106,8 @@
     PB.keepAwake(false);
     PB.render(`
       ${PB.top(L('Na čele', 'Forehead'))}
-      <div class="center"><div class="huge">🎯</div><h1>${ok} ${L('uhodnuto', 'correct')}</h1></div>
-      <div class="list">${results.map((r) => `<div class="it ${r.ok ? '' : 'off'}"><span>${PB.esc(r.w)}</span><span>${r.ok ? '✓' : '✕'}</span></div>`).join('')}</div>
+      <div class="center">${PB.art('head')}<h1>${ok} ${L('uhodnuto', 'correct')}</h1></div>
+      <div class="list">${results.map((r) => `<div class="it ${r.ok ? '' : 'off'}"><span>${PB.esc(r.w)}</span><span>${PB.ico(r.ok ? 'check' : 'close')}</span></div>`).join('')}</div>
       <div class="spacer"></div>
       <div class="stack"><button class="btn big" data-again>${L('Další hráč', 'Next player')}</button><button class="btn secondary" data-set>${L('Nastavení', 'Settings')}</button></div>
     `, (root) => {
@@ -120,5 +120,5 @@
     });
   }
 
-  PB.register({ id: 'guess', emoji: '🤔', name: () => L('Na čele', 'Forehead'), tagline: () => L('Mobil na čelo, ostatní napovídají, nakláněním odpovídáš.', 'Phone on your forehead, friends give clues, tilt to answer.'), start: setup });
+  PB.register({ id: 'guess', icon: 'head', ink: ['#ff8a1f', '#0097a7'], onInk: '#18161c', name: () => L('Na čele', 'Forehead'), tagline: () => L('Mobil na čelo, ostatní napovídají, nakláněním odpovídáš.', 'Phone on your forehead, friends give clues, tilt to answer.'), start: setup });
 })();

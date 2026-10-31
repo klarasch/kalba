@@ -63,9 +63,9 @@
         ${PB.top(pname(s, i), { close: true })}
         <div class="play">
           <p class="muted">${L('Drž prst na kartě a dívej se jen ty.', 'Hold your finger on the card. Only you look.')}</p>
-          <div class="reveal" data-r><span data-hidden>👆 ${L('Podrž', 'Hold')}</span><div data-shown style="display:none">
+          <div class="reveal" data-r><span class="hold" data-hidden>${PB.art('hand', '')}${L('Podrž a koukni', 'Hold to look')}</span><div data-shown style="display:none">
             ${isImp
-              ? `<div class="huge">🕵️</div><div class="word">${L('Jsi IMPOSTOR', 'You are the IMPOSTOR')}</div>${s.hint ? `<p class="muted">${L('Kategorie', 'Category')}: ${deck.emoji} ${PB.esc(deck.name)}</p>` : ''}`
+              ? `${PB.art('mask')}<div class="word">${L('Jsi IMPOSTOR', 'You are the IMPOSTOR')}</div>${s.hint ? `<p class="muted">${L('Kategorie', 'Category')}: ${PB.esc(deck.name)}</p>` : ''}`
               : `<p class="muted">${L('Tajné slovo', 'Secret word')}</p><div class="word">${PB.esc(word)}</div>`}
           </div></div>
         </div>
@@ -73,12 +73,13 @@
       `, (root) => {
         PB.bindTop(root, setup, true);
         const r = PB.$('[data-r]', root), next = PB.$('[data-next]', root);
-        const on = (e) => { e.preventDefault(); r.classList.add('shown'); PB.$('[data-hidden]', r).style.display = 'none'; PB.$('[data-shown]', r).style.display = ''; next.disabled = false; };
+        // Same sound and buzz for everyone: a different one would be heard and give the impostor away.
+        const on = (e) => { e.preventDefault(); if (!r.classList.contains('shown')) { PB.sfx.flip(); PB.vibrate(15); } r.classList.add('shown'); PB.$('[data-hidden]', r).style.display = 'none'; PB.$('[data-shown]', r).style.display = ''; next.disabled = false; };
         const off = () => { r.classList.remove('shown'); PB.$('[data-hidden]', r).style.display = ''; PB.$('[data-shown]', r).style.display = 'none'; };
         r.addEventListener('pointerdown', on);
         ['pointerup', 'pointerleave', 'pointercancel'].forEach((ev) => r.addEventListener(ev, off));
         r.addEventListener('contextmenu', (e) => e.preventDefault());
-        next.addEventListener('click', () => show(i + 1));
+        next.addEventListener('click', () => { PB.sfx.whoosh(); show(i + 1); });
       });
     };
     show(0);
@@ -89,7 +90,7 @@
     PB.render(`
       ${PB.top('Impostor', { close: true })}
       <div class="play">
-        <div class="huge">🗣️</div>
+        ${PB.art('talk')}
         <div class="muted">${L('Začíná', 'Starts')}</div>
         <div class="who">${PB.esc(pname(s, first))}</div>
         <div class="box rules">${L('Po směru hodinových ručiček řekne každý <b>jedno slovo</b> k tajnému slovu. Udělejte 1–2 kola, pak na tři ukažte na podezřelého.',
@@ -98,26 +99,52 @@
       <button class="btn big" data-rev>${L('Odhalit impostora', 'Reveal the impostor')}</button>
     `, (root) => {
       PB.bindTop(root, setup, true);
+      // Reveal: the room "dims", a highlight hops between names and slows down, then the impostor's name slams in.
       PB.on(root, '[data-rev]', () => {
-        PB.sfx.boom(); PB.vibrate(200);
+        const n = s.players.length, target = [...imp][0];
+        const result = () => {
+          PB.sfx.sting(); PB.vibrate([40, 40, 160]); PB.fx.flash();
+          PB.render(`
+            ${PB.top('Impostor')}
+            <div class="play">
+              ${PB.art('mask')}
+              <p class="muted">${imp.size > 1 ? L('Impostoři byli', 'The impostors were') : L('Impostor byl/a', 'The impostor was')}</p>
+              <div class="who slam">${[...imp].map((i) => PB.esc(pname(s, i))).join(', ')}</div>
+              <p class="muted">${L('Tajné slovo', 'Secret word')}</p>
+              <div class="word">${PB.esc(word)}</div>
+            </div>
+            <div class="stack"><button class="btn" data-again>${L('Další kolo', 'Next round')}</button><button class="btn secondary" data-set>${L('Nastavení', 'Settings')}</button></div>
+          `, (r2) => {
+            PB.bindTop(r2, setup);
+            PB.fx.burstAt(PB.$('.who', r2), 70, { speed: 8, g: .16, life: 70, size: 4.5 });
+            PB.on(r2, '[data-again]', () => deal(s));
+            PB.on(r2, '[data-set]', setup);
+          });
+        };
+        if (PB.reduced()) return result();
         PB.render(`
-          ${PB.top('Impostor')}
+          ${PB.top('Impostor', { close: true })}
           <div class="play">
-            <div class="huge">🕵️</div>
-            <p class="muted">${imp.size > 1 ? L('Impostoři byli', 'The impostors were') : L('Impostor byl/a', 'The impostor was')}</p>
-            <div class="who">${[...imp].map((i) => PB.esc(pname(s, i))).join(', ')}</div>
-            <p class="muted">${L('Tajné slovo', 'Secret word')}</p>
-            <div class="word">${PB.esc(word)}</div>
+            <p class="muted">${L('A impostor je…', 'And the impostor is…')}</p>
+            <div class="names">${[...Array(n).keys()].map((i) => `<div class="nm" data-n="${i}">${PB.esc(pname(s, i))}</div>`).join('')}</div>
           </div>
-          <div class="stack"><button class="btn" data-again>${L('Další kolo', 'Next round')}</button><button class="btn secondary" data-set>${L('Nastavení', 'Settings')}</button></div>
-        `, (r2) => {
-          PB.bindTop(r2, setup);
-          PB.on(r2, '[data-again]', () => deal(s));
-          PB.on(r2, '[data-set]', setup);
+        `, (r1) => {
+          PB.bindTop(r1, setup, true);
+          const els = PB.$$('[data-n]', r1);
+          let k = 0, d = 70, alive = true;
+          PB.track(() => { alive = false; });
+          const hops = n * 3 + target;
+          const hop = () => {
+            if (!alive) return;
+            els.forEach((e) => e.classList.remove('lit'));
+            els[k % n].classList.add('lit'); PB.sfx.hop(k); PB.vibrate(6);
+            if (k++ < hops) { d *= 1.16; setTimeout(hop, d); } else setTimeout(() => alive && result(), 650);
+          };
+          hop();
         });
       });
     });
   }
 
-  PB.register({ id: 'impostor', emoji: '🕵️', name: () => 'Impostor', tagline: () => L('Všichni znají slovo, jen jeden ne. Blafuj, nebo ho odhal.', "Everyone knows the word except one. Bluff or catch them."), start: setup });
+  PB.register({ id: 'impostor', icon: 'mask', ink: ['#00a86b', '#6b3df0'], name: () => 'Impostor', tagline: () => L('Všichni znají slovo, jen jeden ne. Blafuj, nebo ho odhal.', "Everyone knows the word except one. Bluff or catch them."), start: setup });
 })();
