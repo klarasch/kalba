@@ -295,9 +295,9 @@ input[type=text]:focus, textarea:focus { outline: 3px solid var(--g2); outline-o
 .gp-head { display: flex; align-items: center; gap: 8px; }
 .gp-title { font: 800 18px/1.15 var(--disp); }
 .gp-opts { flex: 1; display: flex; flex-direction: column; gap: 8px; min-height: 0; }
-.gp-opt { flex: 1 1 0; min-height: 0; max-height: 120px; border-width: 2px; padding: 6px 10px; display: flex; gap: 10px; align-items: center; overflow: hidden; box-shadow: 3px 3px 0 var(--key); }
-.gp-opt b { font: 800 24px var(--disp); color: var(--g2); }
-.gp-opt > div { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+.gp-opt { flex: 1 1 0; min-height: 0; max-height: 120px; border-width: 2px; padding: 8px 12px; display: flex; gap: 10px; align-items: baseline; overflow: hidden; box-shadow: 3px 3px 0 var(--key); }
+.gp-opt b { font: 800 24px/1 var(--disp); color: var(--g2); min-width: .7em; }
+.gp-opt > div { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: flex-start; }
 .gp-opt span { font-weight: 700; font-size: clamp(14px, 4vw, 19px); line-height: 1.15; overflow: hidden; }
 .gp-slots { height: 26px; display: block; flex: 0 0 26px; }
 .gp-ctrl .btn { padding: 12px; font-size: 16px; }
