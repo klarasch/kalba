@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalba Logo Lab</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+/* Preview only: three wordmarks for "kalba!" in the riso look, each with the tagline and dictionary lines. */
+body { height: auto; }
+.lab { max-width: 430px; margin: 0 auto; padding: 24px 16px 56px; display: flex; flex-direction: column; gap: 22px; }
+.lab h1.t { font: 800 22px/1.1 var(--disp); margin: 0; letter-spacing: -.02em; }
+.lab p.n { margin: 0; font-size: 14px; opacity: .72; }
+.opt { background: var(--card); border: 2.5px solid var(--key); border-radius: var(--r); box-shadow: 4px 4px 0 var(--key); padding: 20px 18px 18px; display: flex; flex-direction: column; gap: 12px; }
+.opt .k { font: 700 12px/1 var(--body); letter-spacing: .08em; text-transform: uppercase; opacity: .6; }
+.wm { font: 800 92px/.95 var(--disp); letter-spacing: -.05em; display: flex; align-items: baseline; margin: 2px 0 0; color: var(--ink); }
+.sub { font-size: 15px; opacity: .78; max-width: 32ch; }
+.dict { border-top: 1.5px dashed color-mix(in srgb, var(--ink) 35%, transparent); padding-top: 10px; font-size: 14px; line-height: 1.45; }
+.dict b { font-family: var(--disp); font-weight: 800; font-size: 16px; }
+.dict i { opacity: .7; }
+.dict .cs { margin-top: 6px; opacity: .85; }
+
+/* A: ink printed twice, second ink slips down and right */
+.a .wm b { position: relative; color: #ff3d8b; font-weight: 800; isolation: isolate; }
+.a .wm b::after { content: attr(data-t); position: absolute; left: 3px; top: 3px; color: #1f4be0; mix-blend-mode: var(--blend); z-index: -1; }
+.a .wm b.bang { color: #ffb300; }
+.a .wm b.bang::after { color: #ff4a1c; }
+
+/* B: word split between the two inks */
+.b .wm .l1 { color: #ff3d8b; }
+.b .wm .l2 { color: #1f4be0; }
+.b .wm .l3 { color: #ff4a1c; margin-left: .02em; }
+
+/* C: the exclamation dot is the logo mark (box of game inks) */
+.c .wm { align-items: flex-end; }
+.c .wm .w { color: var(--ink); }
+.c .bang { display: inline-flex; flex-direction: column; align-items: center; gap: .1em; margin-left: .05em; padding-bottom: .04em; rotate: 8deg; }
+.c .bang .bar { width: .17em; height: .52em; border-radius: .09em; background: #ff3d8b; box-shadow: .035em .035em 0 #1f4be0; }
+.c .bang svg { width: .27em; height: .27em; display: block; }
+.c .wm .w span { color: #ff3d8b; }
+</style>
+</head>
+<body>
+<div class="lab">
+  <h1 class="t">kalba! wordmarks</h1>
+  <p class="n">Bricolage Grotesque 800, riso inks from the app. Same tagline and dictionary lines under each.</p>
+
+  <section class="opt a">
+    <div class="k">A. Misprint</div>
+    <h2 class="wm" aria-label="kalba!"><b data-t="kalba">kalba</b><b class="bang" data-t="!">!</b></h2>
+    <div class="sub">Party games for a long night. One phone, passed around.</div>
+    <div class="dict"><b>kalba!</b> <i>(KAL-ba), noun, Czech, informal</i><br>A lively party with plenty of drinking; a bender.
+      <div class="cs"><b>kalba, -y, ž.</b> <i>(hovor.)</i> bujará zábava. <i>Viz též:</i> jen na jednu hru.</div></div>
+  </section>
+
+  <section class="opt b">
+    <div class="k">B. Two inks</div>
+    <h2 class="wm" aria-label="kalba!"><span class="l1">kal</span><span class="l2">ba</span><span class="l3">!</span></h2>
+    <div class="sub">Party games for a long night. One phone, passed around.</div>
+    <div class="dict"><b>kalba!</b> <i>(KAL-ba), noun, Czech, informal</i><br>A lively party with plenty of drinking; a bender.
+      <div class="cs"><b>kalba, -y, ž.</b> <i>(hovor.)</i> bujará zábava. <i>Viz též:</i> ještě jedno kolo.</div></div>
+  </section>
+
+  <section class="opt c">
+    <div class="k">C. Mark as the dot</div>
+    <h2 class="wm" aria-label="kalba!"><span class="w">kalb<span>a</span></span><span class="bang"><i class="bar"></i><svg viewBox="0 0 46 46" aria-hidden="true"><rect x="4" y="4" width="17" height="17" rx="4" fill="#1f4be0"/><rect x="1" y="1" width="17" height="17" rx="4" fill="#ff3d8b"/><rect x="28" y="4" width="17" height="17" rx="4" fill="#6b3df0"/><rect x="25" y="1" width="17" height="17" rx="4" fill="#00a86b"/><rect x="4" y="28" width="17" height="17" rx="4" fill="#ffb300"/><rect x="1" y="25" width="17" height="17" rx="4" fill="#ff4a1c"/><rect x="28" y="28" width="17" height="17" rx="4" fill="#0097a7"/><rect x="25" y="25" width="17" height="17" rx="4" fill="#ff8a1f"/></svg></span></h2>
+    <div class="sub">Party games for a long night. One phone, passed around.</div>
+    <div class="dict"><b>kalba!</b> <i>(KAL-ba), noun, Czech, informal</i><br>A lively party with plenty of drinking; a bender.
+      <div class="cs"><b>kalba, -y, ž.</b> <i>(hovor.)</i> bujará zábava. <i>Viz též:</i> odchod ve 22:00 (nesplněno).</div></div>
+  </section>
+</div>
+</body>
+</html>
