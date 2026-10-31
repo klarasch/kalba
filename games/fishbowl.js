@@ -15,6 +15,7 @@
   const teamName = (t, i) => (t.name || '').trim() || L('Tým ', 'Team ') + String.fromCharCode(65 + i);
   const players = (t) => (t.players || '').split(',').map((x) => x.trim()).filter(Boolean);
   const total = (t) => t.score.reduce((a, b) => a + b, 0);
+  const PLAYER_PH = () => L('Přidej hráče (nepovinné)', 'Add a player (optional)');
 
   function start() {
     const saved = PB.store.get(SAVE, null);
@@ -43,7 +44,7 @@
         ${s.teams.map((t, i) => `<div class="box stack">
           <div class="namerow"><input type="text" data-tn="${i}" value="${PB.esc(t.name)}" placeholder="${L('Tým ', 'Team ')}${String.fromCharCode(65 + i)}" maxlength="20">
           ${s.teams.length > 2 ? `<button class="iconbtn" data-trm="${i}" aria-label="remove">${PB.ico('close')}</button>` : ''}</div>
-          <input type="text" data-tp="${i}" value="${PB.esc(t.players)}" placeholder="${L('Hráči, oddělení čárkou (nepovinné)', 'Players, comma separated (optional)')}">
+          ${PB.ui.tags('tp' + i, players(t), PLAYER_PH())}
         </div>`).join('')}
         ${s.teams.length < 6 ? `<button class="btn secondary" data-tadd>+ ${L('Přidat tým', 'Add team')}</button>` : ''}
       </div>
@@ -68,7 +69,7 @@
       PB.ui.bindToggle(root, 'skip', s);
       PB.ui.bindToggle(root, 'own', s);
       PB.on(root, '[data-tn]', (e, el) => { s.teams[+el.dataset.tn].name = el.value; }, 'input');
-      PB.on(root, '[data-tp]', (e, el) => { s.teams[+el.dataset.tp].players = el.value; }, 'input');
+      s.teams.forEach((t, i) => PB.ui.bindTags(root, 'tp' + i, () => players(s.teams[i]), (l) => { s.teams[i].players = l.join(', '); }, PLAYER_PH()));
       PB.on(root, '[data-trm]', (e, el) => { s.teams.splice(+el.dataset.trm, 1); draw(); });
       PB.on(root, '[data-tadd]', () => { s.teams.push({ name: '', players: '' }); draw(); });
       PB.on(root, '[data-go]', () => {

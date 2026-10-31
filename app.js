@@ -318,6 +318,35 @@
       const el = PB.$(`[data-tog="${key}"]`, root); if (!el) return;
       el.addEventListener('click', () => { s[key] = !s[key]; el.classList.toggle('on', s[key]); onChange && onChange(); });
     },
+    // Name pills: typing a comma or pressing Enter turns the text into a pill; tap the cross to remove one.
+    tags(key, list, placeholder) {
+      return `<div class="tags" data-tags="${key}">${list.map((n, i) => `<span class="tag">${PB.esc(n)}<button type="button" data-tx="${i}" aria-label="${PB.L('Odebrat', 'Remove')} ${PB.esc(n)}">${PB.ico('close')}</button></span>`).join('')}<input type="text" data-ti maxlength="24" enterkeyhint="done" autocomplete="off" placeholder="${PB.esc(placeholder)}"></div>`;
+    },
+    // get() returns the current names, set(list) stores them.
+    bindTags(root, key, get, set, placeholder) {
+      const el = PB.$(`[data-tags="${key}"]`, root); if (!el) return;
+      const redraw = (focus) => {
+        const tmp = document.createElement('div'); tmp.innerHTML = PB.ui.tags(key, get(), placeholder);
+        el.innerHTML = tmp.firstElementChild.innerHTML; wire();
+        if (focus) PB.$('[data-ti]', el).focus();
+      };
+      const commit = (text, focus) => {
+        const add = String(text).split(',').map((x) => x.trim()).filter(Boolean);
+        if (!add.length) return false;
+        set(get().concat(add)); PB.sfx.tick(); redraw(focus); return true;
+      };
+      const wire = () => {
+        const inp = PB.$('[data-ti]', el);
+        inp.addEventListener('input', () => { if (inp.value.includes(',')) { const v = inp.value; inp.value = ''; commit(v, true); } });
+        inp.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') { e.preventDefault(); const v = inp.value; inp.value = ''; commit(v, true); }
+          else if (e.key === 'Backspace' && !inp.value && get().length) { set(get().slice(0, -1)); redraw(true); }
+        });
+        inp.addEventListener('blur', () => { const v = inp.value; if (v.trim()) { inp.value = ''; commit(v, false); } });
+        PB.$$('[data-tx]', el).forEach((b) => b.addEventListener('click', () => { const l = get(); l.splice(+b.dataset.tx, 1); set(l); redraw(false); }));
+      };
+      wire();
+    },
     // Editable list of names. s[key] is an array of strings.
     names(key, list, placeholder) {
       return `<div class="stack" data-names="${key}">
