@@ -137,6 +137,7 @@ button:focus-visible,.chk:focus-within,[tabindex]:focus-visible{outline:3px soli
 .d-tacek .wm{display:flex;align-items:center;gap:12px}
 .d-tacek .wm .mat{width:62px;height:62px;border-radius:50%;background:var(--p-acc);color:var(--p-foam);display:grid;place-items:center;box-shadow:inset 0 0 0 4px var(--p-acc),inset 0 0 0 6px var(--p-foam);font:22px var(--p-disp);transform:rotate(-8deg)}
 .d-tacek .wm b{font:31px/1 var(--p-disp);font-weight:400;display:block;filter:url(#rough)}
+.d-tacek .wm i.deg{margin-left:10px;padding-left:10px;border-left:2px solid var(--p-acc)}
 .d-tacek .wm i{font-style:normal;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--p-acc)}
 .d-tacek .tile{background:var(--p-foam);border-radius:18px;box-shadow:0 2px 0 rgba(36,26,20,.18), inset 0 0 0 2px rgba(36,26,20,.08)}
 .d-tacek .tile .tn{font-family:var(--p-disp)}
@@ -301,7 +302,7 @@ button:focus-visible,.chk:focus-within,[tabindex]:focus-visible{outline:3px soli
 
   <section class="grid">
     <article class="dir">
-      <div class="dirhead"><span class="k">A · warm, light, Czech</span><h2>Tácek</h2><p>The pub table: beer mats, rubber stamps, tally marks on the bill.</p></div>
+      <div class="dirhead"><span class="k">A: warm, light, Czech</span><h2>Tácek</h2><p>The pub table: beer mats, rubber stamps, tally marks on the bill.</p></div>
       <div class="phone d-tacek" data-dir="tacek"></div>
       <dl class="spec">
         <div><dt>Palette</dt><dd><div class="sw"><span><i style="background:#e8dbbe"></i>cardboard</span><span><i style="background:#fbf6ea"></i>foam</span><span><i style="background:#b8231b"></i>bill red</span><span><i style="background:#1f4a33"></i>bottle</span><span><i style="background:#241a14"></i>ink</span></div></dd></div>
@@ -313,7 +314,7 @@ button:focus-visible,.chk:focus-within,[tabindex]:focus-visible{outline:3px soli
     </article>
 
     <article class="dir">
-      <div class="dirhead"><span class="k">B · loud, bright, poster</span><h2>Riso</h2><p>A risograph party flyer: two fluoro inks overprinted, halftone dots, chunky wide type.</p></div>
+      <div class="dirhead"><span class="k">B: loud, bright, poster</span><h2>Riso</h2><p>A risograph party flyer: two fluoro inks overprinted, halftone dots, chunky wide type.</p></div>
       <div class="phone d-riso" data-dir="riso"></div>
       <dl class="spec">
         <div><dt>Palette</dt><dd><div class="sw"><span><i style="background:#f3f1ec"></i>paper</span><span><i style="background:#ff3d8b"></i>fluoro pink</span><span><i style="background:#1f4be0"></i>riso blue</span><span><i style="background:#ffe14d"></i>yellow</span><span><i style="background:#15131a"></i>ink</span></div></dd></div>
@@ -325,7 +326,7 @@ button:focus-visible,.chk:focus-within,[tabindex]:focus-visible{outline:3px soli
     </article>
 
     <article class="dir">
-      <div class="dirhead"><span class="k">C · dark, calm, night</span><h2>Felt</h2><p>A card table at night: green baize, ivory playing cards, brass chips.</p></div>
+      <div class="dirhead"><span class="k">C: dark, calm, night</span><h2>Felt</h2><p>A card table at night: green baize, ivory playing cards, brass chips.</p></div>
       <div class="phone d-felt" data-dir="felt"></div>
       <dl class="spec">
         <div><dt>Palette</dt><dd><div class="sw"><span><i style="background:#0f3a2b"></i>baize</span><span><i style="background:#f5eedd"></i>ivory</span><span><i style="background:#c4142b"></i>card red</span><span><i style="background:#17130f"></i>ink</span><span><i style="background:#d2a24c"></i>brass</span></div></dd></div>
@@ -354,7 +355,7 @@ button:focus-visible,.chk:focus-within,[tabindex]:focus-visible{outline:3px soli
       <li>The impostor and everyone else get the same haptic and the same sound. A different buzz would be heard around the table and give the impostor away.</li>
       <li>Reveal: the room dims and a highlight hops between names like a roulette, slowing down over a drum roll, then the name slams in with a sting.</li></ul></div>
     <div class="note"><h3>Na čele + everywhere</h3><h2>Small things, every screen</h2><ul>
-      <li>Na čele (not shown here, because the preview blocks motion sensors): full-screen 3·2·1, a green flash and chime for a correct tilt and an amber swoosh for a pass, both visible to the guessers across the table.</li>
+      <li>Na čele (not shown here, because the preview blocks motion sensors): a full-screen 3, 2, 1 countdown, a green flash and chime for a correct tilt and an amber swoosh for a pass, both visible to the guessers across the table.</li>
       <li>Home tiles are dealt in on load; buttons squash on press.</li>
       <li>All sound is WebAudio synthesis, so no audio files are needed. One global sound toggle.</li>
       <li>With prefers-reduced-motion: no shake, no particles, no flight. Cards swap in place and the explosion becomes a soft flash. Try the toggle above.</li></ul></div>
@@ -444,7 +445,7 @@ button:focus-visible,.chk:focus-within,[tabindex]:focus-visible{outline:3px soli
     { id: 'head', icon: 'head', name: 'Na čele', tag: 'Mobil na čelo, ostatní radí', idx: 'Č' },
   ];
   const WM = {
-    tacek: '<div class="wm"><span class="mat">P</span><div><b>Partybox</b><i>výčep her · 12°</i></div></div>',
+    tacek: '<div class="wm"><span class="mat">P</span><div><b>Partybox</b><i>výčep her</i><i class="deg">12°</i></div></div>',
     riso: '<div class="wm"><b data-t="Party&#10;box">Party<br>box</b><i>hry na jeden mobil</i></div>',
     felt: '<div class="wm"><i>Hry na jeden stůl</i><b>Partybox</b></div>',
   };
@@ -512,7 +513,7 @@ button:focus-visible,.chk:focus-within,[tabindex]:focus-visible{outline:3px soli
       scr.className = 'scr v-home';
       scr.innerHTML = `${WM[dir]}<div class="tiles">${GAMES.map((g, i) => `
         <button class="tile deal" style="animation-delay:${i * 90}ms" data-g="${g.id}">${dir === 'felt' ? `<span class="idx">${g.idx}</span>` : ''}${icon(g.icon, dir)}<span class="tn">${g.name}</span><span class="tt">${g.tag}</span></button>`).join('')}</div>
-        <div class="foot"><span>4 hry · 1 mobil</span><span>CZ / EN</span></div>`;
+        <div class="foot"><span>4 hry, 1 mobil</span><span>CZ / EN</span></div>`;
       if (!RM()) GAMES.forEach((_, i) => later(() => S.deal(), i * 90));
       scr.querySelectorAll('.tile').forEach((b) => b.onclick = () => {
         if (b.dataset.g === 'head') return toast('Na čele needs motion sensors, which this preview blocks.');
@@ -524,7 +525,7 @@ button:focus-visible,.chk:focus-within,[tabindex]:focus-visible{outline:3px soli
     function fish() {
       scr.className = 'scr v-fish';
       let score = 0, left = 30, deck = [...WORDS].sort(() => Math.random() - .5), wi = 0, running = true;
-      scr.innerHTML = `<div class="hud"><span>Tým Knedlíci</span><span>Kolo 2/3 · jedno slovo</span></div>
+      scr.innerHTML = `<div class="hud"><span>Tým Knedlíci</span><span>Kolo 2/3: jedno slovo</span></div>
         <div class="timer"><div class="tbar"><i></i></div><span class="tnum">30</span></div>
         <div class="deck"></div>
         <div class="score"></div>
