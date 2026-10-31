@@ -6,6 +6,7 @@ Party games for a long night. One phone, passed around. Works offline (PWA). Cze
 - 🎩 **Klobouk / Fishbowl** – teams guess the same card stack in 3 rounds: describe → one word → mime. Own cards, difficulty, timer, leftover-time carry-over, game saved on reload.
 - 🕵️ **Impostor** – everyone sees the secret word except the impostor(s).
 - 💣 **Bomba / Bomb** – name something in the category and pass the phone before it blows.
+- 🕳️ **Díra / The Gap** – a true fact with a word missing. Everyone writes a fake, then drags their name onto the answer they think is true. Facts live in `data/gap-*.js` with sources.
 - 🤔 **Na čele / Forehead** – phone on the forehead, tilt down = correct, tilt up = skip.
 
 **Run locally:** any static server, e.g. `python3 -m http.server`, then open http://localhost:8000.

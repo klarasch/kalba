@@ -152,3 +152,30 @@ input[type=text]:focus, textarea:focus { outline: none; border-color: var(--acce
 .dlg { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 50; }
 .dlgbox { background: var(--bg2); border-radius: var(--r); padding: 20px; width: 100%; max-width: 360px; text-align: center; font-size: 20px; font-weight: 700; display: flex; flex-direction: column; gap: 16px; }
 .toast { position: fixed; left: 16px; right: 16px; bottom: max(24px, env(safe-area-inset-bottom)); margin: 0 auto; max-width: 420px; background: var(--fg); color: var(--bg); padding: 14px 16px; border-radius: 14px; text-align: center; font-weight: 600; z-index: 60; }
+
+/* The Gap */
+.gp-fact { background: var(--card); border-radius: 20px; padding: 20px 16px; font-size: clamp(20px, 5.5vw, 26px); font-weight: 700; line-height: 1.35; text-align: center; }
+.gp-fact.small { font-size: 18px; padding: 14px; }
+.gp-fact.tiny { font-size: 14px; padding: 8px 10px; font-weight: 600; border-radius: 12px; }
+.gp-blank { display: inline-block; min-width: 3em; border-bottom: 3px solid var(--accent); color: var(--accent); }
+.gp-blank.filled { background: #2f2a14; border-radius: 6px; padding: 0 6px; }
+.gp-board { position: fixed; inset: 0; background: var(--bg); touch-action: none; overflow: hidden; z-index: 5; }
+.gp-mid { position: absolute; inset: 58px 60px; display: flex; flex-direction: column; gap: 8px; }
+.gp-head { display: flex; align-items: center; gap: 8px; }
+.gp-title { font-weight: 800; font-size: 17px; line-height: 1.2; }
+.gp-opts { flex: 1; display: flex; flex-direction: column; gap: 8px; min-height: 0; }
+.gp-opt { flex: 1 1 0; min-height: 0; max-height: 120px; background: var(--card); border: 2px solid var(--line); border-radius: 14px; padding: 6px 10px; display: flex; gap: 10px; align-items: center; overflow: hidden; }
+.gp-opt b { font-size: 22px; color: var(--accent); }
+.gp-opt > div { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+.gp-opt span { font-weight: 700; font-size: clamp(14px, 4vw, 19px); line-height: 1.15; overflow: hidden; }
+.gp-slots { height: 26px; display: block; flex: 0 0 26px; }
+.gp-ctrl .btn { padding: 12px; font-size: 16px; }
+.gp-chip { position: absolute; z-index: 2; background: var(--blue); color: #001a26; font-weight: 800; font-size: 14px; padding: 7px 11px; border-radius: 999px; white-space: nowrap; cursor: grab; touch-action: none; box-shadow: 0 2px 8px rgba(0,0,0,.4); transition: left .2s, top .2s; }
+.gp-chip.in { font-size: 12px; padding: 4px 8px; background: var(--accent); color: #1a1500; }
+.gp-chip.drag { transition: none; z-index: 3; transform: translate(-50%,-50%) scale(1.15) !important; }
+.gp-count { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 120px; font-weight: 900; background: rgba(20,18,31,.85); z-index: 4; pointer-events: none; }
+.gp-revs { margin-top: 12px; }
+.gp-rev { background: var(--bg2); border-radius: 14px; padding: 12px 14px; }
+.gp-rev.truth { outline: 3px solid var(--good); background: #0f3a24; }
+.gp-rev-a { font-size: 20px; font-weight: 800; }
+.gp-msg { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--fg); color: var(--bg); padding: 12px 16px; border-radius: 14px; font-weight: 700; z-index: 4; pointer-events: none; text-align: center; max-width: 70%; }
