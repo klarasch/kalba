@@ -1,5 +1,5 @@
 // Offline cache. Bump VERSION when files change.
-const VERSION = 'pb-v3';
+const VERSION = 'pb-v4';
 const FILES = [
   './', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest',
   'data/decks-cs.js', 'data/decks-en.js', 'data/bomb-cs.js', 'data/bomb-en.js',

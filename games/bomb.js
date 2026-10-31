@@ -77,7 +77,7 @@
     PB.render(`
       <div class="top">${PB.pauseBtn()}<div class="title"></div></div>
       <div class="play">
-        <div class="word" style="min-height:120px">${PB.esc(cat)}${letter ? ` · <span style="color:var(--accent)">${letter}</span>` : ''}</div>
+        <div class="word" style="min-height:120px">${PB.esc(cat)}${letter ? `<div style="color:var(--accent);font-size:40px">${letter}</div>` : ''}</div>
         <div class="bomb" data-b>💣</div>
         <p class="muted">${L('Řekni slovo a předej dál!', 'Say a word and pass it on!')}</p>
       </div>

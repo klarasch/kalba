@@ -46,7 +46,7 @@
       <div class="corner" data-c></div>
       <div class="word" data-w>${L('Mobil na čelo!', 'Phone on forehead!')}</div>
       <div class="tapzones"><div data-skip></div><div data-ok></div></div>
-      <div class="hint">${L('vlevo přeskočit · vpravo uhodnuto', 'left: skip · right: got it')} · <span data-quit style="text-decoration:underline">${L('konec', 'stop')}</span></div>
+      <div class="hint">${L('Vlevo přeskočit, vpravo uhodnuto.', 'Left: skip. Right: got it.')} <span data-quit style="text-decoration:underline">${L('konec', 'stop')}</span></div>
     </div>`, (root) => {
       const fh = PB.$('[data-fh]', root), w = PB.$('[data-w]', root), c = PB.$('[data-c]', root);
       let armed = false;

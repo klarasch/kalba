@@ -277,7 +277,7 @@
         ${PB.games.map((g) => `<button class="gamecard" data-g="${g.id}"><div class="emo">${g.emoji}</div><div><b>${PB.esc(g.name())}</b><span>${PB.esc(g.tagline())}</span></div></button>`).join('')}
       </div>
       <div class="grow"></div>
-      <div class="footer">${PB.L('Vlastní obsah, otevřený kód (MIT).', 'Original content, open source (MIT).')} · <a href="https://github.com/klarasch/partybox" target="_blank" rel="noopener">GitHub</a></div>
+      <div class="footer">${PB.L('Vlastní obsah, otevřený kód (MIT).', 'Original content, open source (MIT).')} <a href="https://github.com/klarasch/partybox" target="_blank" rel="noopener">GitHub</a></div>
     `, (root) => {
       PB.on(root, '[data-g]', (e, el) => PB.games.find((g) => g.id === el.dataset.g).start());
       PB.on(root, '[data-lang]', () => { PB.setLang(PB.lang === 'cs' ? 'en' : 'cs'); PB.home(); });

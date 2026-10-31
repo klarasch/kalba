@@ -21,7 +21,7 @@
     if (saved && saved.lang === PB.lang) {
       PB.render(`${PB.top(L('Klobouk', 'Fishbowl'))}
         <div class="play"><div class="huge">🎩</div><h2>${L('Máte rozehranou hru', 'You have a game in progress')}</h2>
-        <p class="muted">${L('Kolo', 'Round')} ${saved.round + 1}/3 · ${saved.teams.map((t, i) => `${PB.esc(teamName(t, i))}: ${total(t)}`).join(' · ')}</p></div>
+        <p class="muted">${L('Kolo', 'Round')} ${saved.round + 1}/3</p><p class="muted">${saved.teams.map((t, i) => `${PB.esc(teamName(t, i))}: ${total(t)}`).join(', ')}</p></div>
         <div class="stack"><button class="btn" data-c>${L('Pokračovat', 'Continue')}</button><button class="btn secondary" data-n>${L('Nová hra', 'New game')}</button></div>`,
       (root) => {
         PB.bindTop(root);
@@ -153,12 +153,12 @@
     const secs = G.carry != null ? G.carry : G.settings.time;
     const r = ROUNDS()[G.round];
     PB.render(`
-      ${PB.top(`${L('Kolo', 'Round')} ${G.round + 1}/3 · ${r.name}`, { close: true })}
+      ${PB.top(`${L('Kolo', 'Round')} ${G.round + 1}/3: ${r.name}`, { close: true })}
       <div class="play">
         <div class="muted">${L('Na tahu je', 'Up next')}</div>
         <div class="who">${PB.esc(teamName(t, G.team))}</div>
         ${explainer ? `<p>${r.emoji} ${L('Vysvětluje', 'Explaining')}: <b>${PB.esc(explainer)}</b></p>` : `<p class="muted">${L('Vyberte, kdo vysvětluje. Ostatní z týmu hádají.', 'Pick who explains. The rest of the team guesses.')}</p>`}
-        <p><span class="pill">⏱ ${Math.round(secs)} s${G.carry != null ? ' · ' + L('přenesený čas', 'carried time') : ''}</span> <span class="pill">🃏 ${G.deck.length}</span></p>
+        <p><span class="pill">⏱ ${Math.round(secs)} s${G.carry != null ? ' (' + L('přenesený čas', 'carried time') + ')' : ''}</span> <span class="pill">🃏 ${G.deck.length}</span></p>
         <div class="stack" style="margin-top:12px">${G.teams.map((x, i) => `<div class="score ${i === G.team ? 'lead' : ''}"><span>${PB.esc(teamName(x, i))}</span><b>${total(x)}</b></div>`).join('')}</div>
       </div>
       <button class="btn big" data-go>${L('Start', 'Start')} ▶</button>
@@ -278,7 +278,7 @@
       ${PB.top(L('Výsledky', 'Results'))}
       <div class="play"><div class="huge">🏆</div>
       <h1>${winners.length > 1 ? L('Remíza!', "It's a tie!") : PB.esc(winners[0])}</h1>
-      <p class="muted">${winners.length > 1 ? winners.map(PB.esc).join(' · ') : L('vyhrává', 'wins')}</p>
+      <p class="muted">${winners.length > 1 ? winners.map(PB.esc).join(', ') : L('vyhrává', 'wins')}</p>
       <div class="stack">${scoreboard()}</div></div>
       <div class="stack"><button class="btn" data-again>${L('Hrát znovu', 'Play again')}</button><button class="btn secondary" data-home>${L('Domů', 'Home')}</button></div>
     `, (root) => {
