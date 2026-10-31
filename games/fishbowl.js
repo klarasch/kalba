@@ -7,7 +7,7 @@
     { name: L('Jedno slovo', 'One word'), art: '1', rule: L('Smíš říct jen jedno jediné slovo. Pak už jen čekáš.', 'You may say exactly one word. Then just wait.') },
     { name: L('Pantomima', 'Mime'), art: 'hand', rule: L('Beze slov a bez zvuků. Jen gesta a mimika.', 'No words, no sounds. Gestures and faces only.') },
   ];
-  const defaults = { decks: null, levels: [1, 2], cards: 40, time: 45, skip: true, own: false,
+  const defaults = { decks: null, levels: [1, 2], know: null, cards: 40, time: 45, skip: true, own: false, review: false,
     teams: [{ name: '', players: '' }, { name: '', players: '' }] };
   let G = null; // running game state
 
@@ -49,25 +49,24 @@
         ${s.teams.length < 6 ? `<button class="btn secondary" data-tadd>+ ${L('Přidat tým', 'Add team')}</button>` : ''}
       </div>
       ${PB.ui.deckPicker('fishbowl', s)}
-      <p class="muted small" data-avail></p>
       <h3>${L('Nastavení', 'Settings')}</h3>
       <div class="stack">
         ${PB.ui.stepper('cards', L('Počet karet', 'Cards'), s.cards)}
         ${PB.ui.stepper('time', L('Čas na tah', 'Time per turn'), s.time, ' s')}
         ${PB.ui.toggle('skip', L('Povolit přeskakování', 'Allow skipping'), s.skip, L('Přeskočená karta se vrátí do balíčku', 'Skipped cards go back into the stack'))}
         ${PB.ui.toggle('own', L('Přidat vlastní lístečky', 'Add your own cards'), s.own, L('Hráči napíšou vlastní jména a pojmy, zbytek doplní balíček', 'Players write their own names and things, decks fill the rest'))}
+        ${PB.ui.toggle('review', L('Projít karty před hrou', 'Review cards before playing'), s.review, L('Můžeš vyměnit nebo navždy vyřadit karty, které nechcete', 'Swap or discard forever any card you do not want'))}
       </div>
       <div class="spacer"></div>
       <button class="btn big" data-go>${L('Začít', 'Start')}</button>
     `, (root) => {
       PB.bindTop(root, () => { saveS(); PB.home(); });
-      const avail = () => { PB.$('[data-avail]', root).textContent = L('Dostupných slov: ', 'Available words: ') + PB.pool(s.decks, s.levels).length; };
-      avail();
-      PB.ui.bindDeckPicker(root, s, avail);
+      PB.ui.bindDeckPicker(root, s, null, 'fishbowl', draw);
       PB.ui.bindStepper(root, 'cards', s, { min: 10, max: 100, step: 5 });
       PB.ui.bindStepper(root, 'time', s, { min: 20, max: 120, step: 5, unit: ' s' });
       PB.ui.bindToggle(root, 'skip', s);
       PB.ui.bindToggle(root, 'own', s);
+      PB.ui.bindToggle(root, 'review', s);
       PB.on(root, '[data-tn]', (e, el) => { s.teams[+el.dataset.tn].name = el.value; }, 'input');
       s.teams.forEach((t, i) => PB.ui.bindTags(root, 'tp' + i, () => players(s.teams[i]), (l) => { s.teams[i].players = l.join(', '); }, PLAYER_PH()));
       PB.on(root, '[data-trm]', (e, el) => { s.teams.splice(+el.dataset.trm, 1); draw(); });
@@ -116,9 +115,52 @@
 
   function begin(s, own) {
     const ownLower = new Set(own.map((w) => w.toLowerCase()));
-    const fill = PB.pool(s.decks, s.levels).filter((w) => !ownLower.has(w.toLowerCase()));
-    const words = PB.shuffle(own.concat(fill.slice(0, Math.max(0, s.cards - own.length))));
+    const fill = PB.pool(s.decks, s.levels, s.know).filter((w) => !ownLower.has(w.toLowerCase()));
+    const take = Math.max(0, s.cards - own.length);
+    const words = PB.shuffle(own.concat(fill.slice(0, take)));
     if (words.length < 3) { PB.toast(L('Málo slov. Vyber víc balíčků nebo obtížností.', 'Not enough words. Pick more decks or levels.')); return; }
+    if (s.review) return curate(s, own, words, fill.slice(take));
+    startGame(s, words);
+  }
+
+  // Optional step: look through the drawn cards. Swap = a fresh card from the pool (this game only),
+  // discard = never again on this device. Typed cards can be swapped or removed but are never stored.
+  function curate(s, own, words, spare) {
+    const ownSet = new Set(own.map((w) => w.toLowerCase()));
+    const draw = () => {
+      const y = window.scrollY;
+      PB.render(`
+        ${PB.top(L('Projít karty', 'Review cards'), { close: true })}
+        <p class="muted small" style="margin-top:0">${L('Karet ve hře', 'Cards in play')}: <b>${words.length}</b>${spare.length ? '' : ' (' + L('balíček je vyčerpaný', 'no spare cards left') + ')'}</p>
+        <div class="legend muted"><span>${PB.ico('swap')} ${L('vyměnit', 'swap')}</span><span>${PB.ico('trash')} ${L('vyřadit navždy', 'discard forever')}</span></div>
+        <div class="list">${words.map((w, i) => `<div class="it cur"><span>${PB.esc(w)}${ownSet.has(w.toLowerCase()) ? `<i class="own">${L('vlastní', 'own')}</i>` : ''}</span>
+          <span class="acts"><button class="iconbtn" data-sw="${i}" aria-label="${L('Vyměnit', 'Swap')} ${PB.esc(w)}">${PB.ico('swap')}</button>
+          <button class="iconbtn" data-rm="${i}" aria-label="${L('Vyřadit navždy', 'Discard forever')} ${PB.esc(w)}">${PB.ico('trash')}</button></span></div>`).join('')}</div>
+        <div class="spacer"></div>
+        <button class="btn big" data-go>${L('Hrát', 'Play')} (${words.length})</button>
+      `, (root) => {
+        window.scrollTo(0, y);
+        PB.bindTop(root, setup);
+        const replace = (i, forever) => {
+          const w = words[i], mine = ownSet.has(w.toLowerCase());
+          if (forever && !mine) PB.hidden.add('w', w);
+          const next = spare.shift();
+          if (next) words.splice(i, 1, next); else words.splice(i, 1);
+          PB.sfx.skip(); PB.vibrate(15);
+          draw();
+        };
+        PB.on(root, '[data-sw]', (e, el) => replace(+el.dataset.sw, false));
+        PB.on(root, '[data-rm]', (e, el) => replace(+el.dataset.rm, true));
+        PB.on(root, '[data-go]', () => {
+          if (words.length < 3) return PB.toast(L('Málo karet. Vrať se a nastav víc.', 'Too few cards. Go back and pick more.'));
+          startGame(s, PB.shuffle(words));
+        });
+      });
+    };
+    draw();
+  }
+
+  function startGame(s, words) {
     G = {
       lang: PB.lang,
       settings: { time: s.time, skip: s.skip },
@@ -230,16 +272,25 @@
   // Review guessed cards (tap to undo a mistake), then score.
   function summary(guessed, timeLeft) {
     const ok = guessed.map(() => true);
+    const gone = guessed.map((g) => PB.hidden.has('w', g));
     const t = G.teams[G.team];
-    const draw = () => PB.render(`
+    const draw = () => { const y = window.scrollY; PB.render(`
       ${PB.top(L('Konec tahu', 'Turn over'), { close: true })}
       <h2>${PB.esc(teamName(t, G.team))}: +${ok.filter(Boolean).length}</h2>
-      <p class="muted small">${guessed.length ? L('Ťukni na kartu, pokud se uhodla neplatně.', 'Tap a card if it was not a fair guess.') : L('Tentokrát nic. Nevadí!', 'Nothing this time. No worries!')}</p>
-      <div class="list">${guessed.map((g, i) => `<div class="it ${ok[i] ? '' : 'off'}" data-i="${i}"><span>${PB.esc(g)}</span><span>${PB.ico(ok[i] ? 'check' : 'close')}</span></div>`).join('')}</div>
+      <p class="muted small">${guessed.length ? L('Ťukni na kartu, pokud se uhodla neplatně. Koš ji navždy vyřadí z dalších her.', 'Tap a card if it was not a fair guess. The bin removes it from future games for good.') : L('Tentokrát nic. Nevadí!', 'Nothing this time. No worries!')}</p>
+      <div class="list">${guessed.map((g, i) => `<div class="it ${ok[i] ? '' : 'off'}" data-i="${i}"><span>${PB.esc(g)}</span><span class="acts"><button class="iconbtn ${gone[i] ? 'on' : ''}" data-x="${i}" aria-label="${L('Vyřadit navždy', 'Discard forever')}: ${PB.esc(g)}">${PB.ico('trash')}</button>${PB.ico(ok[i] ? 'check' : 'close')}</span></div>`).join('')}</div>
       <div class="spacer"></div>
       <button class="btn big" data-next>${L('Pokračovat', 'Continue')}</button>
     `, (root) => {
       PB.bindTop(root, null, true);
+      window.scrollTo(0, y);
+      PB.on(root, '[data-x]', (e, el) => {
+        e.stopPropagation();
+        const i = +el.dataset.x;
+        if (gone[i]) { gone[i] = false; PB.hidden.remove('w', guessed[i]); el.classList.remove('on'); return; }
+        gone[i] = true; PB.hidden.add('w', guessed[i]); el.classList.add('on'); PB.sfx.skip();
+        PB.toast(L('Vyřazeno: ', 'Discarded: ') + guessed[i], { action: L('Zpět', 'Undo'), onAction: () => { gone[i] = false; PB.hidden.remove('w', guessed[i]); el.classList.remove('on'); } });
+      });
       PB.on(root, '[data-i]', (e, el) => { const i = +el.dataset.i; ok[i] = !ok[i]; draw(); });
       PB.on(root, '[data-next]', () => {
         const back = guessed.filter((g, i) => !ok[i]);
@@ -261,7 +312,7 @@
         save();
         turnReady();
       });
-    });
+    }); };
     draw();
   }
 
