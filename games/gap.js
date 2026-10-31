@@ -359,8 +359,8 @@
       PB.render(`${topbar()}
         <div class="gp-fact small">${blank(f.q, done ? f.a : '', done ? 'filled' : '')}</div>
         ${done ? `<div class="box small">${PB.esc(f.why || '')}${f.src ? `<div class="muted small">${L('Zdroj: ', 'Source: ')}${PB.esc(f.src)}</div>` : ''}${f.ok === false ? `<div class="muted small">${PB.ico('warn')} ${L('Fakt zatím není ověřený ze zdrojů.', 'This fact is not verified against sources yet.')}</div>` : ''}</div>` : ''}
-        <div class="stack gp-revs">${order.slice(0, shown).reverse().map(card).join('')}</div>
         ${done ? `<button class="btn secondary small" data-disc style="align-self:flex-start">${PB.hidden.has('g', f.id) ? L('Vrátit fakt', 'Bring this fact back') : L('Vyřadit fakt', 'Remove this fact')}</button>` : ''}
+        <div class="stack gp-revs">${order.slice(0, shown).reverse().map(card).join('')}</div>
         <div class="grow"></div>
         <button class="btn big" data-next>${done ? L('Body za kolo', 'Round scores') : shown === order.length - 1 ? L('Odhalit pravdu', 'Reveal the truth') : L('Další odpověď', 'Next answer')}</button>`,
       (root) => {

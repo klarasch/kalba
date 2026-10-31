@@ -109,7 +109,7 @@
               <div class="who slam">${[...imp].map((i) => PB.esc(pname(s, i))).join(', ')}</div>
               <p class="muted">${L('Tajné slovo', 'Secret word')}</p>
               <div class="word">${PB.esc(word)}</div>
-              <button class="btn secondary small" data-disc>${PB.hidden.has('w', word) ? L('Vrátit slovo', 'Bring this word back') : L('Vyřadit toto slovo', 'Never show this word again')}</button>
+              <button class="btn secondary small" data-disc style="align-self:center;margin-top:12px">${PB.hidden.has('w', word) ? L('Vrátit slovo', 'Bring this word back') : L('Vyřadit toto slovo', 'Never show this word again')}</button>
             </div>
             <div class="stack"><button class="btn" data-again>${L('Další kolo', 'Next round')}</button><button class="btn secondary" data-set>${L('Nastavení', 'Settings')}</button></div>
           `, (r2) => {
