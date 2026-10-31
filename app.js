@@ -612,6 +612,7 @@
       </div>
       <div class="grow"></div>
       <div class="footer">${PB.L('Funguje i offline. Vlastní obsah, otevřený kód (MIT).', 'Works offline. Original content, open source (MIT).')} <a href="https://github.com/klarasch/partybox" target="_blank" rel="noopener">GitHub</a></div>
+      <div class="footer credit"><a href="https://ksch.cz" target="_blank" rel="noopener"><svg viewBox="4 2 8 12" width="11" height="16" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M8 2h2v1h-2zM8 3h3v1h-3zM8 4h4v1h-4zM8 5h1v1h-1zM10 5h2v1h-2zM8 6h1v1h-1zM11 6h1v1h-1zM8 7h1v1h-1zM11 7h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM8 9h1v1h-1zM5 10h4v1h-4zM4 11h5v1h-5zM4 12h5v1h-5zM10 12h2v1h-2zM5 13h4v1h-4zM10 13h2v1h-2z"/></svg>${PB.L('Navajbkódila a vyladila Klára', 'Vibe-coded and refined by Klára')}</a></div>
     `, (root) => {
       PB.on(root, '[data-g]', (e, el) => { const g = PB.games.find((x) => x.id === el.dataset.g); PB.sfx.deal(); PB.setGame(g); g.start(); });
       PB.on(root, '[data-lang]', () => { PB.setLang(PB.lang === 'cs' ? 'en' : 'cs'); PB.home(); });
