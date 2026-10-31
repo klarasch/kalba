@@ -212,7 +212,7 @@
         <div class="gp-head">${PB.pauseBtn()}<div class="gp-title">${cfg.title}</div></div>
         ${cfg.fact ? `<div class="gp-fact tiny">${cfg.fact}</div>` : ''}
         <div class="gp-opts" data-opts>
-          ${cfg.opts.map((o, j) => `<div class="gp-opt" data-k="${o.k}"><b>${j + 1}</b><span>${PB.esc(o.text)}</span><i class="gp-slots"></i></div>`).join('')}
+          ${cfg.opts.map((o, j) => `<div class="gp-opt" data-k="${o.k}"><b>${j + 1}</b><div><span>${PB.esc(o.text)}</span><i class="gp-slots"></i></div></div>`).join('')}
         </div>
         <div class="row gp-ctrl"><button class="btn secondary" data-count>3, 2, 1</button><button class="btn" data-done>${L('Hotovo', 'Done')}</button></div>
       </div>
@@ -220,6 +220,12 @@
     </div>`, (root) => {
       const b = PB.$('[data-board]', root);
       const chips = PB.$$('.gp-chip', b);
+      // Messages go in the middle: a toast at the bottom would cover the bottom seat's chip.
+      const say = (msg) => {
+        const m = document.createElement('div');
+        m.className = 'gp-msg'; m.textContent = msg;
+        b.appendChild(m); setTimeout(() => m.remove(), 1800);
+      };
       const seat = (i) => {
         // Walk the edge clockwise from bottom centre: bottom, left, top, right.
         const W = b.clientWidth, H = b.clientHeight, m = 26;
@@ -272,7 +278,7 @@
             if (hit) {
               const k = +hit.dataset.k;
               if (cfg.allowed(i, k)) { cfg.votes[i] = k; PB.sfx.tick(); }
-              else { PB.toast(cfg.denied); PB.sfx.skip(); }
+              else { say(cfg.denied); PB.sfx.skip(); }
             } else delete cfg.votes[i];
             layout();
           };
