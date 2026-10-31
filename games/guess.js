@@ -47,7 +47,7 @@
       <div class="corner" data-c></div>
       <div class="word" data-w>${L('Mobil na čelo!', 'Phone on forehead!')}</div>
       <div class="tapzones"><div data-skip></div><div data-ok></div></div>
-      <div class="hint"><span>${L('Vlevo přeskočit, vpravo uhodnuto.', 'Left: skip. Right: got it.')}</span><button class="quit" data-quit>${L('Konec', 'Stop')}</button></div>
+      <div class="hint"><span>${L('Vlevo přeskočit, vpravo uhodnuto.', 'Left: skip. Right: got it.')}</span><button class="btn secondary small quit" data-quit>${L('Konec', 'Stop')}</button></div>
     </div>`, (root) => {
       const fh = PB.$('[data-fh]', root), w = PB.$('[data-w]', root), c = PB.$('[data-c]', root);
       let armed = false;
@@ -108,7 +108,7 @@
     PB.render(`
       ${PB.top(L('Na čele', 'Forehead'))}
       <div class="center">${PB.art('head')}<h1>${ok} ${L('uhodnuto', 'correct')}</h1></div>
-      <div class="list">${results.map((r, i) => `<div class="it ${r.ok ? '' : 'off'}"><span>${PB.esc(r.w)}</span><span class="acts"><button class="iconbtn ${PB.hidden.has('w', r.w) ? 'on' : ''}" data-x="${i}" aria-label="${L('Vyřadit navždy', 'Discard forever')}: ${PB.esc(r.w)}">${PB.ico('trash')}</button>${PB.ico(r.ok ? 'check' : 'close')}</span></div>`).join('')}</div>
+      <div class="list">${results.map((r, i) => `<div class="it ${r.ok ? '' : 'off'}"><span>${PB.esc(r.w)}</span><span class="acts"><button class="iconbtn sm ${PB.hidden.has('w', r.w) ? 'on' : ''}" data-x="${i}" aria-label="${L('Vyřadit navždy', 'Discard forever')}: ${PB.esc(r.w)}">${PB.ico('trash')}</button>${PB.ico(r.ok ? 'check' : 'close')}</span></div>`).join('')}</div>
       <div class="spacer"></div>
       <div class="stack"><button class="btn big" data-again>${L('Další hráč', 'Next player')}</button><button class="btn secondary" data-set>${L('Nastavení', 'Settings')}</button></div>
     `, (root) => {
