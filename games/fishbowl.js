@@ -293,6 +293,7 @@
       <div class="stack"><button class="btn" data-again>${L('Hrát znovu', 'Play again')}</button><button class="btn secondary" data-home>${L('Domů', 'Home')}</button></div>
     `, (root) => {
       PB.bindTop(root);
+      PB.sfx.sting(); PB.fx.burstAt(PB.$('h1', root), 80, { speed: 9, g: .18, life: 80, size: 4.5 });
       PB.on(root, '[data-again]', setup);
       PB.on(root, '[data-home]', PB.home);
     });

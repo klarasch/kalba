@@ -49,10 +49,11 @@ body {
   -webkit-user-select: none; user-select: none;
 }
 /* Inside a game the whole screen is the game's colour. */
-html[data-game] body { background: radial-gradient(rgba(0,0,0,.07) .8px, transparent 1px) 0 0 / 4px 4px, var(--g1); color: var(--on-g); }
+html[data-game] { --g-bg: var(--g1); }
+html[data-game] body { background: radial-gradient(rgba(0,0,0,.07) .8px, transparent 1px) 0 0 / 4px 4px, var(--g-bg); color: var(--on-g); }
 @media (prefers-color-scheme: dark) {
-  html[data-game] body { background: radial-gradient(rgba(255,255,255,.04) .8px, transparent 1px) 0 0 / 4px 4px, color-mix(in srgb, var(--g1) 55%, var(--paper)); }
-  html[data-game] { --on-g: #ffffff !important; }
+  html[data-game] { --g-bg: color-mix(in srgb, var(--g1) 55%, var(--paper)); --on-g: #ffffff !important; }
+  html[data-game] body { background: radial-gradient(rgba(255,255,255,.04) .8px, transparent 1px) 0 0 / 4px 4px, var(--g-bg); }
 }
 #app {
   min-height: 100%;
@@ -67,7 +68,7 @@ h2 { font-size: 24px; line-height: 1.1; margin: 18px 0 8px; }
 h3 { font: 700 13px var(--body); margin: 20px 0 8px; text-transform: uppercase; letter-spacing: .1em; opacity: .75; }
 p { margin: 6px 0; }
 b { font-weight: 800; }
-.muted { opacity: .72; }
+.muted { opacity: .8; }
 .small { font-size: 14px; }
 .center { text-align: center; }
 .grow { flex: 1; }
@@ -240,7 +241,7 @@ input[type=text]:focus, textarea:focus { outline: 3px solid var(--g2); outline-o
 @keyframes slam { 0% { transform: scale(3) rotate(-12deg); opacity: 0; } 100% { transform: scale(1) rotate(-3deg); } }
 
 /* Forehead game */
-.fh { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--g1); color: var(--on-g); padding: 20px; z-index: 5; transition: background .15s; }
+.fh { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; background: var(--g-bg, var(--g1)); color: var(--on-g); padding: 20px; z-index: 5; transition: background .15s; }
 .fh .word { background: transparent; border: 0; box-shadow: none; rotate: 0deg; color: inherit; font-size: clamp(44px, 12vw, 104px); }
 .fh .word::before { display: none; }
 .fh .word .i { width: 1.3em; height: 1.3em; }
@@ -289,7 +290,7 @@ input[type=text]:focus, textarea:focus { outline: 3px solid var(--g2); outline-o
 .gp-fact.tiny { font-size: 14px; padding: 8px 10px; font-weight: 600; border-radius: 12px; box-shadow: none; rotate: 0deg; }
 .gp-blank { display: inline-block; min-width: 3em; border-bottom: 3px solid var(--g2); color: var(--g2); font-weight: 800; }
 .gp-blank.filled { background: var(--y); color: var(--on-y); border-radius: 6px; padding: 0 6px; border-bottom-color: var(--key); }
-.gp-board { position: fixed; inset: 0; background: var(--g1); color: var(--on-g); touch-action: none; overflow: hidden; z-index: 5; }
+.gp-board { position: fixed; inset: 0; background: var(--g-bg, var(--g1)); color: var(--on-g); touch-action: none; overflow: hidden; z-index: 5; }
 .gp-mid { position: absolute; inset: 58px 60px; display: flex; flex-direction: column; gap: 8px; }
 .gp-head { display: flex; align-items: center; gap: 8px; }
 .gp-title { font: 800 18px/1.15 var(--disp); }
@@ -303,7 +304,7 @@ input[type=text]:focus, textarea:focus { outline: 3px solid var(--g2); outline-o
 .gp-chip { position: absolute; z-index: 2; background: var(--ink); color: var(--paper); border: 2px solid var(--key); font: 800 14px var(--body); padding: 7px 11px; border-radius: 999px; white-space: nowrap; cursor: grab; touch-action: none; box-shadow: 3px 3px 0 var(--key); transition: left .2s, top .2s; }
 .gp-chip.in { font-size: 12px; padding: 4px 8px; background: var(--y); color: var(--on-y); box-shadow: none; }
 .gp-chip.drag { transition: none; z-index: 3; transform: translate(-50%, -50%) scale(1.15) !important; }
-.gp-count { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 800 140px var(--disp); background: color-mix(in srgb, var(--g1) 88%, transparent); color: var(--on-g); z-index: 4; pointer-events: none; }
+.gp-count { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 800 140px var(--disp); background: color-mix(in srgb, var(--g-bg, var(--g1)) 88%, transparent); color: var(--on-g); z-index: 4; pointer-events: none; }
 .gp-revs { margin-top: 12px; }
 .gp-rev { padding: 12px 14px; box-shadow: 3px 3px 0 var(--key); }
 .gp-rev.truth { background: var(--y); color: var(--on-y); box-shadow: 5px 5px 0 var(--g2); }
