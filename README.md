@@ -9,6 +9,7 @@ Party games for a long night. One phone, passed around. Works offline (PWA). Cze
 - 🕵️ **Impostor** – everyone sees the secret word except the impostor(s).
 - 💣 **Bomba / Bomb** – name something in the category and pass the phone before it blows.
 - 🕳️ **Díra / The Gap** – a true fact with a word missing. Everyone writes a fake, then drags their name onto the answer they think is true. Facts live in `data/gap-*.js` with sources.
+- 💡 **Narážka / Hint** – pick one of six cards, give one hint, predict how many will find it. You only score when some, but not all, do. Decks in `data/hint/`.
 - 🤔 **Na čele / Forehead** – phone on the forehead, tilt down = correct, tilt up = skip.
 
 **Run locally:** any static server, e.g. `python3 -m http.server`, then open http://localhost:8000.
