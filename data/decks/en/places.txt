@@ -17,8 +17,8 @@ Niagara Falls
 Mount Everest
 Amazon Rainforest
 Disneyland
-Times Square
-Hollywood
+Times Square | european
+Hollywood | european
 Venice
 London
 Paris
@@ -28,9 +28,9 @@ Tokyo
 Egypt
 Australia
 Antarctica
-Hawaii
+Hawaii | european
 Grand Canyon
-Golden Gate Bridge
+Golden Gate Bridge | european
 Buckingham Palace
 North Pole
 Dead Sea
@@ -55,47 +55,47 @@ Barcelona
 Istanbul
 Kilimanjaro
 Victoria Falls
-Panama Canal
-Brooklyn Bridge
-Loch Ness
-Cape Town
+Panama Canal | european
+Brooklyn Bridge | european
+Loch Ness | european
+Cape Town | european
 Rio de Janeiro
 Moscow Red Square
 Versailles
 Vatican
 Easter Island
 Galápagos Islands
-Yellowstone
+Yellowstone | european
 Chernobyl
 
 [hard]
 Chichen Itza
-Alhambra
-Neuschwanstein Castle
-Mont Saint-Michel
-Cappadocia
-Ha Long Bay
-Uluru
-Table Mountain
-Zanzibar
-Timbuktu
-Atlantis
+Alhambra | european
+Neuschwanstein Castle | european
+Mont Saint-Michel | european
+Cappadocia | european
+Ha Long Bay | european
+Uluru | european
+Table Mountain | european
+Zanzibar | european
+Timbuktu | european
+Atlantis | european
 Pompeii
-Troy
-Mount Rushmore
-Hoover Dam
-Alcatraz
-Area 51
-Silk Road
-Suez Canal
-Strait of Gibraltar
-Patagonia
-Svalbard
-Lake Baikal
-Iguazu Falls
+Troy | european
+Mount Rushmore | european
+Hoover Dam | european
+Alcatraz | european
+Area 51 | european
+Silk Road | european
+Suez Canal | european
+Strait of Gibraltar | european
+Patagonia | european
+Svalbard | european
+Lake Baikal | european
+Iguazu Falls | european
 Forbidden City
 Hagia Sophia
 Sagrada Família
-Cliffs of Moher
-Giant's Causeway
-Mariana Trench
+Cliffs of Moher | european
+Giant's Causeway | european
+Mariana Trench | european

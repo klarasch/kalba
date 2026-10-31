@@ -43,14 +43,14 @@ Forrest Gump
 The Godfather
 Pulp Fiction
 Back to the Future
-Ghostbusters
+Ghostbusters | european
 The Lord of the Rings
 Pirates of the Caribbean
-The Sound of Music
-Grease
-Dirty Dancing
-The Office
-Seinfeld
+The Sound of Music | european
+Grease | european
+Dirty Dancing | european
+The Office | european
+Seinfeld | european
 The Crown
 Squid Game
 Money Heist
@@ -65,7 +65,7 @@ Despacito
 Gangnam Style
 Rolling in the Deep
 Uptown Funk
-The Truman Show
+The Truman Show | european
 Gladiator
 Inception
 Up
@@ -73,35 +73,35 @@ Coco
 Moana
 
 [hard]
-Citizen Kane
+Citizen Kane | european
 Casablanca
 Psycho
-Vertigo
-Apocalypse Now
+Vertigo | european
+Apocalypse Now | european
 Blade Runner
 Fight Club
 The Shining
-Amélie
-Life Is Beautiful
-Cinema Paradiso
-Spirited Away
+Amélie | european
+Life Is Beautiful | european
+Cinema Paradiso | european
+Spirited Away | european
 Parasite
-Black Swan
-Memento
-Twin Peaks
-The Sopranos
-The Wire
-Fawlty Towers
-Monty Python
-Blackadder
+Black Swan | european
+Memento | european
+Twin Peaks | european
+The Sopranos | european
+The Wire | european
+Fawlty Towers | european
+Monty Python | european
+Blackadder | european
 Doctor Who
 Sherlock
-Stairway to Heaven
-Purple Rain
-Born to Run
-Hallelujah
-Space Oddity
-Under Pressure
-Take On Me
-Livin on a Prayer
-Africa
+Stairway to Heaven | european
+Purple Rain | european
+Born to Run | european
+Hallelujah | european
+Space Oddity | european
+Under Pressure | european
+Take On Me | european
+Livin on a Prayer | european
+Africa | european

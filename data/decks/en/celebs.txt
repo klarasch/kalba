@@ -34,7 +34,7 @@ Brad Pitt
 Angelina Jolie
 Lady Gaga
 Julius Caesar
-Abraham Lincoln
+Abraham Lincoln | european
 Martin Luther King
 
 [medium]
@@ -65,42 +65,42 @@ Mozart
 Ludwig van Beethoven
 Bruce Lee
 Arnold Schwarzenegger
-Meryl Streep
-Robin Williams
-Oprah Winfrey
-Amelia Earhart
+Meryl Streep | european
+Robin Williams | european
+Oprah Winfrey | european
+Amelia Earhart | european
 Neil Armstrong
 
 [hard]
 Galileo Galilei
-Ada Lovelace
+Ada Lovelace | european
 Alan Turing
-Rosa Parks
-Amy Winehouse
-Jimi Hendrix
-Johnny Cash
-Nina Simone
+Rosa Parks | european
+Amy Winehouse | european
+Jimi Hendrix | european
+Johnny Cash | european
+Nina Simone | european
 Salvador Dalí
 Claude Monet
-Andy Warhol
+Andy Warhol | european
 Ernest Hemingway
-Agatha Christie
-Jane Austen
-Charles Dickens
-Mark Twain
+Agatha Christie | european
+Jane Austen | european
+Charles Dickens | european
+Mark Twain | european
 Sigmund Freud
 Confucius
 Socrates
-Marco Polo
+Marco Polo | european
 Christopher Columbus
-Ferdinand Magellan
-Florence Nightingale
-Sir Edmund Hillary
-Jesse Owens
-Simone Biles
-Michael Phelps
-Wayne Gretzky
-Ayrton Senna
-Buster Keaton
-Orson Welles
+Ferdinand Magellan | european
+Florence Nightingale | european
+Sir Edmund Hillary | european
+Jesse Owens | european
+Simone Biles | european
+Michael Phelps | european
+Wayne Gretzky | european
+Ayrton Senna | european
+Buster Keaton | european
+Orson Welles | european
 Alfred Hitchcock

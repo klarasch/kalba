@@ -57,51 +57,51 @@ Donkey Kong
 Sonic
 Lara Croft
 Mowgli
-Baloo
+Baloo | european
 Nemo
 Dory
 Olaf
 Rapunzel
 Ariel
 Aladdin
-Cruella de Vil
+Cruella de Vil | european
 Scooby-Doo
 Tom and Jerry
 Garfield
 Popeye
-Wile E. Coyote
+Wile E. Coyote | european
 Bart Simpson
 
 [hard]
 Gollum
-Bilbo Baggins
+Bilbo Baggins | european
 Dumbledore
-Severus Snape
-Hagrid
-Don Quixote
-Captain Ahab
-Hercule Poirot
-Miss Marple
-Zorro
-Mad Hatter
-Cheshire Cat
-Peter Rabbit
-Paddington Bear
-Gru
+Severus Snape | european
+Hagrid | european
+Don Quixote | european
+Captain Ahab | european
+Hercule Poirot | european
+Miss Marple | european
+Zorro | european
+Mad Hatter | european
+Cheshire Cat | european
+Peter Rabbit | european
+Paddington Bear | european
+Gru | european
 Wall-E
 Ratatouille
-Shaggy
-Link
-Kratos
-Master Chief
+Shaggy | european
+Link | european
+Kratos | european
+Master Chief | european
 Pac-Man
-Rocky Balboa
+Rocky Balboa | european
 Forrest Gump
-Hannibal Lecter
-Norman Bates
-Ebenezer Scrooge
-Oliver Twist
-Heidi
-Pippi Longstocking
-Moby Dick
+Hannibal Lecter | european
+Norman Bates | european
+Ebenezer Scrooge | european
+Oliver Twist | european
+Heidi | european
+Pippi Longstocking | european
+Moby Dick | european
 Mr. Bean
