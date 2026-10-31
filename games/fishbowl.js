@@ -41,7 +41,7 @@
         'Týmy hádají <b>pořád stejný balíček karet</b> ve 3 kolech: <b>popis → jedno slovo → pantomima</b>. Ve druhém a třetím kole už všichni slova znají, takže to jde rychle a je to čím dál vtipnější. Za každé uhodnuté slovo je bod. Když se balíček v půlce tahu vyprázdní, tým si zbylý čas přenese do dalšího kola.',
         'Teams guess <b>the same card stack</b> across 3 rounds: <b>describe → one word → mime</b>. By rounds 2 and 3 everyone knows the words, so it gets faster and funnier. One point per guessed card. If the stack runs out mid-turn, the team carries the leftover time into the next round.')}</div>
       <h3>${L('Týmy', 'Teams')}</h3>
-      <div class="stack" data-teams>
+      <div class="stack" data-teams data-flow>
         ${s.teams.map((t, i) => `<div class="box stack">
           <div class="namerow"><input type="text" data-tn="${i}" value="${PB.esc(t.name)}" placeholder="${L('Tým ', 'Team ')}${String.fromCharCode(65 + i)}" maxlength="40">
           <button class="iconbtn" data-dice="${i}" aria-label="${L('Náhodný název týmu', 'Random team name')}">${PB.ico('dice')}</button>

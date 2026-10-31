@@ -500,7 +500,8 @@
         const inp = PB.$('[data-ti]', el);
         inp.addEventListener('input', () => { if (inp.value.includes(',')) { const v = inp.value; inp.value = ''; commit(v, true); } });
         inp.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') { e.preventDefault(); const v = inp.value; inp.value = ''; commit(v, true); }
+          // Enter with text adds a pill; Enter on an empty field moves on (handled by the form flow below).
+          if (e.key === 'Enter' && inp.value.trim()) { e.preventDefault(); const v = inp.value; inp.value = ''; commit(v, true); }
           else if (e.key === 'Backspace' && !inp.value && get().length) { set(get().slice(0, -1)); redraw(true); }
         });
         inp.addEventListener('blur', () => { const v = inp.value; if (v.trim()) { inp.value = ''; commit(v, false); } });
@@ -510,7 +511,7 @@
     },
     // Editable list of names. s[key] is an array of strings.
     names(key, list, placeholder) {
-      return `<div class="stack" data-names="${key}">
+      return `<div class="stack" data-names="${key}" data-flow>
         ${list.map((n, i) => `<div class="namerow"><input type="text" value="${PB.esc(n)}" data-i="${i}" placeholder="${PB.esc(placeholder)} ${i + 1}" maxlength="24"><button class="iconbtn" data-rm="${i}" aria-label="remove">${PB.ico('close')}</button></div>`).join('')}
         <button class="btn secondary" data-add>+ ${PB.L('Přidat', 'Add')}</button></div>`;
     },
@@ -565,6 +566,21 @@
     };
     draw();
   };
+
+  // ---------- form flow: Enter jumps to the next field, the last one closes the keyboard ----------
+  // Opt in by putting data-flow on a container of text inputs.
+  const flowFields = (inp) => { const box = inp.closest('[data-flow]'); return box ? PB.$$('input[type=text]', box) : []; };
+  document.addEventListener('focusin', (e) => {
+    const inp = e.target; if (!(inp instanceof HTMLInputElement) || !inp.closest('[data-flow]')) return;
+    const all = flowFields(inp); inp.enterKeyHint = all.indexOf(inp) < all.length - 1 ? 'next' : 'done';
+  });
+  document.addEventListener('keydown', (e) => {
+    const inp = e.target;
+    if (e.key !== 'Enter' || e.defaultPrevented || !(inp instanceof HTMLInputElement) || !inp.isConnected || !inp.closest('[data-flow]')) return;
+    e.preventDefault();
+    const all = flowFields(inp), next = all[all.indexOf(inp) + 1];
+    if (next) next.focus(); else inp.blur();
+  });
 
   // ---------- games registry + home ----------
   // Each game registers { id, icon, ink: [main, second], onInk?, name(), tagline(), start }.
