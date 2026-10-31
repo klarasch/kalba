@@ -2,306 +2,76 @@
 // Each fact was checked against at least two sources that were opened and read (URLs above it).
 // To add one: same fields, two sources, then run the second check before committing.
 // "knowledge" says who can be expected to know it: czech, european or worldwide (see data/README.md).
+// A good fact is little known (not school history, not pub trivia), the gap invites funny fakes
+// (a thing, not a number or a date) and nobody's illness, death or misfortune is the punchline.
+// "adult": true puts a fact in the 18+ set, which only plays when the table switches it on.
 window.PB_GAP = window.PB_GAP || [];
 PB_GAP.push({ lang: 'en', facts: [
-  // robot, checked 2026-10-31
-  //   https://www.novinky.cz/historie/clanek/pred-130-lety-se-narodil-literarni-velikan-ktery-dal-svetu-robota-toto-slovo-vsak-nevymyslel-40309280
-  //   https://www.merriam-webster.com/dictionary/robot
-  //   https://en.wikipedia.org/wiki/R.U.R.
-  {"id": "robot", "topic": "language", "knowledge": "european", "q": "The word “robot”, for the play R.U.R., was suggested to Karel Čapek by ___.", "a": "his brother Josef", "lie": "his publisher", "why": "Karel wanted “laboři” but found it bookish; Josef suggested “roboti”, from robota, Czech for forced labour.", "src": "Lidové noviny (K. Čapek, 1933)"},
-  // dollar, checked 2026-10-31
-  //   https://www.merriam-webster.com/dictionary/dollar
-  //   https://en.wikipedia.org/wiki/Joachimsthaler
-  //   https://en.wikipedia.org/wiki/Dollar
-  {"id": "dollar", "topic": "language", "knowledge": "european", "q": "The word “dollar” comes from a 16th-century silver coin minted in the Bohemian town of ___.", "a": "Jáchymov", "lie": "Kutná Hora", "why": "The coin was the Joachimsthaler, shortened to thaler, which became dollar.", "src": "Merriam-Webster"},
   // pistol, checked 2026-10-31
   //   https://www.merriam-webster.com/dictionary/pistol
   //   https://www.dictionary.com/browse/pistol
   //   https://en.wikipedia.org/wiki/Pistol
   {"id": "pistol", "topic": "language", "knowledge": "czech", "q": "The English word “pistol” most likely comes from the Czech word ___.", "a": "píšťala (pipe, whistle)", "lie": "bič (whip)", "why": "The Hussites used it for a light hand firearm. It reached English through German and French.", "src": "Merriam-Webster"},
-  // howitzer, checked 2026-10-31
-  //   https://www.merriam-webster.com/dictionary/howitzer
-  //   https://www.dictionary.com/browse/howitzer
-  //   https://en.wikipedia.org/wiki/Howitzer
-  {"id": "howitzer", "topic": "language", "knowledge": "czech", "q": "The English word “howitzer” comes from the Czech Hussite word ___.", "a": "houfnice", "lie": "hákovnice", "why": "Hussites fired it at short range into a crowd (houf) of enemies. It reached English via German and Dutch.", "src": "Merriam-Webster"},
   // brambor, checked 2026-10-31
   //   https://macau.uni-kiel.de/servlets/MCRFileNodeServlet/macau_derivate_00006618//kiel-up_2750-9605_p4.pdf
   //   https://en.wiktionary.org/wiki/brambor
   {"id": "brambor", "topic": "language", "knowledge": "czech", "q": "The Czech word for potato, “brambora”, is named after the land it is said to have come from: ___.", "a": "Brandenburg", "lie": "Bavaria", "why": "Czech etymologists read it as “the crop from Brandenburg”, said to be brought by Prussian soldiers in the 18th century.", "src": "Kiel-UP: J. Šnejdrlová, Názvy bramboru"},
-  // polka, checked 2026-10-31
-  //   https://www.bozemandailychronicle.com/go/word-of-the-week-polka-dance-craze-has-disputed-origins/article_13fc2570-2c7b-11e3-84aa-0019bb2963f4.html
-  //   https://en.wikipedia.org/wiki/Polka
-  //   https://www.newworldencyclopedia.org/entry/polka
-  {"id": "polka", "topic": "history", "knowledge": "european", "q": "The polka dance was born in the 1830s in ___.", "a": "Bohemia", "lie": "Poland", "why": "The name is disputed: maybe from Czech “půlka” (half) for its half-steps, maybe from “Polka”, a Polish woman.", "src": "Bozeman Daily Chronicle (Chrysti the Wordsmith)"},
   // semtex, checked 2026-10-31
   //   https://www.csmonitor.com/2002/0226/p07s02-woeu.html
   //   https://en.wikipedia.org/wiki/Semtex
   //   https://explosia.cz/historie/
   {"id": "semtex", "topic": "places", "knowledge": "czech", "q": "Semtex, the plastic explosive, is named after ___, a place near Pardubice.", "a": "Semtín", "lie": "Semily", "why": "It was developed by chemists there and has been made there since the 1960s, today by Explosia.", "src": "The Christian Science Monitor"},
-  // octopus, checked 2026-10-31
-  //   https://www.sciencefocus.com/nature/why-does-an-octopus-have-more-than-one-heart
-  //   https://en.wikipedia.org/wiki/Octopus
-  {"id": "octopus", "topic": "nature", "knowledge": "worldwide", "q": "An octopus has ___ hearts.", "a": "three", "lie": "two", "why": "Two pump blood through the gills, the third through the body. Their blood is blue, thanks to copper.", "src": "BBC Science Focus"},
   // wombat, checked 2026-10-31
   //   https://www.australiangeographic.com.au/news/2021/02/why-do-wombats-have-cube-shaped-poo-scientists-may-have-solved-the-mystery/
   //   https://www.sci.news/biology/wombat-square-shaped-feces-09314.html
   //   https://en.wikipedia.org/wiki/Common_wombat
   {"id": "wombat", "topic": "nature", "knowledge": "worldwide", "q": "Wombat droppings have an unusual shape: ___.", "a": "cubes", "lie": "stars", "why": "The shape forms in the gut, which has stiffer and softer sections. They leave them on prominent spots to communicate.", "src": "Australian Geographic"},
-  // shark, checked 2026-10-31
-  //   https://pubmed.ncbi.nlm.nih.gov/27516602/
-  //   https://www.sciencenews.org/article/study-ranks-greenland-shark-longest-lived-vertebrate
-  //   https://www.pbs.org/wgbh/nova/article/greenland-shark-is-officially-the-longest-living-vertebrate-on-earth/
-  {"id": "shark", "topic": "nature", "knowledge": "worldwide", "q": "Scientists estimate the oldest Greenland shark they studied was about ___ years old.", "a": "400", "lie": "150", "why": "Radiocarbon dating of the eye lens gave roughly 272 to 512 years. It is the longest-living known vertebrate.", "src": "Science (2016): Nielsen et al."},
   // koala, checked 2026-10-31
   //   https://www.pbs.org/wgbh/nova/article/koala-fingerprints/
   //   https://indianapublicmedia.org/amomentofscience/humans-arent-unique-when-it-comes-to-fingerprints.php
   {"id": "koala", "topic": "nature", "knowledge": "worldwide", "q": "The only non-primate with fingerprints strikingly similar to a human's: ___.", "a": "koala", "lie": "sloth", "why": "They evolved separately from ours, probably for grasping eucalyptus branches and leaves.", "src": "PBS NOVA"},
-  // banana, checked 2026-10-31
-  //   https://www.livescience.com/57477-why-are-bananas-considered-berries.html
-  //   https://en.wikipedia.org/wiki/Berry_(botany)
-  {"id": "banana", "topic": "nature", "knowledge": "worldwide", "q": "Botanically, a ___ is a berry, but a strawberry is not.", "a": "banana", "lie": "raspberry", "why": "A berry grows from a flower with a single ovary. A strawberry is an accessory fruit, a raspberry an aggregate.", "src": "Live Science"},
-  // sugar, checked 2026-10-31
-  //   https://www.dacice.cz/introduction/world-primacy/
-  //   https://dpma.de/english/our_office/publications/milestones/inventionsthatmadehistory/sugarcubes/index.html
-  //   https://english.radio.cz/node/8706003
-  {"id": "sugar", "topic": "food", "knowledge": "czech", "q": "The sugar cube was patented in 1843 by the director of a sugar refinery in the Czech town of ___.", "a": "Dačice", "lie": "Kolín", "why": "The story goes that his wife Juliana cut herself chopping a sugar loaf and demanded something better.", "src": "Město Dačice"},
-  // pilsner, checked 2026-10-31
-  //   https://live.pilsnerurquell.com/stories/how-pilsner-urquell-changed-beer-forever/
-  //   https://english.radio.cz/node/8180026
-  //   https://en.wikipedia.org/wiki/Josef_Groll
-  {"id": "pilsner", "topic": "food", "knowledge": "european", "q": "The first Pilsner lager was brewed in 1842 by a brewer from ___.", "a": "Bavaria", "lie": "Vienna", "why": "His name was Josef Groll, and he used the Bavarian bottom-fermenting method.", "src": "Pilsner Urquell"},
   // ketchup, checked 2026-10-31
   //   https://www.wnyc.org/story/ketchup-the-all-american-condiment-that-comes-from-asia
   //   https://www.csmonitor.com/The-Culture/In-a-Word/2023/0410/The-origins-of-ketchup-or-catsup-run-through-fish-sauce
   //   https://en.wikipedia.org/wiki/Ketchup
   {"id": "ketchup", "topic": "food", "knowledge": "worldwide", "q": "The original Asian “ketchup” wasn't made from tomatoes but from ___.", "a": "fish", "lie": "plums", "why": "It was a pickled-fish brine from southern China. The first tomato ketchup recipe appeared in America in 1812.", "src": "WNYC / NPR"},
-  // beer, checked 2026-10-31
-  //   https://www.kirinholdings.com/en/newsroom/release/2025/1222_01.html
-  //   https://www.newstream.cz/zpravy-z-firem/alespon-v-necem-prvni-cesi-opet-ovladli-zebricek-spotreby-piva
-  //   https://en.wikipedia.org/wiki/List_of_countries_by_beer_consumption_per_capita
-  {"id": "beer", "topic": "food", "knowledge": "european", "q": "For over 30 years in a row, the country that drinks the most beer per person has been ___.", "a": "Czechia", "lie": "Germany", "why": "Kirin's ranking has had it first every year since 1993: about 150 litres per person in 2024.", "src": "Kirin Holdings (2025)"},
-  // venus, checked 2026-10-31
-  //   https://science.nasa.gov/venus/venus-facts/
-  //   https://nssdc.gsfc.nasa.gov/planetary/factsheet/venusfact.html
-  //   https://en.wikipedia.org/wiki/Venus
-  {"id": "venus", "topic": "science", "knowledge": "worldwide", "q": "On ___, one spin on its axis takes longer than a whole year.", "a": "Venus", "lie": "Mars", "why": "It turns once every 243 Earth days but orbits the Sun in 225. And it spins backwards.", "src": "NASA"},
-  // stapes, checked 2026-10-31
-  //   https://www.healthline.com/human-body-maps/stapes-bone
-  //   https://en.wikipedia.org/wiki/Stapes
-  {"id": "stapes", "topic": "science", "knowledge": "worldwide", "q": "The smallest bone in the human body is in the ___.", "a": "ear", "lie": "nose", "why": "It's the stapes, or stirrup, in the middle ear. Only about 2 to 3 mm long.", "src": "Healthline"},
-  // bluetooth, checked 2026-10-31
-  //   https://www.bluetooth.com/about-us/bluetooth-origin/
-  //   https://en.wikipedia.org/wiki/Harald_Bluetooth
-  {"id": "bluetooth", "topic": "science", "knowledge": "european", "q": "Bluetooth is named after a 10th-century king of ___.", "a": "Denmark", "lie": "Sweden", "why": "Harald Bluetooth united Denmark and Norway, just as the tech was meant to unite devices.", "src": "Bluetooth SIG"},
-  // cimrman, checked 2026-10-31
-  //   https://english.radio.cz/node/8095952
-  //   https://www.novinky.cz/kultura/clanek/nejvetsim-cechem-se-stal-karel-iv-40101476
-  //   https://cs.wikipedia.org/wiki/Nejv%C4%9Bt%C5%A1%C3%AD_%C4%8Cech
-  {"id": "cimrman", "topic": "history", "knowledge": "czech", "q": "The unofficial winner of the 2005 Greatest Czech TV poll was disqualified for being fictional: ___.", "a": "Jára Cimrman", "lie": "the Good Soldier Švejk", "why": "So Charles IV officially won, with T. G. Masaryk second and Václav Havel third.", "src": "Radio Prague International"},
-  // masaryk, checked 2026-10-31
-  //   https://ct24.ceskatelevize.cz/domaci/2240131-pred-80-lety-se-narodil-taticek-i-prezident-osvoboditel-tgm
-  //   https://english.radio.cz/node/8601235
-  //   https://en.wikipedia.org/wiki/Charlotte_Garrigue_Masaryk
-  {"id": "masaryk", "topic": "history", "knowledge": "czech", "q": "Tomáš G. Masaryk added the surname Garrigue to his own. It belonged to his ___.", "a": "wife", "lie": "mother", "why": "Charlotte Garrigue was American; he took her name when they married in New York in 1878.", "src": "Česká televize"},
-  // wichterle, checked 2026-10-31
-  //   https://www.kudyznudy.cz/ceska-nej/vedecke/kontaktni-cocky
-  //   https://blog.google/intl/cs-CZ/produkty-sluzby/objevujte-ziskavejte-odpovedi/2021_10_google-dnes-v-rade-zemi-pripomina/
-  //   https://en.wikipedia.org/wiki/Otto_Wichterle
-  {"id": "wichterle", "topic": "history", "knowledge": "czech", "q": "At Christmas 1961 Otto Wichterle made the first soft contact lenses at home, on a machine built from a ___ construction kit.", "a": "Merkur", "lie": "Lego", "why": "A bicycle dynamo powered it. The original is now in the National Technical Museum in Prague.", "src": "CzechTourism (Kudy z nudy)"},
-  // purkyne, checked 2026-10-31
-  //   https://www.nlm.nih.gov/exhibition/visibleproofs/galleries/exhibition/views_image_6.html
-  //   https://en.wikipedia.org/wiki/Jan_Evangelista_Purkyn%C4%9B
-  {"id": "purkyne", "topic": "history", "knowledge": "czech", "q": "In 1823 Jan Evangelista Purkyně was one of the first to scientifically classify ___.", "a": "fingerprints", "lie": "blood types", "why": "He described nine pattern types. Using them to identify people came decades later.", "src": "U.S. National Library of Medicine"},
-  // jansky, checked 2026-10-31
-  //   https://english.radio.cz/node/8588826
-  //   https://www.visitczechia.com/en-us/news/2023/03/n-jan-jansky-prominent-czech-physician
-  //   https://en.wikipedia.org/wiki/Jan_Jansk%C3%BD
-  {"id": "jansky", "topic": "history", "knowledge": "czech", "q": "In 1907 the Czech doctor Jan Janský sorted human blood into ___ groups.", "a": "four", "lie": "six", "why": "Landsteiner had described three in 1901. Janský was first to classify all four: today's O, A, B and AB.", "src": "Radio Prague International"},
-  // pravcicka, checked 2026-10-31
-  //   https://www.novinky.cz/cestovani/tipy-na-vylety/clanek/nejvetsi-piskovcovou-branu-v-evrope-strezi-skalni-hrady-bez-posadky-40296094
-  //   https://en.wikipedia.org/wiki/Pravčická_brána
-  //   https://cs.wikipedia.org/wiki/Pravčická_brána
-  {"id": "pravcicka", "topic": "places", "knowledge": "czech", "q": "The largest natural sandstone arch in Europe is in Czechia. It's called ___.", "a": "Pravčická brána", "lie": "Tiská brána", "why": "The arch spans over 26 metres. Walking on it has been banned since 1982 because of cracks.", "src": "Novinky.cz"},
-  // hranice, checked 2026-10-31
-  //   https://www.novinky.cz/clanek/veda-skoly-speleologove-namerili-novy-svetovy-rekord-hranicke-propasti-40404594
-  //   https://en.wikipedia.org/wiki/Hranice_Abyss
-  {"id": "hranice", "topic": "places", "knowledge": "czech", "q": "The world's deepest known flooded cave is near the Czech town of ___.", "a": "Hranice", "lie": "Blansko", "why": "In 2022 a robot reached 450 metres below the water without finding the bottom. It may go down about a kilometre.", "src": "Novinky.cz (ČTK)"},
-  // charlesbridge, checked 2026-10-31
-  //   https://visitczechia.com/en-us/news/2024/07/n-charles-bridge-660-years
-  //   https://www.praha1.cz/karluv-most-667-let/
-  //   https://en.wikipedia.org/wiki/Charles_Bridge
-  {"id": "charlesbridge", "topic": "places", "knowledge": "czech", "q": "Legend says the Charles Bridge foundation stone was laid on 9 July 1357 at 5:31, so 1357 9 7 5 31 forms a ___.", "a": "palindrome", "lie": "Charles's birthday", "why": "135797531 reads the same both ways. Court astrologers supposedly picked the moment.", "src": "VisitCzechia (CzechTourism)"},
-  // crown-keys, checked 2026-10-31
-  //   https://english.radio.cz/node/8828817
-  //   https://en.wikipedia.org/wiki/Bohemian_Crown_Jewels
-  {"id": "crown-keys", "topic": "history", "knowledge": "czech", "q": "The chamber holding the Bohemian crown jewels in St. Vitus Cathedral can only be opened when several officials (president, prime minister, archbishop...) unlock it together. Number of key holders: ___.", "a": "seven", "lie": "three", "why": "The seven-key tradition dates from 1791, and the holders represent state, city and church.", "src": "Český rozhlas"},
-  // zizka-blind, checked 2026-10-31
-  //   https://www.worldhistory.org/Jan_Zizka/
-  //   https://en.wikipedia.org/wiki/Jan_%C5%BDi%C5%BEka
-  {"id": "zizka-blind", "topic": "history", "knowledge": "czech", "q": "The Hussite general Jan Žižka stayed undefeated even in his last years, when he was completely ___.", "a": "blind", "lie": "deaf", "why": "He lost one eye in his youth and the other at the siege of Rabí in 1421, yet kept commanding.", "src": "World History Encyclopedia"},
   // tycho-nose, checked 2026-10-31
   //   https://muzeum3000.nm.cz/national-museum-news/research-of-the-tomb-and-remains-of-tycho-brahe
   //   https://en.wikipedia.org/wiki/Tycho_Brahe
   {"id": "tycho-nose", "topic": "history", "knowledge": "european", "q": "Astronomer Tycho Brahe lost part of his nose in a duel and wore a prosthesis. Analysis of his remains, exhumed in 2010, showed it was not gold or silver but this metal: ___.", "a": "brass", "lie": "lead", "why": "The nose bone held copper and zinc in the ratio typical of brass. Tycho died in Prague in 1601.", "src": "Národní muzeum"},
-  // remek, checked 2026-10-31
-  //   https://english.radio.cz/node/8598510
-  //   https://en.wikipedia.org/wiki/Vladim%C3%ADr_Remek
-  //   https://spacefacts.de/mission/english/soyuz-28.htm
-  {"id": "remek", "topic": "history", "knowledge": "czech", "q": "The first person in space who was neither American nor Soviet was a Czechoslovak in 1978: ___.", "a": "Vladimír Remek", "lie": "Jiří Grygar", "why": "He flew on Soyuz 28 in March 1978 under the Interkosmos programme and spent almost eight days in space.", "src": "Český rozhlas"},
-  // suttner, checked 2026-10-31
-  //   https://www.nobelprize.org/prizes/peace/1905/suttner/facts/
-  //   https://en.wikipedia.org/wiki/Bertha_von_Suttner
-  {"id": "suttner", "topic": "history", "knowledge": "european", "q": "The first woman to win the Nobel Peace Prize (1905), Bertha von Suttner, was born in this city: ___.", "a": "Prague", "lie": "Vienna", "why": "She was born in 1843 in Prague as Countess Kinsky.", "src": "Nobelprize.org"},
-  // mucha-stamps, checked 2026-10-31
-  //   https://muchafoundation.org/gallery/browse-works/object/263
-  //   https://en.wikipedia.org/wiki/Alfons_Mucha
-  {"id": "mucha-stamps", "topic": "history", "knowledge": "czech", "q": "After Czechoslovakia was founded in 1918, painter Alfons Mucha designed its banknotes and its first ___.", "a": "postage stamps", "lie": "flag", "why": "The first banknote he designed came out in 1919, and he even designed police uniforms for the new state.", "src": "Mucha Foundation"},
-  // arcimboldo, checked 2026-10-31
-  //   https://skoklostersslott.se/en/paintings/giuseppe-arcimboldo
-  //   https://en.wikipedia.org/wiki/Vertumnus_%28Arcimboldo%29
-  {"id": "arcimboldo", "topic": "history", "knowledge": "european", "q": "The Italian painter Arcimboldo portrayed Emperor Rudolf II as the Roman god Vertumnus. His face and body are made of: ___.", "a": "fruit and vegetables", "lie": "books", "why": "Painted around 1590 for the Prague court, it now hangs in Skokloster Castle in Sweden.", "src": "Skokloster Castle"},
-  // charles-name, checked 2026-10-31
-  //   https://english.radio.cz/node/8226516
-  //   https://en.wikipedia.org/wiki/Charles_IV,_Holy_Roman_Emperor
-  {"id": "charles-name", "topic": "history", "knowledge": "european", "q": "Emperor Charles IV was born with a different name and took Charles only at his confirmation in France. His birth name: ___.", "a": "Wenceslas", "lie": "John", "why": "He chose Charles in honour of King Charles IV of France, at whose Paris court he grew up.", "src": "Český rozhlas"},
   // divis-drought, checked 2026-10-31
   //   https://english.radio.cz/node/8819683
   //   https://en.wikipedia.org/wiki/Prokop_Divi%C5%A1
   {"id": "divis-drought", "topic": "history", "knowledge": "czech", "q": "In 1754 the priest Prokop Diviš built one of the first grounded lightning rods in Přímětice. Villagers destroyed it in 1759 because they blamed it for causing: ___.", "a": "a drought", "lie": "a flood", "why": "Diviš called it a weather machine and never rebuilt it after it was destroyed.", "src": "Český rozhlas"},
-  // zatopek, checked 2026-10-31
-  //   https://www.olympedia.org/results/58937
-  //   https://en.wikipedia.org/wiki/Emil_Z%C3%A1topek
-  {"id": "zatopek", "topic": "history", "knowledge": "european", "q": "At the 1952 Helsinki Olympics Emil Zátopek won the 5000 m, the 10,000 m and then an event he had never run before: the ___.", "a": "marathon", "lie": "50 km walk", "why": "He decided to enter at the last minute and won with an Olympic record.", "src": "Olympedia"},
-  // smetana-deaf, checked 2026-10-31
-  //   https://english.radio.cz/node/8083862
-  //   https://en.wikipedia.org/wiki/Bed%C5%99ich_Smetana
-  {"id": "smetana-deaf", "topic": "history", "knowledge": "european", "q": "Composer Bedřich Smetana wrote most of Má vlast without hearing it, because from 1874 he was completely ___.", "a": "deaf", "lie": "blind", "why": "He went deaf after a long illness and finished the cycle at the end of the 1870s.", "src": "Český rozhlas"},
-  // anthem-fidlovacka, checked 2026-10-31
-  //   https://eurozpravy.cz/magazin/ceska-hymna-poprve-zaznela-pred-190-lety-v-tylove-fidlovacce.txkavdj1
-  //   https://en.wikipedia.org/wiki/Kde_domov_m%C5%AFj
-  {"id": "anthem-fidlovacka", "topic": "history", "knowledge": "czech", "q": "The song Kde domov můj, later the Czech anthem, was first heard in 1834 in a Tyl play called ___.", "a": "Fidlovačka", "lie": "Strakonický dudák", "why": "The music is by František Škroup, and it became an anthem only after 1918.", "src": "Eurozprávy"},
-  // legion-railway, checked 2026-10-31
-  //   https://english.radio.cz/node/8146390
-  //   https://en.wikipedia.org/wiki/Czechoslovak_Legion
-  //   https://mentalfloss.com/article/545120/wwi-centennial-czech-legion-revolts-sedition-act-passed
-  {"id": "legion-railway", "topic": "history", "knowledge": "czech", "q": "In 1918 the Czechoslovak Legion in Russia took control of the whole famous railway: the ___.", "a": "Trans-Siberian Railway", "lie": "Baikal-Amur Mainline", "why": "About 70,000 legionaries went home via Vladivostok, living on trains for long stretches.", "src": "Český rozhlas"},
-  // wenceslas-duke, checked 2026-10-31
-  //   https://www.classicfm.com/discover-music/real-story-good-king-wenceslas-carol/
-  //   https://en.wikipedia.org/wiki/Wenceslaus_I,_Duke_of_Bohemia
-  {"id": "wenceslas-duke", "topic": "history", "knowledge": "european", "q": "Saint Wenceslas of the English Christmas carol Good King Wenceslas never was a king in his lifetime. He was a: ___.", "a": "duke", "lie": "count", "why": "According to tradition Emperor Otto I granted him the royal title only after his death.", "src": "Classic FM"},
-  // molasses, checked 2026-10-31
-  //   https://www.history.com/news/the-great-molasses-flood-of-1919
-  //   https://en.wikipedia.org/wiki/Great_Molasses_Flood
-  {"id": "molasses", "topic": "history", "knowledge": "worldwide", "q": "In January 1919 a huge tank burst in Boston and sent about 2.3 million gallons of ___ into the streets.", "a": "molasses", "lie": "beer", "why": "The wave killed 21 people and injured about 150, and the cleanup took weeks.", "src": "History.com"},
   // pig-war, checked 2026-10-31
   //   https://www.nps.gov/sajh/historyculture/the-pig-war.htm
   //   https://en.wikipedia.org/wiki/Pig_War_%281859%29
   {"id": "pig-war", "topic": "history", "knowledge": "worldwide", "q": "In 1859 the USA and Britain nearly went to war over San Juan Island, and the only casualty was a ___.", "a": "pig", "lie": "horse", "why": "An American shot a Hudson's Bay Company pig rooting in his garden. The German emperor settled the border dispute in 1872.", "src": "National Park Service"},
-  // dancing-plague, checked 2026-10-31
-  //   https://publicdomainreview.org/essay/the-dancing-plague-of-1518/
-  //   https://en.wikipedia.org/wiki/Dancing_plague_of_1518
-  {"id": "dancing-plague", "topic": "history", "knowledge": "worldwide", "q": "In summer 1518 a strange epidemic of uncontrollable dancing broke out in the streets of ___, drawing in dozens to hundreds of people.", "a": "Strasbourg", "lie": "Nuremberg", "why": "It started with one woman, Frau Troffea, and its cause is still debated.", "src": "Public Domain Review"},
   // newton-mint, checked 2026-10-31
   //   https://www.numismaticnews.net/world-coins/genius-newton-chased-counterfeiters
   //   https://en.wikipedia.org/wiki/Later_life_of_Isaac_Newton
   {"id": "newton-mint", "topic": "history", "knowledge": "worldwide", "q": "As Warden of the Royal Mint, Isaac Newton also worked as a detective hunting: ___.", "a": "coin counterfeiters", "lie": "tea smugglers", "why": "He questioned witnesses himself, went undercover and successfully prosecuted 28 coiners, a crime punishable by death.", "src": "Numismatic News"},
-  // zanzibar-war, checked 2026-10-31
-  //   https://www.historyhit.com/the-anglo-zanzibar-war-the-shortest-war-in-history-which-lasted-38-minutes/
-  //   https://en.wikipedia.org/wiki/Anglo-Zanzibar_War
-  {"id": "zanzibar-war", "topic": "history", "knowledge": "worldwide", "q": "The Anglo-Zanzibar War of 1896 is considered the shortest war in history. It lasted only about ___ minutes.", "a": "40", "lie": "120", "why": "British ships shelled the sultan's palace, and estimates of its length range from 38 to 45 minutes.", "src": "History Hit"},
-  // pancavsky-vodopad, checked 2026-10-31
-  //   https://www.kudyznudy.cz/aktivity/pancavsky-vodopad-v-krkonosich
-  //   https://cs.wikipedia.org/wiki/Pančavský_vodopád
-  {"id": "pancavsky-vodopad", "topic": "nature", "knowledge": "czech", "q": "The highest waterfall in Czechia, in the Krkonoše mountains, is about ___ metres tall.", "a": "148", "lie": "63", "why": "The Pančava Waterfall drops in several steps from the Pančava meadow into the Elbe Valley.", "src": "Kudy z nudy (CzechTourism)"},
-  // hrensko-nejnize, checked 2026-10-31
-  //   https://mzv.gov.cz/bratislava/cz/cr_a_eu/zakladni_informace_o_cr/index.html
-  //   https://cs.wikipedia.org/wiki/Hřensko
-  {"id": "hrensko-nejnize", "topic": "nature", "knowledge": "czech", "q": "The lowest point of Czechia, 115 m above sea level, where the Elbe leaves the country, is by the village of ___.", "a": "Hřensko", "lie": "Litoměřice", "why": "The Elbe then flows on through Germany and finally into the North Sea.", "src": "Ministerstvo zahraničních věcí ČR"},
-  // zofinsky-prales, checked 2026-10-31
-  //   https://ct24.ceskatelevize.cz/veda/2456605-zofinsky-prales-pomuze-nasa-popsat-evropske-lesy-je-dokonale-zmereny
-  //   https://www.kudyznudy.cz/aktivity/narodni-prirodni-rezervace-zofinsky-prales
-  {"id": "zofinsky-prales", "topic": "nature", "knowledge": "czech", "q": "In ___ Count Buquoy declared protection for the Žofín virgin forest in South Bohemia, one of the oldest nature reserves in Europe.", "a": "1838", "lie": "1892", "why": "The owner of the Nové Hrady estate declared the protection on 28 August 1838.", "src": "Česká televize (ČT24)"},
-  // rozmberk-rybnik, checked 2026-10-31
-  //   https://www.kudyznudy.cz/ceska-nej/zemepisne/rybnik-rozmberk
-  //   https://eurozpravy.cz/wiki/rozmberk
-  {"id": "rozmberk-rybnik", "topic": "nature", "knowledge": "czech", "q": "The largest pond in Czechia, with a water surface of about 490 hectares, is called ___.", "a": "Rožmberk", "lie": "Svět", "why": "Jakub Krčín built it near Třeboň in 1584 to 1590, mainly for fish farming and flood protection.", "src": "Kudy z nudy (CzechTourism)"},
-  // douglaska-vlastibor, checked 2026-10-31
-  //   https://www.ziva.avcr.cz/files/ziva/pdf/lovci-stromovych-rekordu.pdf
-  //   https://deti.vls.cz/wp-content/uploads/2025/07/stromovi-rekordmani-i.pdf
-  {"id": "douglaska-vlastibor", "topic": "nature", "knowledge": "czech", "q": "The tallest known tree in Czechia, near Vlastiboř, measured almost 67 m in 2024. It is a ___.", "a": "Douglas fir", "lie": "Norway spruce", "why": "Tree climbers measure it with a tape from the top: 64 m in 2014, 66.72 m in 2024.", "src": "Živa (AV ČR)"},
-  // litvinovice-mraz, checked 2026-10-31
-  //   https://english.radio.cz/node/8807812
-  //   https://ct24.ceskatelevize.cz/archiv/1421464-minus-422-stupne-celsia-dosud-neprekonana-nejnizsi-teplota-v-cr
-  {"id": "litvinovice-mraz", "topic": "nature", "knowledge": "czech", "q": "The lowest temperature ever measured in Czechia (11 February 1929 at Litvínovice near České Budějovice) was minus ___ degrees Celsius.", "a": "42.2", "lie": "37.8", "why": "On the same day Jablunkov in Moravia recorded minus 41.5 degrees.", "src": "Český rozhlas (Radio Prague)"},
-  // vltaviny-meteorit, checked 2026-10-31
-  //   https://www.ckrumlov.info/cz/pamatky-a-kultura-66-muzeum-vltavinu/
-  //   https://cs.wikipedia.org/wiki/Vltav%C3%ADn
-  {"id": "vltaviny-meteorit", "topic": "nature", "knowledge": "czech", "q": "The green glass called moldavite, found in South Bohemia, was created about 15 million years ago by a meteorite impact in what is now the German state of ___.", "a": "Bavaria", "lie": "Saxony", "why": "The blast threw molten rock up to about 400 km away, and moldavites are Europe's only tektites.", "src": "Muzeum vltavínů Český Krumlov"},
-  // sullivan-blesk, checked 2026-10-31
-  //   https://www.guinnessworldrecords.com/world-records/most-lightning-strikes-survived
-  //   https://en.wikipedia.org/wiki/Roy_Sullivan
-  {"id": "sullivan-blesk", "topic": "nature", "knowledge": "worldwide", "q": "Park ranger Roy Sullivan survived being struck by lightning ___ times.", "a": "seven", "lie": "three", "why": "Guinness World Records lists him as the only person struck by lightning seven times.", "src": "Guinness World Records"},
-  // rorys-200-dni, checked 2026-10-31
-  //   https://www.nature.com/articles/ncomms3554
-  //   https://www.nationalgeographic.com/animals/article/swift-bird-10-month-migration
-  {"id": "rorys-200-dni", "topic": "nature", "knowledge": "worldwide", "q": "According to a 2013 Swiss study, the alpine swift can stay in the air without landing for about ___ days.", "a": "200", "lie": "40", "why": "The birds carried tiny movement loggers, which suggest they did not land during their whole African winter.", "src": "Nature Communications (2013)"},
-  // breheus-rekord, checked 2026-10-31
-  //   https://www.guinnessworldrecords.com/news/2023/1/the-record-breaking-bird-that-flew-from-alaska-to-australia-731576
-  //   https://www.npr.org/2023/01/05/1147052902/migrating-bird-a-bar-tailed-godwit-flies-from-alaska-to-australia-without-stoppi
-  {"id": "breheus-rekord", "topic": "nature", "knowledge": "worldwide", "q": "In 2022 a five-month-old bar-tailed godwit flew non-stop from Alaska to Tasmania in a record ___ days.", "a": "11", "lie": "5", "why": "It covered about 13,560 km without food or rest.", "src": "Guinness World Records"},
   // lenochod-tyden, checked 2026-10-31
   //   https://www.scientificamerican.com/article/why-sloths-leave-the-trees-to-defecate
   //   https://en.wikipedia.org/wiki/Sloth
   {"id": "lenochod-tyden", "topic": "nature", "knowledge": "european", "q": "Three-toed sloths climb down to the ground to poop only about once a ___.", "a": "week", "lie": "month", "why": "On the ground they are easy prey and it costs them energy; scientists still argue about why they do it.", "src": "Scientific American"},
-  // pando-osika, checked 2026-10-31
-  //   https://americanforests.org/climate/the-heaviest-organism-on-the-planet
-  //   https://www.sciencealert.com/the-worlds-largest-organism-is-slowly-being-eaten
-  {"id": "pando-osika", "topic": "nature", "knowledge": "worldwide", "q": "Pando, a grove of aspens in Utah, is actually a single organism with an estimated ___ trunks.", "a": "47,000", "lie": "800", "why": "All the trunks are genetically identical and grow from one shared root network.", "src": "American Forests"},
-  // rybak-70000, checked 2026-10-31
-  //   https://www.nationalgeographic.com/animals/article/100111-worlds-longest-migration-arctic-tern-bird
-  //   https://en.wikipedia.org/wiki/Arctic_tern
-  {"id": "rybak-70000", "topic": "nature", "knowledge": "worldwide", "q": "According to a 2010 study, on its yearly round trip between the Arctic and the Antarctic the Arctic tern flies roughly ___ kilometres.", "a": "70,000", "lie": "20,000", "why": "It is among the longest known animal migrations, and later studies tracked some birds even further.", "src": "National Geographic"},
   // zebra-ovadi, checked 2026-10-31
   //   https://bristol.ac.uk/news/2019/february/zebra-stripes.html
   //   https://www.sciencedaily.com/releases/2019/02/190220145032.htm
   {"id": "zebra-ovadi", "topic": "nature", "knowledge": "worldwide", "q": "A 2019 study found that zebra stripes mainly protect against one blood-sucking insect, which struggles to land on them: the ___.", "a": "horsefly", "lie": "mosquito", "why": "Horseflies fail to slow down near zebras and overshoot or bump into them, though the exact mechanism is still debated.", "src": "University of Bristol"},
-  // vostok-mraz, checked 2026-10-31
-  //   https://www.guinnessworldrecords.com/world-records/66137-lowest-temperature-recorded-on-earth
-  //   https://en.wikipedia.org/wiki/Lowest_temperature_recorded_on_Earth
-  {"id": "vostok-mraz", "topic": "nature", "knowledge": "worldwide", "q": "The lowest air temperature ever directly measured on Earth (Vostok Station, Antarctica, 1983) was minus ___ degrees Celsius.", "a": "89.2", "lie": "74.6", "why": "It happened on 21 July 1983, in the middle of the Antarctic winter.", "src": "Guinness World Records"},
   // narval-zub, checked 2026-10-31
   //   https://smithsonianscience.org/2012/04/for-dentist-the-narwhals-smile-is-a-mystery-of-evolution/
   //   https://en.wikipedia.org/wiki/Narwhal
   {"id": "narval-zub", "topic": "nature", "knowledge": "worldwide", "q": "The long spiral \"horn\" of a narwhal is not a horn but a giant tooth, namely a ___.", "a": "canine", "lie": "incisor", "why": "Scientists confirmed it in 2012: the tusk grows from the upper jawbone, where mammals' canines originate.", "src": "Smithsonian"},
-  // vaclavka-oregon, checked 2026-10-31
-  //   https://www.guinnessworldrecords.com/world-records/75043-heaviest-fungi
-  //   https://en.wikipedia.org/wiki/Armillaria_ostoyae
-  {"id": "vaclavka-oregon", "topic": "nature", "knowledge": "czech", "q": "The most massive fungus in the world, growing in the forests of Oregon, is a species known as the ___.", "a": "honey fungus", "lie": "puffball", "why": "One single individual is estimated to weigh 6,800 to 31,750 tonnes.", "src": "Guinness World Records"},
   // becherovka-english-bitter, checked 2026-10-31
   //   https://english.radio.cz/node/8120512
   //   https://english.radio.cz/node/8717307
   //   https://cs.wikipedia.org/wiki/Becherovka
   {"id": "becherovka-english-bitter", "topic": "food", "knowledge": "czech", "q": "When Becherovka first went on sale in Karlovy Vary in 1807, it had a different name: ___.", "a": "English Bitter", "lie": "Karlsbad Gold", "why": "Josef Becher reportedly got the recipe from an English doctor, Frobrig, and sold it as a stomach remedy.", "src": "Radio Prague International"},
-  // tvaruzky-lostice, checked 2026-10-31
-  //   https://english.radio.cz/node/8884125
-  //   https://en.wikipedia.org/wiki/Olomouck%C3%A9_tvar%C5%AF%C5%BEky
-  {"id": "tvaruzky-lostice", "topic": "food", "knowledge": "czech", "q": "Olomoucké tvarůžky are named after Olomouc, but since 1876 they have been made in a different town: ___.", "a": "Loštice", "lie": "Litovel", "why": "This pungent cheese, protected by the EU, is still made in Loštice, about 30 km north of Olomouc.", "src": "Český rozhlas (Radio Prague)"},
   // hawaiian-pizza-canada, checked 2026-10-31
   //   https://thecanadianencyclopedia.ca/en/article/sam-panopolous
   //   https://www.nbcnews.com/news/world/alleged-inventor-controversial-hawaiian-pizza-dies-canada-n770716
   {"id": "hawaiian-pizza-canada", "topic": "food", "knowledge": "worldwide", "q": "Hawaiian pizza was invented in 1962 by the Greek immigrant Sam Panopoulos. In which country? ___.", "a": "Canada", "lie": "Australia", "why": "Panopoulos first made it at the Satellite Restaurant in Chatham, Ontario.", "src": "The Canadian Encyclopedia"},
-  // fanta-germany, checked 2026-10-31
-  //   https://www.thelocal.de/20170523/fanta-how-the-nazi-era-drink-became-the-world-famous-brand
-  //   https://en.wikipedia.org/wiki/Fanta
-  {"id": "fanta-germany", "topic": "food", "knowledge": "worldwide", "q": "Fanta was created in 1940 as a replacement for Coca-Cola because, due to the war, syrup could no longer reach one country. Which one? ___.", "a": "Germany", "lie": "Sweden", "why": "Coca-Cola's local boss Max Keith made it from what he called \"leftovers of leftovers\".", "src": "The Local (Germany)"},
-  // gros-michel-banana, checked 2026-10-31
-  //   https://daily.jstor.org/the-beloved-bedeviled-banana
-  //   https://blog.hmns.org/2018/08/the-bananapocolypse-its-real-its-scary-its-real-scary/
-  {"id": "gros-michel-banana", "topic": "food", "knowledge": "worldwide", "q": "The bananas Americans ate until about 1960 were not today's Cavendish. Panama disease wiped them out. They were called ___.", "a": "Gros Michel", "lie": "Santa Clara", "why": "It was bigger and reportedly tastier, but all plants were clones, so the fungus wiped out whole plantations.", "src": "JSTOR Daily"},
-  // vanilla-albius, checked 2026-10-31
-  //   https://www.nationalgeographic.com/science/article/the-little-boy-who-shouldve-vanished-but-didnt
-  //   https://en.wikipedia.org/wiki/Edmond_Albius
-  {"id": "vanilla-albius", "topic": "food", "knowledge": "worldwide", "q": "Vanilla is still pollinated by hand using a method invented in 1841 on Réunion by an enslaved boy. How old was he? ___.", "a": "12", "lie": "17", "why": "Edmond Albius used a thin stick and his thumb. Many doubted a child with no schooling could have done it.", "src": "National Geographic"},
   // haagen-dazs-bronx, checked 2026-10-31
   //   https://culinarylore.com/food-history:what-does-haagen-dazs-mean/
   //   https://www.6sqft.com/haagen-dazs-may-be-a-danish-name-but-the-ice-cream-was-founded-in-the-bronx/
@@ -319,10 +89,6 @@ PB_GAP.push({ lang: 'en', facts: [
   //   https://cabinetmagazine.org/issues/23/beauman.php
   //   https://www.historic-uk.com/CultureUK/King-Pineapple/
   {"id": "pineapple-rental", "topic": "food", "knowledge": "worldwide", "q": "In the 18th century, pineapples were such costly status symbols that some confectioners offered them to party hosts ___.", "a": "for hire", "lie": "on credit", "why": "At a dinner the fruit was often not eaten but displayed on the table as proof of wealth.", "src": "Cabinet Magazine"},
-  // quarantine, checked 2026-10-31
-  //   https://www.merriam-webster.com/dictionary/quarantine
-  //   https://en.wiktionary.org/wiki/quarantine
-  {"id": "quarantine", "topic": "language", "knowledge": "european", "q": "The word quarantine comes from Italian and originally meant isolating ships for ___ days.", "a": "40", "lie": "14", "why": "Ships suspected of carrying disease had to wait offshore before unloading people and cargo.", "src": "Merriam-Webster"},
   // avocado, checked 2026-10-31
   //   https://www.merriam-webster.com/dictionary/avocado
   //   https://en.wikipedia.org/wiki/Avocado
@@ -348,14 +114,6 @@ PB_GAP.push({ lang: 'en', facts: [
   //   https://www.merriam-webster.com/dictionary/pandemonium
   //   https://en.wiktionary.org/wiki/pandemonium
   {"id": "pandemonium", "topic": "language", "knowledge": "worldwide", "q": "The word pandemonium was invented by poet John Milton. In Paradise Lost it is the name of the capital of ___.", "a": "Hell", "lie": "Atlantis", "why": "Milton built it from pan (all) and daemonium (demon): the place of all demons.", "src": "Merriam-Webster"},
-  // walnut, checked 2026-10-31
-  //   https://www.merriam-webster.com/dictionary/walnut
-  //   https://en.wiktionary.org/wiki/walnut
-  {"id": "walnut", "topic": "language", "knowledge": "worldwide", "q": "In Old English, walnut literally meant ___ nut.", "a": "foreign", "lie": "hard", "why": "Walnuts came to England from southern Europe; the native nut was the hazel.", "src": "Merriam-Webster"},
-  // algorithm, checked 2026-10-31
-  //   https://www.merriam-webster.com/dictionary/algorithm
-  //   https://en.wiktionary.org/wiki/algorithm
-  {"id": "algorithm", "topic": "language", "knowledge": "european", "q": "The word algorithm comes from the name of a 9th-century Persian mathematician called al-___.", "a": "Khwarizmi", "lie": "Khayyam", "why": "He lived around 825, and the Latinised form of his name became algorism, later algorithm.", "src": "Merriam-Webster"},
   // nerd, checked 2026-10-31
   //   https://www.merriam-webster.com/dictionary/nerd
   //   https://en.wiktionary.org/wiki/nerd
@@ -365,47 +123,6 @@ PB_GAP.push({ lang: 'en', facts: [
   //   https://www.merriam-webster.com/dictionary/googol
   //   https://en.wikipedia.org/wiki/Googol
   {"id": "googol", "topic": "language", "knowledge": "worldwide", "q": "The number googol (a 1 with 100 zeros), which inspired the name Google, was named by the nine-year-old ___ of mathematician Edward Kasner.", "a": "nephew", "lie": "son", "why": "The boy was Milton Sirotta, and Kasner popularised his word for 10 to the power of 100.", "src": "Merriam-Webster"},
-  // ikea, checked 2026-10-31
-  //   https://www.thelocal.se/20180128/five-things-to-know-about-ingvar-kamprad-and-ikea
-  //   https://www.dictionary.com/e/acronyms/ikea/
-  {"id": "ikea", "topic": "language", "knowledge": "european", "q": "IKEA is an acronym: I and K are the founder's initials, E is the farm Elmtaryd and A is the village of ___.", "a": "Agunnaryd", "lie": "Almhult", "why": "Ingvar Kamprad grew up on the farm Elmtaryd near the village of Agunnaryd in Smaland.", "src": "The Local (Sweden)"},
-  // haribo, checked 2026-10-31
-  //   https://www.haribo.com/en-us/preview/71222
-  //   https://en.wikipedia.org/wiki/Haribo
-  {"id": "haribo", "topic": "language", "knowledge": "european", "q": "The name HARIBO is short for the founder's name and city: Hans Riegel ___.", "a": "Bonn", "lie": "Berlin", "why": "Hans Riegel founded the company in 1920 in a home kitchen in Bonn.", "src": "HARIBO"},
-  // vampire, checked 2026-10-31
-  //   https://www.merriam-webster.com/dictionary/vampire
-  //   https://en.wiktionary.org/wiki/vampire
-  {"id": "vampire", "topic": "language", "knowledge": "worldwide", "q": "The word vampire reached English via French and German from Serbian vampir. Its first known use in English was in ___.", "a": "1732", "lie": "1897", "why": "Stoker's Dracula came out only in 1897, over 160 years after the word appeared.", "src": "Merriam-Webster"},
-  // vodka, checked 2026-10-31
-  //   https://www.merriam-webster.com/dictionary/vodka
-  //   https://en.wiktionary.org/wiki/vodka
-  {"id": "vodka", "topic": "language", "knowledge": "european", "q": "The word vodka is a Russian diminutive of voda, so it literally means ___.", "a": "little water", "lie": "fire water", "why": "The ending -ka forms diminutives, like in Czech ruka and ručka.", "src": "Merriam-Webster"},
-  // zero, checked 2026-10-31
-  //   https://www.merriam-webster.com/dictionary/cipher
-  //   https://www.merriam-webster.com/dictionary/zero
-  //   https://en.wiktionary.org/wiki/cipher
-  {"id": "zero", "topic": "language", "knowledge": "worldwide", "q": "The English words zero and cipher both come from Arabic ṣifr, which meant ___.", "a": "empty", "lie": "secret", "why": "Cipher first meant zero and only later came to mean secret writing.", "src": "Merriam-Webster"},
-  // bohemian, checked 2026-10-31
-  //   https://worldwidewords.org/qa-boh1.html
-  //   https://en.wiktionary.org/wiki/Bohemian
-  {"id": "bohemian", "topic": "language", "knowledge": "european", "q": "The French word bohémien, the root of bohemian, did not originally mean artists. The French used it for ___, thinking they came from Bohemia.", "a": "Romani people", "lie": "Hussites", "why": "The free-spirited artist sense arose only in the 19th century; Thackeray brought it into English in 1848.", "src": "World Wide Words"},
-  // ahoj, checked 2026-10-31
-  //   https://expats.cz/czech-news/article/the-origins-of-ahoj-and-nazar
-  //   https://cs.wikipedia.org/wiki/Ahoj
-  {"id": "ahoj", "topic": "language", "knowledge": "czech", "q": "The Czech greeting ahoj comes from an English call originally used by ___.", "a": "sailors", "lie": "soldiers", "why": "It entered Czech in the early 20th century, mainly through tramps (hikers) and canoeists.", "src": "Expats.cz (ÚJČ)"},
-  // vltava, checked 2026-10-31
-  //   https://www.ziva.avcr.cz/files/ziva/pdf/vltava-staly-proud-inspirace.pdf
-  //   https://cs.wikipedia.org/wiki/Vltava
-  {"id": "vltava", "topic": "language", "knowledge": "czech", "q": "The name of the Vltava river probably comes from Germanic wilth-ahwa, meaning wild ___.", "a": "water", "lie": "beast", "why": "The German name Moldau comes from the same root but developed differently.", "src": "Živa (AV ČR)"},
-  // kafka, checked 2026-10-31
-  //   https://www.jewishmuseum.cz/e-shop/upominkove-predmety/t-shirt-two-kafkas-size-l/
-  //   https://en.wiktionary.org/wiki/Kafka
-  {"id": "kafka", "topic": "language", "knowledge": "czech", "q": "The surname Kafka comes from the Czech name of this black bird: ___.", "a": "jackdaw", "lie": "blackbird", "why": "Franz Kafka's father Hermann had a jackdaw painted on the sign of his shop in Prague.", "src": "Židovské muzeum v Praze"},
-  // prebuz-smallest-town, checked 2026-10-31
-  //   https://www.kudyznudy.cz/kam-pojedete/oblasti/krusne-hory/prebuz
-  //   https://cs.wikipedia.org/wiki/Přebuz
-  {"id": "prebuz-smallest-town", "topic": "places", "knowledge": "czech", "q": "The smallest town in Czechia, home to only about 70 people (2025), is called ___.", "a": "Přebuz", "lie": "Zubrnice", "why": "It lies in the Ore Mountains, in Sokolov District, 886 metres above sea level.", "src": "Kudy z nudy"},
   // hamburg-czech-port, checked 2026-10-31
   //   https://english.radio.cz/node/8240796
   //   https://www.e15.cz/byznys/doprava-a-logistika/cesko-obnovuje-pristup-k-mori-chysta-smlouvu-pro-nove-uzemi-v-hamburku-1389654
@@ -414,58 +131,10 @@ PB_GAP.push({ lang: 'en', facts: [
   //   https://english.radio.cz/node/8546429
   //   https://en.wikipedia.org/wiki/Brno_astronomical_clock
   {"id": "brno-clock-marble", "topic": "places", "knowledge": "czech", "q": "Every day at exactly 11:00, Brno's astronomical clock releases a ___ that visitors can catch and take home.", "a": "glass marble", "lie": "bronze coin", "why": "It recalls 1645: legend says Brno held off the Swedes because the bell rang noon at 11 instead.", "src": "Radio Prague International"},
-  // france-time-zones, checked 2026-10-31
-  //   https://www.guinnessworldrecords.com/world-records/584626-country-with-the-most-time-zones
-  //   https://www.thelocal.fr/20220325/reader-question-how-does-france-have-12-different-time-zones
-  {"id": "france-time-zones", "topic": "places", "knowledge": "worldwide", "q": "Thanks to its overseas territories, the country with the most time zones in the world is ___.", "a": "France", "lie": "Russia", "why": "Mainland France has just one zone; in total it has 12 (13 for part of the year, per Guinness).", "src": "Guinness World Records"},
-  // maldives-lowest-peak, checked 2026-10-31
-  //   https://www.guinnessworldrecords.com/world-records/flattest-country/
-  //   https://en.wikipedia.org/wiki/Maldives
-  {"id": "maldives-lowest-peak", "topic": "places", "knowledge": "worldwide", "q": "The country whose highest natural point is only about 2.4 metres above sea level is ___.", "a": "Maldives", "lie": "Netherlands", "why": "The average ground level is around 1.5 metres; sources differ slightly on the exact highest point.", "src": "Guinness World Records"},
-  // prague-castle-guinness, checked 2026-10-31
-  //   https://www.guinnessworldrecords.com/world-records/69343-largest-ancient-castle
-  //   https://en.wikipedia.org/wiki/Prague_Castle
-  {"id": "prague-castle-guinness", "topic": "places", "knowledge": "european", "q": "Guinness World Records names this Czech castle the largest ancient castle in the world: ___.", "a": "Prague Castle", "lie": "Český Krumlov Castle", "why": "It is about 570 metres long and covers more than 7 hectares.", "src": "Guinness World Records"},
-  // hluboka-windsor, checked 2026-10-31
-  //   https://www.zamek-hluboka.cz/en/about/history
-  //   https://en.wikipedia.org/wiki/Hluboká_nad_Vltavou_Castle
-  {"id": "hluboka-windsor", "topic": "places", "knowledge": "czech", "q": "In the 19th century, Hluboká Castle was rebuilt to resemble this famous British residence: ___.", "a": "Windsor Castle", "lie": "Buckingham Palace", "why": "Prince Jan Adolf II of Schwarzenberg ordered the neo-Gothic rebuild after a trip to England.", "src": "Zámek Hluboká (official site)"},
-  // brno-ossuary-second, checked 2026-10-31
-  //   https://english.radio.cz/node/8561939
-  //   https://en.wikipedia.org/wiki/Brno_Ossuary
-  {"id": "brno-ossuary-second", "topic": "places", "knowledge": "czech", "q": "An ossuary that archaeologists call the second largest in Europe, after the Paris catacombs, lies in this Czech city: ___.", "a": "Brno", "lie": "Olomouc", "why": "Under St James church lie over 50,000 people. Found in 2001, open to the public since 2012.", "src": "Radio Prague International"},
-  // jested-hyperboloid, checked 2026-10-31
-  //   https://english.radio.cz/node/8148809
-  //   https://www.archiweb.cz/en/b/televizni-vysilac-a-horsky-hotel-jested
-  {"id": "jested-hyperboloid", "topic": "places", "knowledge": "czech", "q": "The Ještěd hotel and transmitter has the shape of a geometric solid called a rotating ___.", "a": "hyperboloid", "lie": "ellipsoid", "why": "Architect Karel Hubáček won the Perret Prize for it in 1969; it was voted Building of the Century.", "src": "Radio Prague International"},
   // point-nemo-astronauts, checked 2026-10-31
   //   https://www.skyatnightmagazine.com/earth-from-space/point-nemo
   //   https://en.wikipedia.org/wiki/Point_Nemo
   {"id": "point-nemo-astronauts", "topic": "places", "knowledge": "worldwide", "q": "The people closest to Point Nemo, the spot farthest from any land, are sometimes these: ___.", "a": "astronauts on the ISS", "lie": "polar researchers", "why": "The nearest land is about 2,700 km away, while the ISS orbits at about 400 km.", "src": "BBC Sky at Night Magazine"},
-  // lednice-minaret, checked 2026-10-31
-  //   https://www.zamek-lednice.com/en/visitors-information/tours/781-minarett
-  //   https://www.kudyznudy.cz/aktivity/minaret-lednice
-  {"id": "lednice-minaret", "topic": "places", "knowledge": "czech", "q": "In the park at Lednice Castle stands an almost 60-metre lookout tower from around 1800, shaped like a ___.", "a": "minaret", "lie": "lighthouse", "why": "Designed by Josef Hardtmuth, it is among the tallest of its kind outside the Islamic world.", "src": "Zámek Lednice (NPÚ)"},
-  // saturn-float, checked 2026-10-31
-  //   https://science.nasa.gov/saturn/facts/
-  //   https://en.wikipedia.org/wiki/Saturn
-  {"id": "saturn-float", "topic": "science", "knowledge": "worldwide", "q": "The only planet in the solar system whose average density is lower than water is ___.", "a": "Saturn", "lie": "Jupiter", "why": "If a big enough bathtub existed, Saturn would float. Its average density is about 0.69 g/cm3.", "src": "NASA"},
-  // holy-hiv, checked 2026-10-31
-  //   https://english.radio.cz/node/8187005
-  //   https://ct24.ceskatelevize.cz/veda/3400466-pred-20-lety-se-cesi-dostali-k-leku-proti-aids-zaklad-polozil-vedec-antonin-holy
-  {"id": "holy-hiv", "topic": "science", "knowledge": "czech", "q": "One of the most widely used HIV drugs, developed with the help of Czech chemist Antonín Holý, is called ___.", "a": "tenofovir", "lie": "zidovudine", "why": "Holý's team at the Czech Academy of Sciences first synthesised it in 1984.", "src": "Radio Prague International"},
-  // jachymov-radium, checked 2026-10-31
-  //   https://orau.org/health-physics-museum/articles/jachymov-cradle-of-the-atomic-age.html
-  //   https://en.wikipedia.org/wiki/Jáchymov
-  {"id": "jachymov-radium", "topic": "science", "knowledge": "european", "q": "Marie Curie isolated radium from uranium ore residues that came from this Czech town: ___.", "a": "Jáchymov", "lie": "Příbram", "why": "The Austrian government sent the Curies waste from the local uranium pigment works.", "src": "ORAU Health Physics Museum"},
-  // heyrovsky-nobel, checked 2026-10-31
-  //   https://www.nobelprize.org/prizes/chemistry/1959/heyrovsky/facts/
-  //   https://en.wikipedia.org/wiki/Jaroslav_Heyrovsk%C3%BD
-  {"id": "heyrovsky-nobel", "topic": "science", "knowledge": "european", "q": "Czech chemist Jaroslav Heyrovský won the 1959 Nobel Prize for discovering an analytical method called ___.", "a": "polarography", "lie": "chromatography", "why": "The method uses a dropping mercury electrode and was developed in 1922.", "src": "Nobel Prize"},
-  // cori-nobel, checked 2026-10-31
-  //   https://www.nobelprize.org/prizes/medicine/1947/cori-gt/facts/
-  //   https://en.wikipedia.org/wiki/Gerty_Cori
-  {"id": "cori-nobel", "topic": "science", "knowledge": "european", "q": "Prague-born Gerty Cori became in 1947 the first woman to win a Nobel Prize in the field of ___.", "a": "physiology or medicine", "lie": "chemistry", "why": "She won for the course of glycogen conversion in the body. Marie Curie was the first woman Nobel laureate overall.", "src": "Nobel Prize"},
   // pitch-drop, checked 2026-10-31
   //   https://www.guinnessworldrecords.com/world-records/longest-running-laboratory-experiment
   //   https://en.wikipedia.org/wiki/Pitch_drop_experiment
@@ -475,26 +144,14 @@ PB_GAP.push({ lang: 'en', facts: [
   //   https://www.cai.cam.ac.uk/news/caian-coffee-pot-and-webcam-awardwinning-combination
   //   https://en.wikipedia.org/wiki/Trojan_Room_coffee_pot
   {"id": "coffee-webcam", "topic": "science", "knowledge": "worldwide", "q": "The world's first webcam, set up at Cambridge University in 1991, watched a ___.", "a": "coffee pot", "lie": "fish tank", "why": "The scientists were tired of climbing stairs to an empty pot. It went onto the web in 1993.", "src": "University of Cambridge"},
-  // moth-bug, checked 2026-10-31
-  //   https://www.computinghistory.org.uk/det/5927/First-computer-bug-is-found/
-  //   https://en.wikipedia.org/wiki/Software_bug
-  {"id": "moth-bug", "topic": "science", "knowledge": "worldwide", "q": "In 1947 operators found an insect stuck in the Harvard Mark II computer and taped it into the log as the \"first actual case of bug being found\". It was a ___.", "a": "moth", "lie": "fly", "why": "The word \"bug\" for a defect is older, but this log page made it famous.", "src": "Computing History Museum"},
   // stethoscope-paper, checked 2026-10-31
   //   https://lemelson.mit.edu/resources/rene-laennec
   //   https://en.wikipedia.org/wiki/Stethoscope
   {"id": "stethoscope-paper", "topic": "science", "knowledge": "european", "q": "The very first stethoscope, in 1816, was made by rolling up a sheet of ___.", "a": "paper", "lie": "leather", "why": "René Laennec did not want to press his ear to a patient's chest. He later made the tube from wood.", "src": "MIT Lemelson Center"},
-  // rinderpest, checked 2026-10-31
-  //   https://www.cidrap.umn.edu/oie-declares-rinderpest-eradicated
-  //   https://pirbright.ac.uk/node/697
-  {"id": "rinderpest", "topic": "science", "knowledge": "worldwide", "q": "The second disease humans ever eradicated, in 2011, after smallpox, was ___.", "a": "rinderpest", "lie": "polio", "why": "It affected cattle and other animals. No case has been seen since 2001.", "src": "CIDRAP"},
   // tardigrade-space, checked 2026-10-31
   //   https://www.esa.int/Our_Activities/Human_Spaceflight/Research/Tiny_animals_survive_exposure_to_space
   //   https://sciencedaily.com/releases/2008/09/080908135906.htm
   {"id": "tardigrade-space", "topic": "science", "knowledge": "worldwide", "q": "In 2007 these tiny animals became the first to survive exposure to open space: ___.", "a": "tardigrades (water bears)", "lie": "flatworms", "why": "About 3,000 spent 12 days in orbit on an ESA mission. Some survived deadly UV and later reproduced.", "src": "ESA"},
-  // velcro-burrs, checked 2026-10-31
-  //   https://www.wipo.int/en/web/ip-advantage/w/stories/the-velcro-ip-story
-  //   https://www.swissinfo.ch/eng/science/how-a-swiss-invention-hooked-the-world/5653568
-  {"id": "velcro-burrs", "topic": "science", "knowledge": "worldwide", "q": "Velcro was invented by Swiss engineer George de Mestral after a walk with his dog left his clothes and the dog's fur covered in burrs of this plant: ___.", "a": "burdock", "lie": "nettle", "why": "Under a microscope he saw tiny hooks catching on fabric loops.", "src": "WIPO"},
   // barcode-gum, checked 2026-10-31
   //   https://www.gs1.org/articles/marsh-holds-place-honor-history-gs1-barcode
   //   https://history.com/this-day-in-history/june-26/barcode-scanner-invention-first-use
@@ -511,8 +168,309 @@ PB_GAP.push({ lang: 'en', facts: [
   //   https://www.nasa.gov/image-article/candle-flame-1g-vs-microgravity/
   //   https://en.wikipedia.org/wiki/Flame
   {"id": "flame-space", "topic": "science", "knowledge": "worldwide", "q": "A candle flame in weightlessness is not teardrop-shaped but has the shape of a ___.", "a": "sphere", "lie": "flat disc", "why": "It is also blue and soot-free, because there is no upward convection.", "src": "NASA"},
-  // orloj-1410, checked 2026-10-31
-  //   https://www.lindahall.org/about/news/scientist-of-the-day/prague-astronomical-clock/
-  //   https://en.wikipedia.org/wiki/Prague_astronomical_clock
-  {"id": "orloj-1410", "topic": "science", "knowledge": "european", "q": "The Prague astronomical clock first appears in the town records in the year ___.", "a": "1410", "lie": "1490", "why": "It was built by Mikuláš of Kadaň and Jan Šindel. It was long wrongly dated to around 1490.", "src": "Linda Hall Library"},
+  // chicken-tax-trucks, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Chicken_tax
+  //   https://www.tastingtable.com/1956155/1960s-chicken-tariff-history/
+  {"id": "chicken-tax-trucks", "topic": "history", "knowledge": "worldwide", "q": "The 25% US tariff on imported pickup trucks, still in force, began in 1964 as revenge in a trade dispute over ___.", "a": "chicken", "lie": "cheese", "why": "Europe blocked American poultry, so Washington taxed several European goods. Only the light-truck tariff survived.", "src": "Wikipedia"},
+  // tally-sticks-parliament, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Burning_of_Parliament
+  //   https://museumofscottishfireheritage.org/the-palace-of-westminster-fire-16-october-1834/
+  {"id": "tally-sticks-parliament", "topic": "history", "knowledge": "worldwide", "q": "In 1834 the Houses of Parliament in London burned down after workers disposed of old ___ in the furnaces beneath the House of Lords.", "a": "tally sticks", "lie": "ballot papers", "why": "They were notched wooden accounting records the Exchequer used until 1826. The blaze destroyed most of the old palace.", "src": "Wikipedia"},
+  // knocker-up-peashooter, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Knocker-up
+  //   https://www.npr.org/2007/08/25/13879507/mary-smith-wakes-up-village-sleepyheads
+  {"id": "knocker-up-peashooter", "topic": "history", "knowledge": "worldwide", "q": "Before alarm clocks, British \"knocker-ups\" were paid to wake workers, some by firing dried ___ at the bedroom window through a tube.", "a": "peas", "lie": "rice", "why": "A 1931 photo of Mary Smith in East London made her the most famous knocker-up of all.", "src": "Wikipedia"},
+  // pez-anti-smoking, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Pez
+  //   https://www.mentalfloss.com/food/candy/10-indispensable-facts-about-pez
+  {"id": "pez-anti-smoking", "topic": "food", "knowledge": "worldwide", "q": "Pez launched in Vienna in 1927 as a peppermint sweet for adults, marketed as an alternative to ___.", "a": "smoking", "lie": "coffee", "why": "The name is short for the German Pfefferminz (peppermint). The first dispensers looked like cigarette lighters.", "src": "Mental Floss"},
+  // salmon-suspicious-circumstances, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Salmon_Act_1986
+  //   https://www.legislation.gov.uk/ukpga/1986/62/section/32
+  {"id": "salmon-suspicious-circumstances", "topic": "history", "knowledge": "worldwide", "q": "A 1986 British law makes it a crime to handle ___ \"in suspicious circumstances\".", "a": "salmon", "lie": "caviar", "why": "It targets poached fish, but the vague wording became a favourite joke. Since 2009 it covers other fish too.", "src": "legislation.gov.uk"},
+  // vw-currywurst, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Volkswagen_currywurst
+  //   https://www.kitchenstories.com/en/stories/vw-brings-their-classic-currywurst-to-supermarkets
+  {"id": "vw-currywurst", "topic": "food", "knowledge": "worldwide", "q": "Volkswagen makes its own brand of ___ in Wolfsburg, and in many years it produces more of them than cars.", "a": "currywurst", "lie": "pretzels", "why": "Made since 1973 with part number 199 398 500 A. The factory also sells matching ketchup.", "src": "Wikipedia"},
+  // samsung-dried-fish, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Samsung
+  //   https://m.gsmarena.com/from_seafood_trader_to_global_technology_powerhouse__a_glimpse_at_samsungs_history-news-13375.php
+  {"id": "samsung-dried-fish", "topic": "history", "knowledge": "worldwide", "q": "Samsung began in 1938 as a small Korean trading company that exported local vegetables, fruit and ___.", "a": "dried fish", "lie": "ginseng", "why": "Founder Lee Byung-chul started out in Daegu, shipping goods to Manchuria and Beijing.", "src": "Wikipedia"},
+  // nike-waffle-iron, checked 2026-10-31
+  //   https://about.nike.com/stories/nike-moon-shoe-waffle-iron-true-history
+  //   https://www.history.com/this-day-in-history/february-26/nike-patent-waffle-sole-trainers-invented-in-waffle-iron
+  {"id": "nike-waffle-iron", "topic": "history", "knowledge": "worldwide", "q": "Nike's grippy waffle sole began in 1971 when coach Bill Bowerman poured liquid urethane into his wife's ___.", "a": "waffle iron", "lie": "toaster", "why": "The iron glued shut forever, so he kept experimenting with more waffle irons until the Moon Shoe was born.", "src": "Nike"},
+  // cotton-candy-dentist, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Cotton_candy
+  //   https://pubmed.ncbi.nlm.nih.gov/16092607/
+  {"id": "cotton-candy-dentist", "topic": "food", "knowledge": "worldwide", "q": "The cotton candy machine was co-invented in 1897 by William Morrison, who worked as a ___.", "a": "dentist", "lie": "baker", "why": "It debuted at the 1904 World's Fair in St. Louis under the name \"fairy floss\".", "src": "Wikipedia"},
+  // twinkie-banana-cream, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Twinkie
+  //   https://www.militarytimes.com/off-duty/military-culture/2022/06/01/how-a-wwii-banana-shortage-changed-the-course-of-twinkie-history/
+  {"id": "twinkie-banana-cream", "topic": "food", "knowledge": "worldwide", "q": "The original 1930 Twinkies were filled with ___ cream, until wartime shortages pushed the bakery to vanilla.", "a": "banana", "lie": "coconut", "why": "Banana Twinkies only came back in 2007, with a filling made of 2% banana puree.", "src": "Wikipedia"},
+  // hungry-jacks-australia, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Hungry_Jack%27s
+  //   https://en.wikipedia.org/wiki/Burger_King
+  {"id": "hungry-jacks-australia", "topic": "history", "knowledge": "worldwide", "q": "In Australia, Burger King is called ___ because an Adelaide takeaway already owned the Burger King name.", "a": "Hungry Jack's", "lie": "Aussie King", "why": "The franchisee picked the name from a Pillsbury pancake mix trademark and added an apostrophe and an s.", "src": "Wikipedia"},
+  // skinner-pigeon-bomb, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Project_Pigeon
+  //   https://www.smithsonianmag.com/smithsonian-institution/bf-skinners-pigeon-guided-rocket-53443995/
+  {"id": "skinner-pigeon-bomb", "topic": "science", "knowledge": "worldwide", "q": "In WWII psychologist B. F. Skinner trained ___ to steer a guided bomb by pecking at an image of the target.", "a": "pigeons", "lie": "crows", "why": "The military gave him $25,000 but never used the idea. The nose cone now sits in a Smithsonian collection.", "src": "Smithsonian Magazine"},
+  // jaffa-cake-stale, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Jaffa_Cakes
+  //   https://www.yorkshirepost.co.uk/read-this/is-a-jaffa-cake-a-cake-or-a-biscuit-heres-the-definitive-answer-as-decided-by-a-court-1379222
+  {"id": "jaffa-cake-stale", "topic": "food", "knowledge": "worldwide", "q": "A 1991 UK tax tribunal ruled Jaffa Cakes are cakes, not biscuits, partly because like cakes they go ___ when stale.", "a": "hard", "lie": "soft", "why": "Cakes are zero-rated for VAT, chocolate-covered biscuits are not. The tribunal weighed texture, size and where they are sold.", "src": "Wikipedia"},
+  // wojtek-bear-corporal, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Wojtek_(bear)
+  //   https://www.smithsonianmag.com/smart-news/meet-bear-who-earned-rank-corporal-polish-army-180956579/
+  {"id": "wojtek-bear-corporal", "topic": "history", "knowledge": "worldwide", "q": "Polish soldiers in WWII officially enlisted a ___ named Wojtek as a private, and later promoted him to corporal.", "a": "bear", "lie": "donkey", "why": "Giving him a rank was a workaround for a British rule against mascots on transport ships. He retired to Edinburgh Zoo.", "src": "Wikipedia"},
+  // shopping-cart-models, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Shopping_cart
+  //   https://www.smithsonianmag.com/history/industrious-grocer-1930s-wanted-make-easier-customers-buy-more-just-needed-push-180987633/
+  {"id": "shopping-cart-models", "topic": "history", "knowledge": "worldwide", "q": "When Sylvan Goldman introduced shopping carts in 1937, shoppers shunned them, so he hired ___ to push them around his store.", "a": "models", "lie": "clowns", "why": "Men found carts unmanly and women thought they looked like prams. Once shoppers saw others using them, carts took off.", "src": "Smithsonian Magazine"},
+  // armour-in-parliament, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Statute_forbidding_Bearing_of_Armour
+  //   https://www.legislation.gov.uk/aep/Edw2/7/0/section/wrapper1/data.htm?view=plain
+  {"id": "armour-in-parliament", "topic": "history", "knowledge": "worldwide", "q": "A statute from 1313, still formally in force, forbids coming to Parliament wearing ___.", "a": "armour", "lie": "hats", "why": "The Crown Prosecution Service once said anyone caught in it would be a matter for the police first.", "src": "Wikipedia"},
+  // snickers-horse, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Snickers
+  //   https://www.tastingtable.com/1042389/the-racehorse-snickers-candy-bars-are-named-after
+  {"id": "snickers-horse", "topic": "food", "knowledge": "worldwide", "q": "The Snickers bar, launched in 1930, was named after the Mars family's favorite ___.", "a": "horse", "lie": "dog", "why": "The Mars family bred Thoroughbred horses on their farm.", "src": "Wikipedia"},
+  // royal-fish-sturgeon, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Royal_fish
+  //   https://www.gov.uk/guidance/protection-of-common-sturgeon-advice-for-fishermen
+  {"id": "royal-fish-sturgeon", "topic": "nature", "knowledge": "worldwide", "q": "Under UK law, the monarch can claim whales and one caviar-producing fish caught in British waters: the ___.", "a": "sturgeon", "lie": "lobsters", "why": "Anglers who land one must contact the Receiver of Wreck, who acts for the Crown.", "src": "Wikipedia"},
+  // scotland-unicorn, checked 2026-10-31
+  //   https://www.mentalfloss.com/culture/folklore-mythology/scotland-national-animal-unicorn
+  //   https://en.wikipedia.org/wiki/Unicorn
+  {"id": "scotland-unicorn", "topic": "nature", "knowledge": "worldwide", "q": "Scotland's official national animal is the ___.", "a": "unicorn", "lie": "Highland cow", "why": "Scottish kings used unicorns as supporters of the royal arms, and the animal stuck.", "src": "Mental Floss"},
+  // nils-olav-knight, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Nils_Olav_III
+  //   https://www.edinburghzoo.org.uk/news/major-general-sir-nils-olav-baron-bouvet-islands
+  {"id": "nils-olav-knight", "topic": "nature", "knowledge": "worldwide", "q": "In 2008 a king penguin at Edinburgh Zoo was officially made a ___ by the Norwegian King's Guard.", "a": "knight", "lie": "bishop", "why": "The honour had to be approved by the King of Norway, and the penguin has since risen to the rank of major general.", "src": "Edinburgh Zoo"},
+  // dung-beetle-milky-way, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Dung_beetle
+  //   https://earthsky.org/earth/dung-beetles-use-the-milky-way-to-navigate-at-night/
+  {"id": "dung-beetle-milky-way", "topic": "nature", "knowledge": "worldwide", "q": "At night, ball-rolling dung beetles keep a straight course by steering by the ___.", "a": "Milky Way", "lie": "North Star", "why": "In a planetarium the beetles rolled straight under the Milky Way, but wandered under just the brightest stars.", "src": "Current Biology"},
+  // otto-octopus-lamp, checked 2026-10-31
+  //   https://www.practicalfishkeeping.co.uk/fishkeeping-news/aquarium-octopus-causes-havoc/
+  //   https://www.peta.org/news/youve-punked-octopus/
+  {"id": "otto-octopus-lamp", "topic": "nature", "knowledge": "worldwide", "q": "Otto the octopus kept blacking out a German aquarium by squirting water at its ___.", "a": "spotlight", "lie": "security camera", "why": "He also threw rocks at the glass and rearranged his tank. The director said he was craving attention.", "src": "Practical Fishkeeping"},
+  // stubbs-cat-mayor, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Stubbs_(cat)
+  //   https://www.cbsnews.com/news/stubbs-dead-alaska-talkeetna-honorary-cat-mayor/
+  {"id": "stubbs-cat-mayor", "topic": "nature", "knowledge": "worldwide", "q": "For two decades, the honorary mayor of the Alaskan town of Talkeetna was a ___.", "a": "cat", "lie": "sled dog", "why": "Residents jokingly wrote his name in on ballots, and the post was honorary because Talkeetna is only a historic district.", "src": "Wikipedia"},
+  // dogs-poop-compass, checked 2026-10-31
+  //   https://www.pbs.org/newshour/science/dogs-poop-in-alignment-with-earths-magnetic-field-study-finds
+  //   https://www.foxnews.com/science/scientists-discover-dogs-preferred-bathroom-position
+  {"id": "dogs-poop-compass", "topic": "science", "knowledge": "worldwide", "q": "In calm conditions, dogs prefer to poop facing north or south, aligned with Earth's ___.", "a": "magnetic field", "lie": "rotation", "why": "Researchers watched 70 dogs of 37 breeds for two years. The effect vanished when the magnetic field was unstable.", "src": "Frontiers in Zoology"},
+  // ig-nobel-cats-liquid, checked 2026-10-31
+  //   https://www.smithsonianmag.com/smart-news/ig-nobel-prizes-recognize-humorous-real-research-180964916/
+  //   https://www.sciencealert.com/are-cats-a-liquid-ig-nobel-prize-physics-winner
+  {"id": "ig-nobel-cats-liquid", "topic": "science", "knowledge": "worldwide", "q": "The 2017 Ig Nobel Prize in Physics went to a paper asking whether a cat can be both a solid and a ___.", "a": "liquid", "lie": "gas", "why": "The author concluded that cats are liquid if you give them enough time to take the shape of their container.", "src": "Smithsonian Magazine"},
+  // pigeons-monet-picasso, checked 2026-10-31
+  //   https://pmc.ncbi.nlm.nih.gov/articles/PMC1334394/
+  //   https://en.wikipedia.org/wiki/Pigeon_intelligence
+  {"id": "pigeons-monet-picasso", "topic": "science", "knowledge": "worldwide", "q": "In a 1995 Japanese experiment, pigeons learned to tell paintings by Monet from paintings by ___.", "a": "Picasso", "lie": "Rembrandt", "why": "They even sorted paintings they had never seen. Turn Monet upside down and they got confused, but Picasso upside down was no problem.", "src": "J. of the Experimental Analysis of Behavior"},
+  // bumblebees-roll-balls, checked 2026-10-31
+  //   https://www.qmul.ac.uk/news/latest-news/2022/se/first-ever-study-shows-bumble-bees-play.html
+  //   https://www.sci.news/biology/bumblebee-play-11342.html
+  {"id": "bumblebees-roll-balls", "topic": "nature", "knowledge": "worldwide", "q": "Bumblebees will repeatedly roll tiny wooden ___ just for fun, with no reward.", "a": "balls", "lie": "dice", "why": "One bee rolled balls 117 times. Males rolled for longer than females.", "src": "Queen Mary University of London"},
+  // gerrymander-salamander, checked 2026-10-31
+  //   https://www.merriam-webster.com/dictionary/gerrymander
+  //   https://en.wikipedia.org/wiki/Gerrymandering
+  {"id": "gerrymander-salamander", "topic": "language", "knowledge": "worldwide", "q": "The word gerrymander blends a governor's surname with the animal an oddly shaped voting district resembled: the ___.", "a": "salamander", "lie": "scorpion", "why": "The governor, Elbridge Gerry, reportedly disliked the practice that now carries his name.", "src": "Merriam-Webster"},
+  // tabby-baghdad-silk, checked 2026-10-31
+  //   https://www.merriam-webster.com/dictionary/tabby
+  //   https://en.wikipedia.org/wiki/Tabby_cat
+  {"id": "tabby-baghdad-silk", "topic": "language", "knowledge": "worldwide", "q": "The word tabby for a striped cat comes from a striped ___ made in a quarter of Baghdad.", "a": "silk", "lie": "carpet", "why": "The district was called Attabiya. The cat was named after the cloth, not the other way round.", "src": "Merriam-Webster"},
+  // alcohol-kohl, checked 2026-10-31
+  //   https://www.merriam-webster.com/dictionary/alcohol
+  //   https://en.wikipedia.org/wiki/Alcohol_(chemistry)
+  {"id": "alcohol-kohl", "topic": "language", "knowledge": "worldwide", "q": "The word alcohol comes from Arabic al-kuhl, originally a fine mineral powder that people painted around their ___.", "a": "eyes", "lie": "lips", "why": "Kohl, a powder from the mineral stibnite, only later gave its name to distilled spirits.", "src": "Merriam-Webster"},
+  // pineapple-pinecone, checked 2026-10-31
+  //   https://en.wiktionary.org/wiki/pineapple
+  //   https://www.merriam-webster.com/dictionary/pineapple
+  {"id": "pineapple-pinecone", "topic": "language", "knowledge": "worldwide", "q": "Before it named the tropical fruit, the English word pineapple meant a ___.", "a": "pine cone", "lie": "wild apple", "why": "The fruit looked like a pine cone, so the old word was passed on to it.", "src": "Merriam-Webster"},
+  // nickel-goblin, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Nickel
+  //   https://www.merriam-webster.com/dictionary/nickel
+  {"id": "nickel-goblin", "topic": "language", "knowledge": "worldwide", "q": "German miners named a copper-looking ore that yielded no copper 'Kupfernickel', blaming a mischievous ___.", "a": "goblin", "lie": "witch", "why": "The metal nickel was later named after that same sprite.", "src": "Merriam-Webster"},
+  // turtle-tears-butterflies, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Lachryphagy
+  //   https://www.smithsonianmag.com/smart-news/watch-moth-gently-slurp-tears-slumbering-bird-180970430/
+  {"id": "turtle-tears-butterflies", "topic": "nature", "knowledge": "worldwide", "q": "In the Amazon, butterflies have been photographed drinking the ___ of river turtles.", "a": "tears", "lie": "sweat", "why": "Tear drinking is called lachryphagy. Tears are a handy source of salt and protein.", "src": "Smithsonian Magazine"},
+  // snail-love-dart, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Love_dart
+  //   https://nhm.org/stories/snail-love
+  {"id": "snail-love-dart", "topic": "nature", "knowledge": "worldwide", "q": "Before mating, many land snails try to stab each other with a sharp ___.", "a": "love dart", "lie": "stinger", "why": "The dart carries mucus that changes how the partner handles sperm, helping the shooter father more young.", "src": "Natural History Museum of Los Angeles"},
+  // sitovka-hairnets, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/String_bag
+  //   https://www.archiweb.cz/en/n/home/ve-zdaru-n-s-ma-pomnik-taska-sitovka-ktera-ve-meste-vznikla
+  {"id": "sitovka-hairnets", "topic": "history", "knowledge": "czech", "q": "The Czech string shopping bag (síťovka) began in the 1920s in Žďár nad Sázavou, in a business that used to make ___.", "a": "hairnets", "lie": "fishing nets", "why": "When hairnets went out of fashion, Vavřín Krčil kept his home workers busy by turning the mesh into shopping bags.", "src": "Wikipedia, Archiweb"},
+  // hron-elephant-balloon, checked 2026-10-31
+  //   https://ekonomickydenik.cz/jakub-hron-metanovsky-skutecny-jara-cimrman
+  //   https://cs.wikipedia.org/wiki/Jakub_Hron_Metánovský
+  {"id": "hron-elephant-balloon", "topic": "science", "knowledge": "czech", "q": "Czech tinkerer Jakub Hron built a hot-air balloon shaped like this animal, with the crew riding on its back: ___.", "a": "elephant", "lie": "giraffe", "why": "In 1901 it tore apart before the planned launch in Hradec Králové. His tip-proof inkwell worked much better.", "src": "Ekonomický deník, Czech Wikipedia"},
+  // hasek-imaginary-animals, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Jaroslav_Ha%C5%A1ek
+  //   https://cs.wikipedia.org/wiki/Jaroslav_Hašek
+  //   https://stephenjones.blog/2017/01/02/a-czech-mate/
+  {"id": "hasek-imaginary-animals", "topic": "history", "knowledge": "czech", "q": "Jaroslav Hašek lost his job as editor of the magazine Animal World when it came out that he had been writing about ___.", "a": "made-up animals", "lie": "stolen photographs", "why": "Later he opened a dog-trading 'Cynological Institute', which failed within months but inspired his book My Dog Shop.", "src": "Wikipedia"},
+  // colorado-beetle-propaganda, checked 2026-10-31
+  //   https://english.radio.cz/node/8596512
+  //   https://en.wikipedia.org/wiki/War_against_the_potato_beetle
+  {"id": "colorado-beetle-propaganda", "topic": "history", "knowledge": "czech", "q": "In the early 1950s, Czechoslovak propaganda claimed American planes were dropping ___ on its potato fields, and children were sent out to hunt them.", "a": "Colorado beetles", "lie": "locusts", "why": "The insect was officially renamed the 'American beetle' until the thaw of the 1960s.", "src": "Radio Prague International"},
+  // velorex-oskar, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Velorex
+  //   https://english.radio.cz/node/8716063
+  {"id": "velorex-oskar", "topic": "history", "knowledge": "czech", "q": "Before it was called Velorex, the cloth-bodied Czechoslovak three-wheeler built from bicycle parts was named ___.", "a": "Oskar", "lie": "Pepík", "why": "The Stránský brothers, who ran a bicycle repair shop, built the first one in 1943. Top speed of the early models: about 30 km/h.", "src": "Wikipedia, Radio Prague International"},
+  // krenovy-scales-museum, checked 2026-10-31
+  //   https://www.kudyznudy.cz/aktuality/20-muzei-o-jejichz-existenci-jste-nemeli-tuseni
+  //   https://www.visitczechia.com/en-us/news/2025/02/n-unique-objects-in-czech-museums
+  {"id": "krenovy-scales-museum", "topic": "places", "knowledge": "czech", "q": "The smallest museum in Czechia sits in a tiny weigh-house in the village of Křenovy. In about four square metres it shows ___.", "a": "weighing scales", "lie": "mousetraps", "why": "The little building still holds a working agricultural scale mechanism.", "src": "Kudy z nudy, VisitCzechia"},
+  // petrin-funicular-water, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Pet%C5%99%C3%ADn_funicular
+  //   https://english.radio.cz/node/8723831
+  {"id": "petrin-funicular-water", "topic": "places", "knowledge": "czech", "q": "When Prague's Petřín funicular opened in 1891 it had no engine. It was driven by the weight of ___.", "a": "water", "lie": "sandbags", "why": "The descending car was filled with water. In winter it froze, and neighbours in Újezd sometimes had trouble getting any from their taps.", "src": "Radio Prague International, Wikipedia"},
+  // kinoautomat-fire, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Kinoautomat
+  //   https://www.filfre.net/?p=3084
+  {"id": "kinoautomat-fire", "topic": "history", "knowledge": "czech", "q": "At Kinoautomat (Expo 67) the audience voted nine times, but whatever they chose, Mr Novák's ___ burned down at the end.", "a": "house", "lie": "garden shed", "why": "Director Radúz Činčera meant the fixed ending as a satire of democracy: everyone votes, nothing changes.", "src": "Wikipedia"},
+  // cesky-terrier-secret-police, checked 2026-10-31
+  //   https://www.akc.org/expert-advice/dog-breeds/cesky-terrier-history-from-a-bohemian-hunting-dog-to-the-terrier-group/
+  //   https://en.wikipedia.org/wiki/Cesky_Terrier
+  {"id": "cesky-terrier-secret-police", "topic": "nature", "knowledge": "czech", "q": "Breeder František Horák, creator of the Cesky terrier, got so much mail from abroad that the communist ___ came knocking.", "a": "secret police", "lie": "tax office", "why": "He reportedly retorted that they knew why people wrote to him, since they had already opened and read the letters.", "src": "American Kennel Club, Wikipedia"},
+  // mahen-theatre-edison, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Mahen_Theatre
+  //   https://archiweb.cz/en/n/home/pred-140-lety-byl-zahajen-provoz-nynejsiho-mahenova-divadla-v-brne
+  {"id": "mahen-theatre-edison", "topic": "science", "knowledge": "czech", "q": "Brno's Mahen Theatre (1882) skipped gas lighting because theatres kept burning down. Its electric lighting plans were drawn by ___ himself.", "a": "Thomas Edison", "lie": "Nikola Tesla", "why": "Edison's assistant Francis Jehl supervised the installation. It was one of the first public buildings in the world lit entirely by electricity.", "src": "Wikipedia, Archiweb"},
+  // fugging-signs, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Fugging
+  //   https://www.travelweekly.com.au/article/no-fking-austrian-destination-changes-hilariously-unfortunate-name/
+  {"id": "fugging-signs", "topic": "places", "knowledge": "worldwide", "adult": true, "q": "In 2021 the Austrian village of Fucking renamed itself Fugging, partly because tourists kept stealing its ___.", "a": "road signs", "lie": "house numbers", "why": "The village has about 100 residents and had grown tired of the jokes and the constant sign thefts.", "src": "Travel Weekly, Wikipedia"},
+  // shitterton-stone, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Shitterton
+  //   https://stonespecialist.com/news/stones-quarries/purbeck-sign-shitterton
+  {"id": "shitterton-stone", "topic": "places", "knowledge": "worldwide", "adult": true, "q": "The English hamlet of Shitterton got so tired of its name sign being stolen that it installed one carved from a 1.5-tonne block of ___.", "a": "Purbeck stone", "lie": "Cornish granite", "why": "Half the hamlet's households chipped in 20 pounds each, and a truck and crane were needed to set the 1.5-tonne block in place.", "src": "Wikipedia, Stone Specialist"},
+  // hell-gods-expedition, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Hell,_Norway
+  //   https://www.lifeinnorway.net/hell-norway
+  {"id": "hell-gods-expedition", "topic": "language", "knowledge": "worldwide", "q": "The old sign on the railway station in Hell, Norway, reads 'Gods-Expedition', which in Norwegian means ___.", "a": "freight handling", "lie": "lost property office", "why": "'Gods' is simply 'goods'. In Norwegian 'hell' even means luck, and the village name comes from an Old Norse word for a rock overhang.", "src": "Life in Norway, Wikipedia"},
+  // fartlek-speed-play, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Fartlek
+  //   https://athleticsweekly.com/performance/training-cat/coaching/fartlek-running-playing-speed-15128/
+  {"id": "fartlek-speed-play", "topic": "language", "knowledge": "worldwide", "q": "The running method called fartlek takes its name from Swedish words meaning speed ___.", "a": "play", "lie": "chase", "why": "It was devised by Swedish coach Gösta Holmér in the late 1930s to mix fast and slow running.", "src": "Wikipedia, Athletics Weekly"},
+  // petomane-candle, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Joseph_Pujol
+  //   https://www.messynessychic.com/2016/05/13/the-french-fartist-who-headlined-the-moulin-rouge/
+  {"id": "petomane-candle", "topic": "body", "knowledge": "worldwide", "adult": true, "q": "In the 1890s the Moulin Rouge star Joseph Pujol could blow out a candle from several yards away using only his ___.", "a": "bottom", "lie": "lungs", "why": "Billed as Le Pétomane, he also imitated cannon fire and thunderstorms, and the club sued him when he moonlighted elsewhere.", "src": "Wikipedia, Messy Nessy Chic"},
+  // herring-submarines, checked 2026-10-31
+  //   https://iflscience.com/plants-and-animals/for-15-years-sweden-thought-enemy-submarines-were-invading-its-territory-it-turned-out-to-be-herring-farts
+  //   https://www.herripedia.com/farting/
+  {"id": "herring-submarines", "topic": "nature", "knowledge": "worldwide", "adult": true, "q": "Some of the 'Soviet submarine' sounds that kept Sweden's navy on alert in the 1980s and 90s turned out to be herring ___.", "a": "farts", "lie": "mating songs", "why": "Herring release air from the swim bladder through their rear end. The research on herring sounds won the 2004 Ig Nobel Prize in Biology.", "src": "IFLScience, Herripedia"},
+  // giraffe-urine-test, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Flehmen_response
+  //   https://gizmodo.com/how-giraffes-flirt-mating-habits-urine-1850090535
+  {"id": "giraffe-urine-test", "topic": "nature", "knowledge": "worldwide", "adult": true, "q": "Male giraffes check whether a female is ready to mate by tasting her ___.", "a": "urine", "lie": "breath", "why": "The lip-curling flehmen response lets him sense ovulation, because giraffes show few visible signs.", "src": "Wikipedia, Gizmodo"},
+  // fruit-flies-booze, checked 2026-10-31
+  //   https://www.sciencedaily.com/releases/2012/03/120315145415.htm
+  //   https://csmonitor.com/Science/2012/0315/Rejected-fruit-flies-use-alcohol-to-cope
+  {"id": "fruit-flies-booze", "topic": "party", "knowledge": "worldwide", "adult": true, "q": "In a 2012 study published in Science, male fruit flies rejected by females afterwards preferred food spiked with ___.", "a": "alcohol", "lie": "caffeine", "why": "Males that had mated showed no such preference, so the researchers linked it to a reward chemical in the brain.", "src": "ScienceDaily, Christian Science Monitor"},
+  // pliny-canary, checked 2026-10-31
+  //   https://www.nationalgeographic.com/culture/article/from-fried-canary-to-pickled-plums-historys-questionable-hangover-cures
+  //   https://www.mentalfloss.com/history/15-historical-hangover-cures
+  {"id": "pliny-canary", "topic": "history", "knowledge": "worldwide", "adult": true, "q": "As a hangover cure, the Roman writer Pliny the Elder recommended a breakfast of fried ___.", "a": "canary", "lie": "sparrow", "why": "National Geographic says the bird came dusted with salt and pepper. Raw owl eggs in wine were another Roman hangover idea.", "src": "National Geographic, Mental Floss"},
+  // navel-lint-ig-nobel, checked 2026-10-31
+  //   https://pmc.ncbi.nlm.nih.gov/articles/PMC137346
+  //   https://improbable.com/airchives/press/2002/chronicle-high-10-07-2002.html
+  {"id": "navel-lint-ig-nobel", "topic": "body", "knowledge": "worldwide", "adult": true, "q": "Australian science communicator Karl Kruszelnicki won a 2002 Ig Nobel Prize for his survey of ___.", "a": "belly-button lint", "lie": "ear wax", "why": "With more than 4,500 people surveyed, he found it is likelier if you are male, older, hairy and have an innie.", "src": "Improbable Research, CMAJ"},
+  // mountain-dew-moonshine, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Mountain_Dew
+  //   https://www.smithsonianmag.com/smart-news/mountain-dew-had-ties-moonshine-once-upon-time-180957978
+  {"id": "mountain-dew-moonshine", "topic": "food", "knowledge": "worldwide", "adult": true, "q": "The soft drink Mountain Dew is named after old slang for ___.", "a": "moonshine", "lie": "spring water", "why": "The Hartman brothers of Tennessee first made it as a lemon-lime mixer for whiskey.", "src": "Smithsonian Magazine, Wikipedia"},
+  // kalsarikannit-underwear, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Kalsarik%C3%A4nnit
+  //   https://www.mentalfloss.com/article/560095/kalsarikanni-or-getting-drunk-in-your-underwear-finland-version-hygge
+  {"id": "kalsarikannit-underwear", "topic": "language", "knowledge": "worldwide", "adult": true, "q": "The Finnish word kalsarikännit describes getting drunk at home, with no plans to go out, in your ___.", "a": "underwear", "lie": "bathrobe", "why": "It translates roughly as 'pantsdrunk' and Finland even made an emoji for it.", "src": "Mental Floss, Wikipedia"},
+  // vin-mariani-pope, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Vin_Mariani
+  //   https://www.mentalfloss.com/food/alcohol/vin-mariani-cocaine-wine-history
+  {"id": "vin-mariani-pope", "topic": "history", "knowledge": "worldwide", "adult": true, "q": "Pope Leo XIII was a famous fan of Vin Mariani, a Bordeaux wine laced with ___.", "a": "cocaine", "lie": "opium", "why": "It held about 6 mg per ounce, and ads claimed the pope sent its maker a gold medal.", "src": "Mental Floss, Wikipedia"},
+  // groom-of-the-stool, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Groom_of_the_Stool
+  //   https://tudorsociety.com/groom-stool-sarah-bryson/
+  {"id": "groom-of-the-stool", "topic": "history", "knowledge": "worldwide", "adult": true, "q": "At Henry VIII's court, one of the most coveted jobs was Groom of the Stool, whose holder looked after the king's ___.", "a": "toilet needs", "lie": "hunting hounds", "why": "The job brought such closeness to the king that it grew into a post of real power, with control of the privy purse.", "src": "Wikipedia, Tudor Society"},
+  // hippo-sunscreen, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Hipposudoric_acid
+  //   https://animals.sandiegozoo.org/animals/hippo
+  {"id": "hippo-sunscreen", "topic": "nature", "knowledge": "worldwide", "q": "A hippo's reddish skin secretion, nicknamed 'blood sweat', works as a natural ___.", "a": "sunscreen", "lie": "perfume", "why": "It is neither blood nor sweat: colourless at first, it turns red-orange and then brown within minutes.", "src": "Wikipedia, San Diego Zoo"},
+  // barnacle-longest, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Barnacle
+  //   https://pmc.ncbi.nlm.nih.gov/articles/PMC2600913/
+  {"id": "barnacle-longest", "topic": "nature", "knowledge": "worldwide", "adult": true, "q": "Relative to body size, the animal with the longest penis is the ___.", "a": "barnacle", "lie": "elephant seal", "why": "It can reach up to eight times the animal's own length, handy because barnacles are glued in place.", "src": "PubMed Central, Wikipedia"},
+  // bowerbird-blue, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Satin_bowerbird
+  //   https://www.australiangeographic.com.au/news/2017/12/satin-bowerbird-saved-from-plastic-chokehold/
+  {"id": "bowerbird-blue", "topic": "nature", "knowledge": "worldwide", "q": "To impress females, male satin bowerbirds decorate their bowers with blue objects such as ___.", "a": "bottle caps", "lie": "marbles", "why": "Near towns they also grab clothes pegs, drinking straws and ballpoint pens, anything blue will do.", "src": "Australian Geographic, Wikipedia"},
+  // duck-corkscrew, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Argentine_lake_duck
+  //   https://www.sciencefocus.com/nature/duck-penis-corkscrew
+  {"id": "duck-corkscrew", "topic": "nature", "knowledge": "worldwide", "adult": true, "q": "A drake's penis is coiled like a ___, and one Argentine lake duck's was measured at 42.5 cm.", "a": "corkscrew", "lie": "boomerang", "why": "That is a Guinness record, about the length of the bird's body. Females evolved spiral vaginas that twist the opposite way, so they get a say in who succeeds.", "src": "Science Focus"},
+  // echidna-four-heads, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Echidna
+  //   https://www.australiangeographic.com.au/topics/wildlife/2021/05/echidna-penises-why-theyre-so-weird
+  {"id": "echidna-four-heads", "topic": "nature", "knowledge": "worldwide", "adult": true, "q": "An echidna's penis has four ___, but only two are used at a time.", "a": "heads", "lie": "spines", "why": "The pair in use alternates between matings, and the other two shut down.", "src": "Australian Geographic"},
+  // winchester-geese, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Winchester_Geese
+  //   https://wellcomecollection.org/stories/the-bishop-s-profitable-sex-workers
+  {"id": "winchester-geese", "topic": "history", "knowledge": "worldwide", "adult": true, "q": "Medieval Southwark's brothels, whose workers were nicknamed 'Winchester Geese', were licensed by the ___ of Winchester.", "a": "Bishop", "lie": "Mayor", "why": "The bishop collected rent and fines from them, so the church was profiting from London's red-light district.", "src": "Wellcome Collection"},
+  // kabuto-gata-condom, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Condom
+  //   https://wellcomecollection.org/works/drhdmnh6
+  {"id": "kabuto-gata-condom", "topic": "history", "knowledge": "worldwide", "adult": true, "q": "Early Japanese condoms, called kabuto-gata, were made of animal horn or ___.", "a": "tortoiseshell", "lie": "bamboo", "why": "They only covered the tip. Museums still hold 19th century tortoiseshell examples.", "src": "Wellcome Collection"},
+  // flatworm-penis-fencing, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Penis_fencing
+  //   https://www.sciencenews.org/?p=29801
+  {"id": "flatworm-penis-fencing", "topic": "nature", "knowledge": "worldwide", "adult": true, "q": "Some hermaphrodite flatworms duel over who has to be the costly 'mother' by fencing with their ___.", "a": "penises", "lie": "tails", "why": "Each worm tries to stab sperm into the other while avoiding being stabbed. As one researcher put it, everybody wants to be male.", "src": "Science News"},
+  // prohibition-wine-brick, checked 2026-10-31
+  //   https://www.smithsonianmag.com/smart-news/ingenious-brick-helped-wine-industry-survive-prohibition-180956412/
+  //   https://www.tastingtable.com/1943655/prohibition-era-grape-juice-warnings
+  {"id": "prohibition-wine-brick", "topic": "history", "knowledge": "worldwide", "adult": true, "q": "Prohibition grape bricks came with a 'warning': don't leave the dissolved juice in a cupboard for 21 days, or it will turn into ___.", "a": "wine", "lie": "brandy", "why": "Home winemaking was a legal loophole, so vintners sold the bricks and spelled out exactly what NOT to do.", "src": "Smithsonian Magazine"},
+  // edward-love-chair, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Love_chair
+  //   https://www.foxbusiness.com/markets/royal-love-chair-could-be-yours-for-68k
+  {"id": "edward-love-chair", "topic": "history", "knowledge": "worldwide", "adult": true, "q": "The future Edward VII had a custom-made ___ delivered to the Paris brothel Le Chabanais.", "a": "love chair", "lie": "four-poster bed", "why": "Made by the firm Soubrier and designed with company in mind, it was shown at the Musée d'Orsay in 2015.", "src": "Fox Business"},
+  // vagina-sheath, checked 2026-10-31
+  //   https://en.wiktionary.org/wiki/vagina
+  //   https://www.merriam-webster.com/dictionary/vagina
+  {"id": "vagina-sheath", "topic": "language", "knowledge": "worldwide", "adult": true, "q": "The Latin word 'vagina' originally meant a ___ for a sword.", "a": "sheath", "lie": "handle", "why": "The anatomical sense is not recorded before the 1500s. The Romans already used the word as a sexual metaphor.", "src": "Merriam-Webster"},
+  // penis-tail, checked 2026-10-31
+  //   https://www.merriam-webster.com/dictionary/penis
+  //   https://en.wikipedia.org/wiki/Penis
+  {"id": "penis-tail", "topic": "language", "knowledge": "worldwide", "adult": true, "q": "The Latin word 'penis' originally meant a ___.", "a": "tail", "lie": "spear", "why": "It was a euphemism that stuck. English first recorded it in 1578.", "src": "Merriam-Webster"},
+  // tomcat-spines, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Cat_anatomy
+  //   https://cdn.citl.illinois.edu/courses/ANSC207/week7/cat_repro/web_data/slides_and_notes.htm
+  {"id": "tomcat-spines", "topic": "body", "knowledge": "worldwide", "adult": true, "q": "A tomcat's penis is covered in hundreds of tiny ___, which help trigger the female's ovulation.", "a": "spines", "lie": "hairs", "why": "Cats ovulate only when stimulated by mating. The spines depend on testosterone and vanish within weeks after castration.", "src": "University of Illinois"},
+  // bundling-board, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Bundling_(tradition)
+  //   https://daily.jstor.org/bundling-an-old-tradition-on-new-ground
+  {"id": "bundling-board", "topic": "history", "knowledge": "worldwide", "adult": true, "q": "In colonial New England, a suitor could spend the night in bed with his sweetheart, as long as a ___ lay between them.", "a": "board", "lie": "curtain", "why": "It was called bundling. Courtship happened under the parents' roof, and some couples used a sleeping sack sewn shut down the middle.", "src": "JSTOR Daily"},
+  // merkin-wig, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Merkin
+  //   https://www.merriam-webster.com/dictionary/merkin
+  {"id": "merkin-wig", "topic": "language", "knowledge": "worldwide", "adult": true, "q": "A 'merkin', a word recorded since 1617, is a wig made for the ___.", "a": "pubic area", "lie": "armpits", "why": "It is worn after shaving, for stage nudity or fun. The word probably comes from 'malkin', a pet form of Mary.", "src": "Merriam-Webster"},
+  // french-letter-capote, checked 2026-10-31
+  //   https://fr.wiktionary.org/wiki/capote_anglaise
+  //   https://www.whiteswritingwhiteness.ed.ac.uk/blog/french-letters/
+  {"id": "french-letter-capote", "topic": "history", "knowledge": "worldwide", "adult": true, "q": "Britons called condoms 'French letters'. The French returned the favour with 'capote anglaise', an English ___.", "a": "overcoat", "lie": "umbrella", "why": "Each nation blamed the other. The British term dates from the 1850s, a time of French invasion jitters.", "src": "University of Edinburgh"},
+  // dunnock-cloaca-pecking, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Dunnock
+  //   https://besgroup.org/2013/12/22/sex-and-the-birds-10-dunnock%e2%80%99s-mixed-bag-of-breeding-systems/
+  {"id": "dunnock-cloaca-pecking", "topic": "nature", "knowledge": "worldwide", "adult": true, "q": "Before mating, a male dunnock pecks the female's ___ repeatedly so she ejects sperm from an earlier mating.", "a": "cloaca", "lie": "neck", "why": "The tiny brown bird's sex life is so competitive that biologist Nick Davies built a career on it.", "src": "Bird Ecology Study Group"},
+  // berk-berkeley-hunt, checked 2026-10-31
+  //   https://en.wikipedia.org/wiki/Cockney_rhyming_slang
+  //   https://www.merriam-webster.com/dictionary/berk
+  {"id": "berk-berkeley-hunt", "topic": "language", "knowledge": "worldwide", "adult": true, "q": "The mild British insult 'berk' is short for the Berkeley Hunt, a famous ___ whose name rhymes with a far ruder word.", "a": "fox hunt", "lie": "racecourse", "why": "It is usually traced to Cockney rhyming slang. Few people who say it realise what it stands in for.", "src": "Merriam-Webster"},
 ]});
