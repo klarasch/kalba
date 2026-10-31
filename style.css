@@ -116,7 +116,13 @@ button.btn .i { width: 24px; height: 24px; }
 /* ---------- home ---------- */
 .hd { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; margin: 10px 0 18px; }
 .logo { font: 800 52px/1 var(--disp); letter-spacing: -.045em; display: flex; align-items: baseline; margin: 0; }
-.logo svg { width: .66em; height: .66em; margin: 0 .03em; align-self: center; translate: 0 .08em; rotate: -8deg; }
+/* The "!" is a plain ink bar over the logo mark, which is the only colour in the wordmark. */
+.logo .bang { display: inline-flex; flex-direction: column; align-items: center; gap: .1em; margin-left: .05em; rotate: 8deg; align-self: flex-end; padding-bottom: .04em; }
+.logo .bang i { width: .17em; height: .52em; border-radius: .09em; background: var(--ink); }
+.logo .bang svg { width: .27em; height: .27em; display: block; }
+.hd .dict { all: unset; box-sizing: border-box; cursor: pointer; margin-top: 10px; padding: 8px 12px; max-width: 34ch; font: 13.5px/1.4 var(--body); opacity: .72; text-align: center; border-top: 1.5px dashed color-mix(in srgb, var(--ink) 35%, transparent); }
+.hd .dict b { font-family: var(--disp); font-weight: 800; }
+.hd .dict:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
 .hd .sub { font-size: 15px; opacity: .72; max-width: 30ch; }
 .games { display: flex; flex-direction: column; gap: 14px; }
 .gamecard {

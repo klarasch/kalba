@@ -62,6 +62,30 @@
     return `<span class="art ${cls} ui"><svg viewBox="0 0 24 24" aria-hidden="true">${UI[n] || ''}</svg></span>`;
   };
   // The logo mark: a box of the game inks, printed with an offset.
+  // Dictionary entry under the logo. English starts with the plain definition, Czech readers
+  // already know the word, so they get cross-references. Tap the entry for the next one.
+  const KALBA = {
+    en: [
+      '<b>kalba!</b> <i>(KAL-ba), noun, Czech, informal</i> A lively party with plenty of drinking; a bender.',
+      '<b>kalba!</b> <i>noun</i> 1. A night that was supposed to be "just one game". 2. A night that ends at 3 a.m. with someone arguing about the rules.',
+      '<b>kalba!</b> <i>noun</i> One more round (of anything).',
+      '<b>kalba!</b> <i>noun</i> Not to be confused with the city in the UAE, which is much quieter.',
+    ],
+    cs: [
+      '<b>kalba, -y, ž.</b> <i>(hovor.)</i> bujará zábava. <i>Viz též:</i> jen na jednu hru.',
+      '<b>kalba, -y, ž.</b> <i>(hovor.)</i> bujará zábava. <i>Viz též:</i> ještě jedno kolo.',
+      '<b>kalba, -y, ž.</b> <i>(hovor.)</i> bujará zábava. <i>Viz též:</i> odchod ve 22:00 (nesplněno).',
+      '<b>kalba, -y, ž.</b> <i>(hovor.)</i> bujará zábava. <i>Viz též:</i> ráno.',
+      '<b>Kalba!</b> Jak hovado.',
+    ],
+  };
+  let kalbaAt = 0;
+  PB.kalba = (next) => {
+    const list = KALBA[PB.lang] || KALBA.en;
+    if (next) kalbaAt = (kalbaAt + 1) % list.length;
+    return list[kalbaAt % list.length];
+  };
+
   PB.mark = () => '<svg viewBox="0 0 46 46" aria-hidden="true"><rect x="4" y="4" width="17" height="17" rx="4" fill="#1f4be0"/><rect x="1" y="1" width="17" height="17" rx="4" fill="#ff3d8b"/><rect x="28" y="4" width="17" height="17" rx="4" fill="#6b3df0"/><rect x="25" y="1" width="17" height="17" rx="4" fill="#00a86b"/><rect x="4" y="28" width="17" height="17" rx="4" fill="#ffb300"/><rect x="1" y="25" width="17" height="17" rx="4" fill="#ff4a1c"/><rect x="28" y="28" width="17" height="17" rx="4" fill="#0097a7"/><rect x="25" y="25" width="17" height="17" rx="4" fill="#ff8a1f"/></svg>';
 
   // ---------- visual effects (skipped when the phone asks for reduced motion) ----------
@@ -403,8 +427,9 @@
     PB.setGame(null);
     PB.render(`
       <div class="hd">
-        <h1 class="logo" aria-label="Partybox">partyb${PB.mark()}x</h1>
+        <h1 class="logo" aria-label="Kalba!">kalba<span class="bang" aria-hidden="true"><i></i>${PB.mark()}</span></h1>
         <div class="sub">${PB.L('Hry na dlouhý večer. Jeden mobil, který koluje.', 'Party games for a long night. One phone, passed around.')}</div>
+        <button class="dict" data-dict aria-live="polite">${PB.kalba()}</button>
       </div>
       <div class="games">
         ${PB.games.map((g) => `<button class="gamecard" data-g="${g.id}" style="--g1:${g.ink[0]};--g2:${g.ink[1]}">${PB.art(g.icon, '')}<span class="tx"><b>${PB.esc(g.name())}</b><span>${PB.esc(g.tagline())}</span></span></button>`).join('')}
@@ -417,6 +442,7 @@
       <div class="footer">${PB.L('Funguje i offline. Vlastní obsah, otevřený kód (MIT).', 'Works offline. Original content, open source (MIT).')} <a href="https://github.com/klarasch/partybox" target="_blank" rel="noopener">GitHub</a></div>
     `, (root) => {
       PB.on(root, '[data-g]', (e, el) => { const g = PB.games.find((x) => x.id === el.dataset.g); PB.sfx.deal(); PB.setGame(g); g.start(); });
+      PB.on(root, '[data-dict]', (e, el) => { PB.sfx.tick(); el.innerHTML = PB.kalba(true); });
       PB.on(root, '[data-lang]', () => { PB.setLang(PB.lang === 'cs' ? 'en' : 'cs'); PB.home(); });
       PB.on(root, '[data-sound]', () => { PB.soundOn = !PB.soundOn; PB.store.set('sound', PB.soundOn); PB.home(); });
     });
