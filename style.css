@@ -404,3 +404,7 @@ button.btn.small { width: auto; flex: none; padding: 8px 14px; font-size: 15px; 
   .vb-board .vb-tile .gp-slots { height: 20px; flex-basis: 20px; }
   .vb-board .vb-bank { grid-area: fact; align-self: end; }
 }
+
+/* Hint */
+.hn-card { width: 100%; font: 800 20px/1.2 var(--disp); text-align: left; color: inherit; border-style: solid; cursor: pointer; }
+.hn-card.on { background: var(--y); color: var(--on-y); box-shadow: 5px 5px 0 var(--g2); }
