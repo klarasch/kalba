@@ -1,0 +1,105 @@
+# Česká místa
+id: cs-mista
+lang: cs
+games: fishbowl, guess, impostor
+knowledge: czech
+
+[easy]
+Praha | worldwide
+Brno | european
+Ostrava
+Plzeň | european
+Karlovy Vary | european
+Pražský hrad | european
+Karlův most | european
+Václavské náměstí | european
+Staroměstský orloj | european
+Vltava | european
+Sněžka
+Lipno
+Šumava | european
+Krkonoše | european
+Macocha
+Karlštejn
+Český Krumlov | european
+Olomouc
+Liberec
+České Budějovice
+Hradec Králové
+Zlín
+Pardubice
+Kutná Hora | european
+Petřín
+Vyšehrad
+Lednice
+Pálava
+Beskydy
+Orlické hory
+
+[medium]
+Špindlerův Mlýn
+Pec pod Sněžkou
+Telč
+Třeboň
+Mikulov
+Jeseníky
+Praděd
+Lysá hora
+Radhošť
+Hluboká nad Vltavou
+Konopiště
+Kroměříž
+Terezín | european
+Lidice | european
+Kostnice v Sedlci | european
+Hrubá Skála
+Prachovské skály
+Adršpašsko-teplické skály
+Český ráj
+Máchovo jezero
+Rožmberk
+Pernštejn
+Křivoklát
+Kost
+Bouzov
+Zlatá ulička
+Národní divadlo
+Letná
+Vítkov
+Stromovka
+Karlovo náměstí
+Petřínská rozhledna
+
+[hard]
+Říp
+Blaník
+Velehrad
+Hostýn
+Janské Lázně
+Dolní Morava
+Červená Lhota
+Kozel
+Vranov nad Dyjí
+Žďár nad Sázavou
+Zelená hora
+Litomyšl
+Tábor
+Dolní Vítkovice
+Baťův kanál
+Orlík
+Dalešice
+Dukovany
+Temelín
+Kuks
+Hrubý Rohozec
+Příbram
+Jáchymov
+Cheb
+Františkovy Lázně
+Mariánské Lázně | european
+Teplice
+Kladno
+Jablonec nad Nisou
+Kolín
+Moravský kras
+Bílé Karpaty

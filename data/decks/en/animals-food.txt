@@ -1,0 +1,101 @@
+# Animals & food
+id: en-animals-food
+lang: en
+games: impostor, guess, fishbowl
+knowledge: worldwide
+
+[easy]
+Dog
+Cat
+Elephant
+Lion
+Monkey
+Giraffe
+Penguin
+Horse
+Cow
+Pig
+Pizza
+Hamburger
+Spaghetti
+Chocolate
+Ice cream
+Apple
+Banana
+Bread
+Cheese
+Egg
+Pancakes
+French fries
+Hot dog
+Sushi
+Watermelon
+Strawberry
+Popcorn
+Soup
+Cake
+Chicken
+
+[medium]
+Kangaroo
+Crocodile
+Dolphin
+Octopus
+Owl
+Flamingo
+Hedgehog
+Squirrel
+Polar bear
+Panda
+Zebra
+Camel
+Shark
+Butterfly
+Bee
+Tacos
+Lasagna
+Croissant
+Pretzel | european
+Waffle
+Burrito
+Curry
+Paella
+Avocado
+Pineapple
+Mushroom
+Pumpkin
+Doughnut
+Sandwich
+Kebab
+
+[hard]
+Platypus
+Sloth
+Chameleon
+Armadillo
+Narwhal
+Meerkat
+Hummingbird
+Lobster
+Jellyfish
+Seahorse
+Walrus
+Wolverine | european
+Komodo dragon
+Peacock
+Bat
+Fondue
+Ramen
+Dumplings
+Risotto | european
+Baklava | european
+Tiramisu
+Guacamole
+Hummus | european
+Falafel | european
+Pho | european
+Gnocchi | european
+Caviar
+Oysters
+Pad Thai | european
+Haggis | european

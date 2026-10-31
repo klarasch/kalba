@@ -1,0 +1,100 @@
+# Povolání a činnosti
+id: cs-povolani-cinnosti
+lang: cs
+games: fishbowl, guess, impostor
+knowledge: worldwide
+
+[easy]
+kominík | european
+lyžování
+stěhování
+lékař
+učitel
+kuchař
+policista
+hasič
+pilot
+řidič
+malíř
+zubař
+holič
+pekař
+zpěvák
+plavání
+běhání
+tancování
+spaní
+vaření
+kreslení
+sbírání hub | czech
+jízda na kole
+čištění zubů
+mytí oken
+fotbal
+hra na kytaru
+psaní
+čtení
+nakupování
+
+[medium]
+instalatér
+zedník
+elektrikář
+švadlena
+popelář | european
+listonoš
+veterinář
+číšník
+farmář
+rybář
+horník
+novinář
+soudce
+astronaut
+klaun
+kouzelník
+akrobat
+bruslení
+házení lasem
+sekání trávy
+žehlení
+sušení vlasů
+malování zdi
+chytání ryb
+sněhulák
+koulování
+opékání buřtů | czech
+rozdělávání ohně
+stavění stanu
+jízda na koni
+
+[hard]
+restaurátor
+geolog
+sommelier
+tlumočník | european
+komorník
+hodinář
+kovář
+hrnčíř
+sklář
+včelař
+truhlář
+šermování
+lezení
+paragliding
+rafting
+curling
+golf
+veslování
+pletení košíku
+skládání puzzle
+žonglování
+jízda na koloběžce
+lov hub | czech
+střelba z luku
+balancování
+dirigování
+sbírání známek
+tkaní
+brusle na kolečkách

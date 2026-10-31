@@ -1,0 +1,127 @@
+# Kategorie pro Bombu
+lang: cs
+knowledge: worldwide
+
+[easy]
+Ovoce
+Zelenina
+Zvířata na statku
+Barvy
+Města v Česku | czech
+Části těla
+Oblečení
+Sladkosti | european
+Domácí mazlíčci
+Dopravní prostředky
+Povolání
+Nábytek
+Sporty
+Věci v kuchyni
+Věci ve škole
+Jména na K | czech
+Divoká zvířata
+Hudební nástroje
+Večerníčky | czech
+Pohádky | czech
+Věci v koupelně
+Věci na pláži
+Jídla k snídani | european
+Nápoje
+Zimní věci
+Letní věci
+Měsíce a dny
+Ptáci
+Stromy
+Květiny
+Věci v obchodě
+Hračky
+Vánoční věci | european
+Velikonoční věci | czech
+Země světa
+Věci na chatě | czech
+Věci v lese | european
+Zmrzliny
+Pečivo | european
+Věci v ložnici
+
+[medium]
+Značky piva | czech
+Značky aut
+České řeky | czech
+Hory v Česku | czech
+České hrady a zámky | czech
+Hlavní města | european
+Hudební skupiny
+České filmy | czech
+Česká jídla | czech
+Ryby
+Hmyz
+Nářadí
+Koření
+Sýry | european
+Druhy těstovin | european
+Olympijské sporty
+Oblíbené hry
+Věci v lékárně
+Věci v autě
+Pražské ulice a místa | czech
+Hokejisté | czech
+Fotbalisté | european
+Čeští herci | czech
+Čeští zpěváci | czech
+Pohádkové postavy | czech
+Slavní vynálezci | european
+Značky telefonů
+Obchodní řetězce | czech
+Značky oblečení
+Druhy kávy | european
+Druhy dortů | european
+Země v Evropě | european
+Moře a oceány
+Planety a hvězdy
+Věci na zahradě
+Druhy polévek | european
+Slovesa pohybu
+Města na Moravě | czech
+Pohoří světa | european
+Seriály | czech
+
+[hard]
+Pražské čtvrti | czech
+Fotbalové kluby | european
+Hokejové kluby | czech
+Čeští spisovatelé | czech
+Čeští malíři | czech
+Čeští skladatelé | czech
+Čeští politici | czech
+Přehrady v Česku | czech
+Jezera světa
+Ostrovy
+Africké státy
+Asijské státy
+Americká města
+Druhy sýrů | european
+Druhy vína | european
+Druhy ořechů
+Léčivé byliny | european
+Houby | european
+Dinosauři
+Druhy ptáků v Česku | czech
+Chemické prvky
+Slavní malíři světa
+Hudební skladatelé | european
+Spisovatelé světa | european
+Řeky světa
+Druhy pivních stylů | european
+Typy domů
+Nástroje v orchestru
+Tanec a taneční styly
+Šachové figury a pojmy
+Karetní hry | european
+Stolní hry
+Počítačové hry
+Superhrdinové
+Zimní sporty | european
+Cizí jazyky | european
+Druhy dopravních značek | european
+Vánoční písně | czech

@@ -1,0 +1,107 @@
+# Films, series & songs
+id: en-titles
+lang: en
+games: fishbowl, guess
+knowledge: worldwide
+
+[easy]
+Titanic
+The Lion King
+Frozen
+Star Wars
+Jurassic Park
+Harry Potter
+Finding Nemo
+Toy Story
+Shrek
+Avatar
+The Simpsons
+Friends
+Game of Thrones
+Breaking Bad
+Stranger Things
+Jaws
+E.T.
+Home Alone
+Batman
+Spider-Man
+Cinderella
+Aladdin
+Bohemian Rhapsody
+Thriller
+Happy Birthday
+Let It Go
+Yesterday
+Imagine
+Hello
+Barbie
+Mamma Mia
+The Matrix
+
+[medium]
+Forrest Gump
+The Godfather
+Pulp Fiction
+Back to the Future
+Ghostbusters | european
+The Lord of the Rings
+Pirates of the Caribbean
+The Sound of Music | european
+Grease | european
+Dirty Dancing | european
+The Office | european
+Seinfeld | european
+The Crown
+Squid Game
+Money Heist
+Wednesday
+Shape of You
+Billie Jean
+Wonderwall
+Hotel California
+Smells Like Teen Spirit
+Dancing Queen
+Despacito
+Gangnam Style
+Rolling in the Deep
+Uptown Funk
+The Truman Show | european
+Gladiator
+Inception
+Up
+Coco
+Moana
+
+[hard]
+Citizen Kane | european
+Casablanca
+Psycho
+Vertigo | european
+Apocalypse Now | european
+Blade Runner
+Fight Club
+The Shining
+Amélie | european
+Life Is Beautiful | european
+Cinema Paradiso | european
+Spirited Away | european
+Parasite
+Black Swan | european
+Memento | european
+Twin Peaks | european
+The Sopranos | european
+The Wire | european
+Fawlty Towers | european
+Monty Python | european
+Blackadder | european
+Doctor Who
+Sherlock
+Stairway to Heaven | european
+Purple Rain | european
+Born to Run | european
+Hallelujah | european
+Space Oddity | european
+Under Pressure | european
+Take On Me | european
+Livin on a Prayer | european
+Africa | european

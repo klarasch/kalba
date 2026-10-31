@@ -1,11 +1,11 @@
 // Forehead / Na čele: phone on your forehead, others describe, tilt down = got it, tilt up = skip.
 (function () {
   const L = (a, b) => PB.L(a, b);
-  const defaults = { decks: null, levels: [1, 2], time: 60, tilt: true };
+  const defaults = { decks: null, levels: [1, 2], know: null, time: 60, tilt: true };
 
   function setup() {
     const { s, save } = PB.settings('guess', defaults);
-    PB.render(`
+    const draw = () => PB.render(`
       ${PB.top(L('Na čele', 'Forehead'))}
       <div class="box rules">${L(
         'Hádající si dá mobil <b>naležato na čelo</b> displejem ven. Ostatní popisují, předvádějí nebo zpívají. <b>Nakloň dolů</b>, když uhodneš. <b>Nakloň nahoru</b>, když chceš přeskočit. Bez naklánění to jde i ťukáním: vpravo uhodnuto, vlevo přeskočit. Po čase předejte mobil dalšímu.',
@@ -20,7 +20,7 @@
       <button class="btn big" data-go>${L('Hrát', 'Play')}</button>
     `, (root) => {
       PB.bindTop(root, () => { save(); PB.home(); });
-      PB.ui.bindDeckPicker(root, s);
+      PB.ui.bindDeckPicker(root, s, null, 'guess', draw);
       PB.ui.bindStepper(root, 'time', s, { min: 30, max: 180, step: 15, unit: ' s' });
       PB.ui.bindToggle(root, 'tilt', s);
       PB.on(root, '[data-go]', async () => {
@@ -33,12 +33,13 @@
         play(s);
       });
     });
+    draw();
   }
 
   const exitFs = () => { try { if (document.fullscreenElement) document.exitFullscreen(); } catch (e) {} };
 
   function play(s) {
-    const words = PB.pool(s.decks, s.levels);
+    const words = PB.pool(s.decks, s.levels, s.know);
     const results = [];
     let i = 0, state = 'count', timer;
     PB.keepAwake();
@@ -46,7 +47,7 @@
       <div class="corner" data-c></div>
       <div class="word" data-w>${L('Mobil na čelo!', 'Phone on forehead!')}</div>
       <div class="tapzones"><div data-skip></div><div data-ok></div></div>
-      <div class="hint"><span>${L('Vlevo přeskočit, vpravo uhodnuto.', 'Left: skip. Right: got it.')}</span><button class="quit" data-quit>${L('Konec', 'Stop')}</button></div>
+      <div class="hint"><span>${L('Vlevo přeskočit, vpravo uhodnuto.', 'Left: skip. Right: got it.')}</span><button class="btn secondary small quit" data-quit>${L('Konec', 'Stop')}</button></div>
     </div>`, (root) => {
       const fh = PB.$('[data-fh]', root), w = PB.$('[data-w]', root), c = PB.$('[data-c]', root);
       let armed = false;
@@ -107,7 +108,7 @@
     PB.render(`
       ${PB.top(L('Na čele', 'Forehead'))}
       <div class="center">${PB.art('head')}<h1>${ok} ${L('uhodnuto', 'correct')}</h1></div>
-      <div class="list">${results.map((r) => `<div class="it ${r.ok ? '' : 'off'}"><span>${PB.esc(r.w)}</span><span>${PB.ico(r.ok ? 'check' : 'close')}</span></div>`).join('')}</div>
+      <div class="list">${results.map((r, i) => `<div class="it ${r.ok ? '' : 'off'}"><span>${PB.esc(r.w)}</span><span class="acts"><button class="iconbtn sm ${PB.hidden.has('w', r.w) ? 'on' : ''}" data-x="${i}" aria-label="${L('Vyřadit navždy', 'Discard forever')}: ${PB.esc(r.w)}">${PB.ico('trash')}</button>${PB.ico(r.ok ? 'check' : 'close')}</span></div>`).join('')}</div>
       <div class="spacer"></div>
       <div class="stack"><button class="btn big" data-again>${L('Další hráč', 'Next player')}</button><button class="btn secondary" data-set>${L('Nastavení', 'Settings')}</button></div>
     `, (root) => {
@@ -117,6 +118,12 @@
         play(s);
       });
       PB.on(root, '[data-set]', setup);
+      PB.on(root, '[data-x]', (e, el) => {
+        const w = results[+el.dataset.x].w;
+        if (PB.hidden.has('w', w)) { PB.hidden.remove('w', w); el.classList.remove('on'); return; }
+        PB.hidden.add('w', w); el.classList.add('on'); PB.sfx.skip();
+        PB.toast(L('Vyřazeno: ', 'Discarded: ') + w, { action: L('Zpět', 'Undo'), onAction: () => { PB.hidden.remove('w', w); el.classList.remove('on'); } });
+      });
     });
   }
 

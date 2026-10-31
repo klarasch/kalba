@@ -1,0 +1,106 @@
+# Famous people
+id: en-celebs
+lang: en
+games: fishbowl, guess
+knowledge: worldwide
+
+[easy]
+Albert Einstein
+Michael Jackson
+Elvis Presley
+Marilyn Monroe
+Leonardo DiCaprio
+Cristiano Ronaldo
+Lionel Messi
+Barack Obama
+Queen Elizabeth II
+Napoleon
+Cleopatra
+Charlie Chaplin
+Madonna
+Beyoncé
+Taylor Swift
+Michael Jordan
+Muhammad Ali
+Mahatma Gandhi
+Leonardo da Vinci
+William Shakespeare
+Walt Disney
+Steve Jobs
+Bill Gates
+Elon Musk
+Tom Cruise
+Brad Pitt
+Angelina Jolie
+Lady Gaga
+Julius Caesar
+Abraham Lincoln | european
+Martin Luther King
+
+[medium]
+Audrey Hepburn
+Freddie Mercury
+David Bowie
+Bob Marley
+Frida Kahlo
+Pablo Picasso
+Vincent van Gogh
+Isaac Newton
+Marie Curie
+Nikola Tesla
+Stephen Hawking
+Serena Williams
+Usain Bolt
+Roger Federer
+Tiger Woods
+Diego Maradona
+Pelé
+Winston Churchill
+Nelson Mandela
+Mother Teresa
+Joan of Arc
+Genghis Khan
+Charles Darwin
+Mozart
+Ludwig van Beethoven
+Bruce Lee
+Arnold Schwarzenegger
+Meryl Streep | european
+Robin Williams | european
+Oprah Winfrey | european
+Amelia Earhart | european
+Neil Armstrong
+
+[hard]
+Galileo Galilei
+Ada Lovelace | european
+Alan Turing
+Rosa Parks | european
+Amy Winehouse | european
+Jimi Hendrix | european
+Johnny Cash | european
+Nina Simone | european
+Salvador Dalí
+Claude Monet
+Andy Warhol | european
+Ernest Hemingway
+Agatha Christie | european
+Jane Austen | european
+Charles Dickens | european
+Mark Twain | european
+Sigmund Freud
+Confucius
+Socrates
+Marco Polo | european
+Christopher Columbus
+Ferdinand Magellan | european
+Florence Nightingale | european
+Sir Edmund Hillary | european
+Jesse Owens | european
+Simone Biles | european
+Michael Phelps | european
+Wayne Gretzky | european
+Ayrton Senna | european
+Buster Keaton | european
+Orson Welles | european
+Alfred Hitchcock

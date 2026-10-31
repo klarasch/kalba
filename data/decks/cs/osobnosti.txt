@@ -1,0 +1,106 @@
+# České osobnosti
+id: cs-osobnosti
+lang: cs
+games: fishbowl, guess
+knowledge: czech
+
+[easy]
+Karel Gott | european
+Václav Havel | worldwide
+Tomáš Garrigue Masaryk | european
+Jaromír Jágr | european
+Petr Čech | european
+Karel Čapek | european
+Božena Němcová | european
+Jan Werich
+Jiří Voskovec
+Emil Zátopek | european
+Martina Navrátilová | worldwide
+Věra Čáslavská | european
+Dominik Hašek | european
+Pavel Nedvěd | european
+Miloš Zeman | european
+Václav Klaus | european
+Andrej Babiš | european
+Eva Pilarová
+Helena Vondráčková
+Lucie Bílá
+Ivan Trojan
+Jiří Suchý
+Waldemar Matuška
+Jan Hus | european
+Karel IV. | european
+Jan Amos Komenský | european
+Antonín Dvořák | worldwide
+Bedřich Smetana | european
+Tomáš Baťa | european
+Jan Žižka
+
+[medium]
+Zdeněk Svěrák
+Jan Svěrák
+Bolek Polívka
+Jiří Šlitr
+Jiří Menzel | european
+Hana Hegerová | european
+Marta Kubišová
+Karel Kryl
+Vlasta Burian
+Jára Cimrman
+Alfons Mucha | european
+Leoš Janáček | european
+Bohuslav Martinů | european
+Gregor Mendel | worldwide
+Ema Destinnová | european
+Petra Kvitová | european
+Tomáš Berdych | european
+Jan Železný | european
+Barbora Špotáková | european
+Kateřina Neumannová
+Ester Ledecká | european
+David Pastrňák | european
+Jaroslav Hašek | european
+Jan Neruda
+Josef Lada
+Rudolf II. | european
+Marie Terezie | european
+Jiří Mahen
+Dagmar Havlová
+Viktor Dyk
+
+[hard]
+Jan Kaplický | european
+Jan Zrzavý
+Petr Brandl
+Jaroslav Heyrovský | european
+Otto Wichterle | european
+Jan Evangelista Purkyně | european
+Prokop Diviš
+Přemysl Otakar II.
+Jiří z Poděbrad
+Vladimír Menšík
+Jiří Sovák
+Oldřich Nový
+Lída Baarová | european
+Adina Mandlová
+Jan Kubiš | european
+Jozef Gabčík | european
+Alexander Dubček | european
+Milan Rastislav Štefánik
+Ludvík Svoboda
+Edvard Beneš | european
+Alois Rašín
+Karel Hynek Mácha
+Vítězslav Nezval
+Jaroslav Seifert | european
+Bohumil Hrabal
+Milan Kundera | worldwide
+Ota Pavel
+Karel Plíhal
+Jaromír Nohavica
+Vladimír Mišík
+Michal Prokop
+Petr Muk
+Iveta Bartošová
+Daniel Landa
+Tomáš Klus

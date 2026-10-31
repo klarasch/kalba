@@ -1,0 +1,101 @@
+# Places & landmarks
+id: en-places
+lang: en
+games: fishbowl, guess, impostor
+knowledge: worldwide
+
+[easy]
+Eiffel Tower
+Statue of Liberty
+Big Ben
+Pyramids of Giza
+Great Wall of China
+Colosseum
+Taj Mahal
+Sahara Desert
+Niagara Falls
+Mount Everest
+Amazon Rainforest
+Disneyland
+Times Square | european
+Hollywood | european
+Venice
+London
+Paris
+New York
+Rome
+Tokyo
+Egypt
+Australia
+Antarctica
+Hawaii | european
+Grand Canyon
+Golden Gate Bridge | european
+Buckingham Palace
+North Pole
+Dead Sea
+Alps
+
+[medium]
+Machu Picchu
+Stonehenge
+Leaning Tower of Pisa
+Sydney Opera House
+Acropolis
+Petra
+Angkor Wat
+Burj Khalifa
+Mount Fuji
+Great Barrier Reef
+Bermuda Triangle
+Las Vegas
+Santorini
+Amsterdam
+Barcelona
+Istanbul
+Kilimanjaro
+Victoria Falls
+Panama Canal | european
+Brooklyn Bridge | european
+Loch Ness | european
+Cape Town | european
+Rio de Janeiro
+Moscow Red Square
+Versailles
+Vatican
+Easter Island
+Galápagos Islands
+Yellowstone | european
+Chernobyl
+
+[hard]
+Chichen Itza
+Alhambra | european
+Neuschwanstein Castle | european
+Mont Saint-Michel | european
+Cappadocia | european
+Ha Long Bay | european
+Uluru | european
+Table Mountain | european
+Zanzibar | european
+Timbuktu | european
+Atlantis | european
+Pompeii
+Troy | european
+Mount Rushmore | european
+Hoover Dam | european
+Alcatraz | european
+Area 51 | european
+Silk Road | european
+Suez Canal | european
+Strait of Gibraltar | european
+Patagonia | european
+Svalbard | european
+Lake Baikal | european
+Iguazu Falls | european
+Forbidden City
+Hagia Sophia
+Sagrada Família
+Cliffs of Moher | european
+Giant's Causeway | european
+Mariana Trench | european

@@ -96,6 +96,10 @@ input[type=text], textarea {
 }
 .iconbtn .i { width: 22px; height: 22px; }
 .iconbtn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--key); }
+.iconbtn.sm { min-width: 38px; height: 38px; padding: 0 8px; border-radius: 10px; font-size: 18px; }
+.iconbtn.sm .i { width: 20px; height: 20px; }
+.iconbtn.on { background: var(--y); color: var(--on-y); }
+.iconbtn:disabled { opacity: .45; box-shadow: none; transform: none; }
 
 /* ---------- buttons ---------- */
 button.btn {
@@ -147,6 +151,8 @@ button.btn .i { width: 24px; height: 24px; }
 .homebar .iconbtn:nth-child(1) { rotate: -1.5deg; } .homebar .iconbtn:nth-child(2) { rotate: 1deg; } .homebar .iconbtn:nth-child(3) { rotate: -.6deg; }
 .footer { margin-top: 18px; text-align: center; font-size: 13px; opacity: .6; }
 .footer a { color: inherit; text-decoration: none; font-weight: 700; }
+.footer.credit { margin-top: 6px; }
+.footer.credit a { display: inline-flex; align-items: center; gap: 7px; }
 
 /* icon art: game icons printed in two inks, on a card disc when it sits on a game colour */
 .art { display: inline-flex; align-items: center; justify-content: center; flex: none; }
@@ -188,13 +194,13 @@ input[type=text], textarea { width: 100%; border-width: 2px; padding: 13px 14px;
 input[type=text]::placeholder { color: inherit; opacity: .5; }
 input[type=text]:focus, textarea:focus { outline: 3px solid var(--g2); outline-offset: 1px; }
 .namerow { display: flex; gap: 8px; align-items: center; }
-.namerow input { flex: 1; }
+.namerow input { flex: 1; min-width: 0; }
 .namerow .iconbtn { flex: 0 0 auto; }
 
 .stepper { display: flex; align-items: center; justify-content: space-between; padding: 6px 6px 6px 14px; border-width: 2px; }
 .stepper .val { font: 800 19px var(--disp); min-width: 60px; text-align: center; font-variant-numeric: tabular-nums; }
-.stepper .ctrls { display: flex; align-items: center; gap: 6px; }
-.stepper .iconbtn { height: 40px; min-width: 40px; box-shadow: none; font-size: 20px; }
+.stepper .ctrls { display: flex; align-items: center; gap: 10px; }
+.stepper .iconbtn { font-size: 22px; line-height: 1; }
 .toggle { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; gap: 10px; border-width: 2px; }
 .toggle .muted { opacity: .65; }
 .switch { width: 54px; height: 32px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 18%, var(--card)); position: relative; flex: 0 0 auto; border: 2px solid var(--key); cursor: pointer; }
@@ -241,7 +247,21 @@ input[type=text]:focus, textarea:focus { outline: 3px solid var(--g2); outline-o
 .list { display: flex; flex-direction: column; gap: 8px; }
 .list .it { display: flex; justify-content: space-between; align-items: center; border-width: 2px; padding: 12px 14px; cursor: pointer; font-weight: 600; }
 .list .it .i { width: 22px; height: 22px; }
-.list .it.off { opacity: .5; text-decoration: line-through; }
+.list .it.off > span:first-child { opacity: .5; text-decoration: line-through; }
+.list .it > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.list .it .acts { display: flex; align-items: center; gap: 8px; flex: none; margin-left: 10px; }
+/* Draft: one private hand, a card per row with a flag button beside it. */
+.pick { display: flex; gap: 10px; align-items: center; }
+.pick .chip { flex: 1; min-width: 0; border-width: 2.5px; border-radius: var(--r); padding: 13px 14px 13px 12px; font: 700 18px/1.25 var(--body); text-align: left; overflow-wrap: anywhere; box-shadow: 3px 3px 0 var(--key); transition: transform .06s, box-shadow .06s; }
+.pick .chip:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--key); }
+.pick .chip.on { box-shadow: 4px 4px 0 var(--g2), 4px 4px 0 2.5px var(--key); }
+.pick.bad .chip { opacity: .5; text-decoration: line-through; box-shadow: none; }
+button.btn.small { width: auto; flex: none; padding: 8px 14px; font-size: 15px; box-shadow: 3px 3px 0 var(--key); white-space: nowrap; }
+.hidbar > span { white-space: nowrap; }
+.hidbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-weight: 700; margin: 6px 0 4px; }
+.hidbar[hidden] { display: none; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; font-size: 14px; }
+.legend .i { width: 18px; height: 18px; }
 
 /* Impostor: hold-to-peek card */
 .reveal {
@@ -273,7 +293,7 @@ input[type=text]:focus, textarea:focus { outline: 3px solid var(--g2); outline-o
 .fh .tapzones { position: absolute; inset: 0; display: flex; }
 .fh .tapzones div { flex: 1; }
 .fh .hint { position: absolute; bottom: max(14px, env(safe-area-inset-bottom)); left: 0; right: 0; font-size: 14px; display: flex; gap: 12px; justify-content: center; align-items: center; }
-.fh .hint .quit { position: relative; z-index: 2; background: var(--card); color: var(--ink); border: 2px solid var(--key); border-radius: 999px; padding: 6px 14px; font: 700 14px var(--body); cursor: pointer; }
+.fh .hint .quit { position: relative; z-index: 2; }
 
 /* Bomb */
 .bombart { width: min(78vw, 300px); margin: 0 auto; display: block; overflow: visible; }
@@ -299,6 +319,11 @@ input[type=text]:focus, textarea:focus { outline: 3px solid var(--g2); outline-o
 .dlgbox { padding: 20px; width: 100%; max-width: 360px; text-align: center; font: 800 22px var(--disp); display: flex; flex-direction: column; gap: 14px; box-shadow: 6px 6px 0 var(--key); rotate: -1deg; }
 .dlgbox p { margin: 0 0 4px; }
 .toast { position: fixed; left: 16px; right: 16px; bottom: max(24px, env(safe-area-inset-bottom)); margin: 0 auto; max-width: 420px; background: var(--ink); color: var(--paper); border: 2.5px solid var(--key); padding: 14px 16px; border-radius: var(--r); text-align: center; font-weight: 700; z-index: 60; animation: toast-in .25s ease-out; }
+/* Toast with an action (Undo): sits under the top bar so it never covers the main buttons. */
+.toast { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.toast.act { bottom: auto; top: calc(env(safe-area-inset-top) + 64px); text-align: left; justify-content: space-between; }
+.toast button { background: var(--y); color: var(--on-y); border: 2px solid var(--key); border-radius: 10px; padding: 6px 14px; font: 800 15px var(--disp); cursor: pointer; flex: none; box-shadow: 2px 2px 0 var(--key); transition: transform .06s, box-shadow .06s; }
+.toast button:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--key); }
 @keyframes toast-in { from { transform: translateY(20px); opacity: 0; } }
 .fxlayer { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 70; }
 .flash { position: fixed; inset: 0; pointer-events: none; z-index: 69; background: var(--y); animation: flash .55s ease-out forwards; }
@@ -332,6 +357,17 @@ input[type=text]:focus, textarea:focus { outline: 3px solid var(--g2); outline-o
 .gp-rev.truth { background: var(--y); color: var(--on-y); box-shadow: 5px 5px 0 var(--g2); }
 .gp-rev-a { font: 800 21px var(--disp); }
 .gp-msg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: var(--ink); color: var(--paper); border: 2.5px solid var(--key); padding: 12px 16px; border-radius: var(--r); font-weight: 700; z-index: 4; pointer-events: none; text-align: center; max-width: 70%; }
+/* Phone turned sideways on the table: fact and buttons on the left, answers on the right. */
+@media (orientation: landscape) and (max-height: 560px) {
+  .gp-mid { inset: 46px 64px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); grid-template-rows: auto 1fr auto; grid-template-areas: "head opts" "fact opts" "ctrl opts"; gap: 8px 14px; }
+  .gp-head { grid-area: head; }
+  .gp-mid > .gp-fact { grid-area: fact; align-self: start; overflow: hidden; }
+  .gp-opts { grid-area: opts; gap: 6px; }
+  .gp-ctrl { grid-area: ctrl; }
+  .gp-opt { padding: 4px 10px; }
+  .gp-opt b { font-size: 18px; }
+  .gp-slots { height: 22px; flex-basis: 22px; }
+}
 
 /* ---------- reduced motion: keep feedback, drop movement ---------- */
 @media (prefers-reduced-motion: reduce) {

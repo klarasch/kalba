@@ -1,0 +1,23 @@
+// Every content file the app loads, one per line. Add a new file here to make it appear.
+decks/cs/osobnosti.txt
+decks/cs/postavy.txt
+decks/cs/filmy.txt
+decks/cs/mista.txt
+decks/cs/realie.txt
+decks/cs/svet.txt
+decks/cs/veci.txt
+decks/cs/zvirata-jidlo.txt
+decks/cs/povolani-cinnosti.txt
+decks/en/celebs.txt
+decks/en/characters.txt
+decks/en/titles.txt
+decks/en/places.txt
+decks/en/things.txt
+decks/en/animals-food.txt
+decks/en/actions.txt
+
+bomb/cs.txt
+bomb/en.txt
+
+names/cs.txt
+names/en.txt

@@ -1,0 +1,95 @@
+# Postavy z pohádek a seriálů
+id: cs-postavy
+lang: cs
+games: fishbowl, guess
+knowledge: czech
+
+[easy]
+Krteček | european
+Pat a Mat | european
+Rumcajs
+Maxipes Fík
+Bob a Bobek
+Spejbl
+Hurvínek
+Mach a Šebestová
+Rákosníček
+Čtyřlístek
+Křemílek a Vochomůrka
+Víla Amálka
+Kocour Mikeš
+Šmoulové | worldwide
+Popelka | worldwide
+Červená Karkulka | worldwide
+Sněhurka | worldwide
+Rusalka | european
+Vodník | european
+Smolíček
+Včelka Mája | european
+Mickey Mouse | worldwide
+Shrek | worldwide
+Medvídek Pú | worldwide
+Pinocchio | worldwide
+Alenka v říši divů | worldwide
+Pipi Dlouhá Punčocha | european
+Čert | european
+
+[medium]
+Princezna se zlatou hvězdou
+Major Zeman
+Pan Tau
+Arabela
+Rumburak
+Primář Sova
+Krakonoš
+Ferda Mravenec
+Brouk Pytlík
+Rumcajsova Manka
+Cipísek
+Hajný Robátko
+Dlouhý, Široký a Bystrozraký
+Vodník Česílko
+Kubula a Kuba Kubikula
+Dobrý voják Švejk | european
+Nadporučík Lukáš
+Petronel
+Čert Marbuel
+Rychlé šípy
+Mirek Dušín
+Rikitan
+Baba Jaga | european
+Mrazík | european
+Pyšná princezna
+Šípková Růženka | worldwide
+Jeníček a Mařenka | worldwide
+Kašpárek
+Hloupý Honza
+Zlatovláska
+Hastrman Tatrman
+
+[hard]
+Bludička
+Polednice
+Divoženka
+Lotrando
+Zubejda
+Dařbuján
+Pandrhola
+Fifinka
+Pinďa
+Myšpulín
+Bobík
+Sedmero krkavců
+Morena
+Malý princ | worldwide
+Zlatá rybka | european
+Kapitán Nemo | worldwide
+Káťa a Škubánek
+Saxána
+Jů a Hele
+Bořek stavitel
+Doktor Štrosmajer
+Sestra Růžena
+Jezinky
+Princ Bajaja
+Plechový Honza
