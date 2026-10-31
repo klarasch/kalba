@@ -1,4 +1,4 @@
-# Partybox 🎉
+# Kalba! 🎉
 
 **Play it:** https://klarasch.github.io/partybox/ (add it to your home screen, it works offline)
 

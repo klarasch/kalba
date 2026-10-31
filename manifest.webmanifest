@@ -1,6 +1,6 @@
 {
-  "name": "Partybox",
-  "short_name": "Partybox",
+  "name": "Kalba!",
+  "short_name": "Kalba!",
   "description": "Party games for one phone passed around. Offline.",
   "start_url": "./",
   "scope": "./",

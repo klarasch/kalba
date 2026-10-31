@@ -1,4 +1,4 @@
-// Partybox core: storage, language, sounds, timers, shared UI pieces and the home screen.
+// Kalba! core: storage, language, sounds, timers, shared UI pieces and the home screen.
 (function () {
   const PB = (window.PB = {});
   window.PB_DECKS = window.PB_DECKS || [];

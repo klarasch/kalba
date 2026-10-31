@@ -334,7 +334,7 @@
     const card = (k) => {
       const o = G.opts[k], v = voters(k), st = starCount(k);
       const by = isTruth(o) ? L('PRAVDA', 'TRUE')
-        : o.authors.map((a) => (a === 'house' ? L('lež od Partyboxu', "Partybox's own lie") : PB.esc(pname(a)))).join(', ');
+        : o.authors.map((a) => (a === 'house' ? L('lež od Kalby', "Kalba's own lie") : PB.esc(pname(a)))).join(', ');
       return `<div class="gp-rev ${isTruth(o) ? 'truth' : ''}">
         <div class="gp-rev-a">${PB.esc(o.text)}${st ? ` <span class="pill">${PB.ico('star')} ${st}</span>` : ''}</div>
         <div class="small"><b>${by}</b></div>

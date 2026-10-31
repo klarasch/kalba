@@ -1,4 +1,4 @@
-/* Partybox: riso cards on paper. Every game paints the screen in its own ink pair (--g1, --g2),
+/* Kalba!: riso cards on paper. Every game paints the screen in its own ink pair (--g1, --g2),
    set from the game's registration by PB.setGame(). Dark mode follows the phone. */
 @font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 400 800; font-display: swap;
   src: url(fonts/bricolage-latin-ext.woff2) format('woff2');
