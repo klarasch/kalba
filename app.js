@@ -3,6 +3,7 @@
   const PB = (window.PB = {});
   window.PB_DECKS = window.PB_DECKS || [];
   window.PB_BOMB = window.PB_BOMB || [];
+  window.PB_NAMES = window.PB_NAMES || { cs: [], en: [] };
 
   // ---------- storage ----------
   PB.store = {
@@ -45,6 +46,8 @@
     warn: '<path d="M12 4 2.5 20h19z"/><path d="M12 10v4M12 17v.5"/>',
     trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v5M14 11v5"/>',
     swap: '<path d="M4 9h14l-4-4M20 15H6l4 4"/>',
+    flag: '<path d="M6 21V4M6 5h12l-3 4.2L18 13H6"/>',
+    dice: '<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8.5 8.5h.01M15.5 8.5h.01M12 12h.01M8.5 15.5h.01M15.5 15.5h.01" stroke-width="3.2"/>',
     undo: '<path d="M9 5 4 10l5 5"/><path d="M4 10h10a6 6 0 0 1 0 12h-3"/>',
   };
   PB.ico = (n) => `<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${UI[n] || ''}</svg>`;
@@ -290,8 +293,9 @@
     const get = async (url) => { const r = await fetch(url); if (!r.ok) throw new Error(url + ' ' + r.status); return r.text(); };
     const files = cleanLines(await get('data/index.txt'));
     const texts = await Promise.all(files.map((f) => get('data/' + f).then((t) => [f, t])));
-    PB_DECKS.length = 0; PB_BOMB.length = 0;
+    PB_DECKS.length = 0; PB_BOMB.length = 0; PB_NAMES.cs = []; PB_NAMES.en = [];
     texts.forEach(([f, txt]) => {
+      if (f.startsWith('names/')) { const l = (f.match(/names\/(cs|en)\./) || [])[1]; if (l) PB_NAMES[l] = cleanLines(txt); return; }
       const { meta, items, tags } = PB.parseCards(txt);
       const lang = (meta.lang || (f.match(/(?:^|\/)(cs|en)(?:\/|\.)/) || [])[1] || 'en').toLowerCase();
       if (f.startsWith('bomb/')) PB_BOMB.push({ lang, knowledge: meta.knowledge, items, tags });
@@ -339,6 +343,9 @@
     };
     return api;
   })();
+
+  // Absurd team names for the current language (data/names/).
+  PB.teamNames = () => (PB_NAMES[PB.lang] || []).slice();
 
   // ---------- decks ----------
   PB.decksFor = (game) => PB_DECKS.filter((d) => d.lang === PB.lang && d.games.includes(game));
@@ -454,7 +461,7 @@
     },
     stepper(key, label, value, unit = '') {
       return `<div class="stepper" data-step="${key}"><span>${label}</span>
-        <span class="ctrls"><button class="iconbtn" data-d="-1">−</button><span class="val">${value}${unit}</span><button class="iconbtn" data-d="1">+</button></span></div>`;
+        <span class="ctrls"><button class="iconbtn sm" data-d="-1" aria-label="−">−</button><span class="val">${value}${unit}</span><button class="iconbtn sm" data-d="1" aria-label="+">+</button></span></div>`;
     },
     // opts: {min, max, step, unit}
     bindStepper(root, key, s, opts, onChange) {

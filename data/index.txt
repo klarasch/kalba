@@ -18,3 +18,6 @@ decks/en/actions.txt
 
 bomb/cs.txt
 bomb/en.txt
+
+names/cs.txt
+names/en.txt

@@ -1,5 +1,5 @@
 // Offline cache. Bump VERSION when files change.
-const VERSION = 'pb-v11';
+const VERSION = 'pb-v12';
 const FILES = [
   './', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest',
   'data/gap-cs.js', 'data/gap-en.js', 'data/index.txt',
@@ -19,6 +19,7 @@ const FILES = [
   'data/decks/en/things.txt',
   'data/decks/en/animals-food.txt',
   'data/decks/en/actions.txt',
+  'data/names/cs.txt', 'data/names/en.txt',
   'data/bomb/cs.txt',
   'data/bomb/en.txt',
   'games/fishbowl.js', 'games/impostor.js', 'games/bomb.js', 'games/guess.js', 'games/gap.js',

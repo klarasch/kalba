@@ -12,6 +12,8 @@ data/decks/cs/*.txt     Czech decks, one file per deck
 data/decks/en/*.txt     English decks
 data/bomb/cs.txt        Bomba categories in Czech
 data/bomb/en.txt        Bomba categories in English
+data/names/cs.txt       absurd team names for the dice in Klobouk (one per line)
+data/names/en.txt       the same in English
 ```
 
 ## What a deck file looks like
