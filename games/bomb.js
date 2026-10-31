@@ -1,7 +1,7 @@
 // Bomb: name something from the category, pass the phone. Whoever holds it at the boom loses.
 (function () {
   const L = (a, b) => PB.L(a, b);
-  const defaults = { levels: [1, 2], letter: false, fuse: 'mid' };
+  const defaults = { levels: [1, 2], know: null, letter: false, fuse: 'mid' };
   const FUSES = { short: [10, 25], mid: [20, 45], long: [35, 70] };
   const LETTERS = { cs: 'ABČDHJKLMNOPRSŠTVZ', en: 'ABCDEFGHILMNOPRSTW' };
   const used = new Set();
@@ -9,13 +9,16 @@
   function setup() {
     const { s, save } = PB.settings('bomb', defaults);
     const lvl = PB.levelNames();
-    PB.render(`
+    const draw = () => PB.render(`
       ${PB.top(L('Bomba', 'Bomb'))}
       <div class="box rules">${L(
         'Objeví se kategorie, třeba <b>„Ovoce"</b>. Kdo drží mobil, řekne něco, co do ní patří, a <b>předá mobil dalšímu</b>. Opakovat se nesmí. Rozbuška je náhodná a nikdo neví, kdy bouchne. U koho vybuchne, ten prohrál kolo.',
         'A category appears, say <b>"Fruits"</b>. Whoever holds the phone names something that fits and <b>passes the phone on</b>. No repeats. The fuse is random and nobody knows when it blows. Whoever holds it at the boom loses the round.')}</div>
       <h3>${L('Obtížnost', 'Difficulty')}</h3>
       <div class="chips" data-levels>${lvl.map((n, i) => `<button class="chip ${s.levels.includes(i + 1) ? 'on' : ''}" data-l="${i + 1}">${n}</button>`).join('')}</div>
+      ${PB.ui.knowPicker(s, PB.bombTags())}
+      <p class="muted small" data-avail></p>
+      ${PB.ui.hiddenBar()}
       <h3>${L('Rozbuška', 'Fuse')}</h3>
       <div class="chips" data-fuse>${[['short', L('Krátká', 'Short')], ['mid', L('Střední', 'Medium')], ['long', L('Dlouhá', 'Long')]].map(([k, n]) => `<button class="chip ${s.fuse === k ? 'on' : ''}" data-f="${k}">${n}</button>`).join('')}</div>
       <h3>${L('Nastavení', 'Settings')}</h3>
@@ -24,11 +27,19 @@
       <button class="btn big" data-go>${L('Hrát', 'Play')}</button>
     `, (root) => {
       PB.bindTop(root, () => { save(); PB.home(); });
+      const refresh = () => {
+        PB.$('[data-avail]', root).textContent = L('Dostupných kategorií: ', 'Available categories: ') + PB.bombCats(s.levels, s.know).length;
+        PB.ui.updateHidden(root);
+      };
       PB.on(root, '[data-levels] .chip', (e, el) => {
         const l = +el.dataset.l;
         if (s.levels.includes(l)) { if (s.levels.length > 1) s.levels = s.levels.filter((x) => x !== l); } else s.levels.push(l);
         PB.$$('[data-levels] .chip', root).forEach((c) => c.classList.toggle('on', s.levels.includes(+c.dataset.l)));
+        refresh();
       });
+      PB.ui.bindKnow(root, s, refresh);
+      PB.ui.bindHiddenBar(root, hiddenCats, (keys) => PB.hidden.removeMany('b', keys), draw);
+      refresh();
       PB.on(root, '[data-fuse] .chip', (e, el) => {
         s.fuse = el.dataset.f;
         PB.$$('[data-fuse] .chip', root).forEach((c) => c.classList.toggle('on', c.dataset.f === s.fuse));
@@ -36,10 +47,22 @@
       PB.ui.bindToggle(root, 'letter', s);
       PB.on(root, '[data-go]', () => { save(); round(s); });
     });
+    draw();
+  }
+
+  // Discarded categories in this language, for the restore list.
+  function hiddenCats() {
+    const hid = PB.hidden.list('b'), seen = new Set(), out = [];
+    PB.bombEntries().forEach((b) => [1, 2, 3].forEach((l) => (b.items[l] || []).forEach((c) => {
+      const k = PB.hidden.norm(c);
+      if (hid.includes(k) && !seen.has(k)) { seen.add(k); out.push({ key: k, text: c }); }
+    })));
+    return out;
   }
 
   function category(s) {
-    const all = PB_BOMB.filter((b) => b.lang === PB.lang).flatMap((b) => s.levels.flatMap((l) => b.items[l] || []));
+    const all = PB.bombCats(s.levels, s.know);
+    if (!all.length) return null;
     let fresh = all.filter((c) => !used.has(c));
     if (!fresh.length) { used.clear(); fresh = all; }
     const c = PB.pick(fresh);
@@ -49,6 +72,7 @@
 
   function round(s) {
     let cat = category(s);
+    if (!cat) { PB.toast(L('Žádné kategorie. Změň obtížnost nebo znalosti.', 'No categories left. Change difficulty or knowledge.')); return setup(); }
     const letter = s.letter ? PB.pick([...LETTERS[PB.lang]]) : null;
     const draw = () => PB.render(`
       ${PB.top(L('Bomba', 'Bomb'), { close: true })}
@@ -59,11 +83,20 @@
       </div>
       <div class="stack">
         <button class="btn big" data-go>${L('Zapálit doutnák', 'Light the fuse')}</button>
-        <button class="btn secondary" data-other>${L('Jiná kategorie', 'Another category')}</button>
+        <div class="row"><button class="btn secondary" data-other>${L('Jiná kategorie', 'Another category')}</button>
+        <button class="btn secondary" data-disc>${L('Vyřadit kategorii', 'Remove category')}</button></div>
       </div>
     `, (root) => {
       PB.bindTop(root, setup);
-      PB.on(root, '[data-other]', () => { cat = category(s); draw(); });
+      PB.on(root, '[data-other]', () => { cat = category(s) || cat; draw(); });
+      PB.on(root, '[data-disc]', () => {
+        const gone = cat;
+        PB.hidden.add('b', gone); PB.sfx.skip();
+        const next = category(s);
+        if (!next) { PB.hidden.remove('b', gone); return PB.toast(L('To je poslední kategorie.', 'That is the last category.')); }
+        cat = next; draw();
+        PB.toast(L('Vyřazeno: ', 'Removed: ') + gone, { action: L('Zpět', 'Undo'), onAction: () => { PB.hidden.remove('b', gone); cat = gone; draw(); } });
+      });
       PB.on(root, '[data-go]', () => fuse(s, cat, letter));
     });
     draw();
