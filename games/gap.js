@@ -4,7 +4,7 @@
   const L = (a, b) => PB.L(a, b);
   const SAVE = 'gap:save';
   const NAME = () => L('Díra', 'The Gap');
-  const defaults = { players: ['', '', '', ''], rounds: 8, think: 60, stars: true };
+  const defaults = { know: null, players: ['', '', '', ''], rounds: 8, think: 60, stars: true };
   let G = null; // running game
 
   const pname = (i) => (G.players[i] || '').trim() || L('Hráč ', 'Player ') + (i + 1);
@@ -12,12 +12,16 @@
   // Compare answers loosely: case, accents, punctuation and extra spaces don't matter.
   const norm = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
     .replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
-  const factsFor = () => (window.PB_GAP || []).filter((d) => d.lang === PB.lang).flatMap((d) => d.facts);
+  const allFacts = () => (window.PB_GAP || []).filter((d) => d.lang === PB.lang).flatMap((d) => d.facts);
+  const factTags = () => PB.knowSort(allFacts().map((f) => f.knowledge || 'worldwide'));
+  // Facts for these knowledge tags, minus the ones discarded on this device.
+  const factsFor = (know) => allFacts().filter((f) => (!know || know.includes(f.knowledge || 'worldwide')) && !PB.hidden.has('g', f.id));
+  const hiddenFacts = () => allFacts().filter((f) => PB.hidden.has('g', f.id)).map((f) => ({ key: f.id, text: f.q.replace('___', f.a) }));
   const blank = (q, fill, cls) => PB.esc(q).replace('___', `<span class="gp-blank ${cls || ''}">${fill ? PB.esc(fill) : '&nbsp;'.repeat(12)}</span>`);
 
   // Fresh facts first: remember which ids this device has already played.
-  function drawFacts(n) {
-    const all = factsFor(), key = 'gap:used:' + PB.lang;
+  function drawFacts(n, know) {
+    const all = factsFor(know), key = 'gap:used:' + PB.lang;
     let used = PB.store.get(key, []);
     let fresh = all.filter((f) => !used.includes(f.id));
     if (fresh.length < n) { used = []; fresh = all; }
@@ -43,7 +47,9 @@
 
   function setup() {
     const { s, save: saveS } = PB.settings('gap', defaults);
-    const avail = factsFor().length;
+    const tags = factTags();
+    PB.knowFix(s, tags);
+    let avail = factsFor(s.know).length;
     const draw = () => PB.render(`
       ${PB.top(NAME())}
       <div class="box rules">${L(
@@ -51,13 +57,15 @@
         'I show a <b>true fact</b> with one word missing. Everyone makes up a <b>believable or funny fake</b> on paper, then types it into the phone in secret. Then the phone lies on the table, the answers get shuffled, and everyone drags their name onto the one they think is true. Points for finding the truth, and for everyone your fake fools.')}</div>
       <h3>${L('Hráči, v pořadí jak sedíte', 'Players, in seating order')} (${s.players.length})</h3>
       ${PB.ui.names('players', s.players, L('Hráč', 'Player'))}
+      ${PB.ui.knowPicker(s, tags)}
+      <p class="muted small">${L('Faktů v balíčku: ', 'Facts in the deck: ')}<b data-avail>${avail}</b></p>
+      ${PB.ui.hiddenBar()}
       <h3>${L('Nastavení', 'Settings')}</h3>
       <div class="stack">
         ${PB.ui.stepper('rounds', L('Počet kol', 'Rounds'), s.rounds)}
         ${PB.ui.stepper('think', L('Čas na vymýšlení', 'Thinking time'), s.think, ' s')}
         ${PB.ui.toggle('stars', L('Hlasovat i o nejvtipnější', 'Also vote for the funniest'), s.stars, L('Hvězda = bod navíc, od 3 hráčů', 'A star = extra point, 3+ players'))}
       </div>
-      <p class="muted small">${L('Faktů v balíčku: ', 'Facts in the deck: ')}${avail}</p>
       <div class="spacer"></div>
       <button class="btn big" data-go>${L('Začít', 'Start')}</button>
     `, (root) => {
@@ -66,12 +74,16 @@
       PB.ui.bindStepper(root, 'rounds', s, { min: 3, max: 20 });
       PB.ui.bindStepper(root, 'think', s, { min: 0, max: 180, step: 15, unit: ' s' });
       PB.ui.bindToggle(root, 'stars', s);
+      const refresh = () => { avail = factsFor(s.know).length; PB.$('[data-avail]', root).textContent = avail; PB.ui.updateHidden(root); };
+      PB.ui.bindKnow(root, s, refresh);
+      PB.ui.bindHiddenBar(root, hiddenFacts, (keys) => PB.hidden.removeMany('g', keys), draw);
+      refresh();
       PB.on(root, '[data-go]', () => {
         if (s.players.length < 2) return PB.toast(L('Potřebujete aspoň 2 hráče.', 'You need at least 2 players.'));
         if (!avail) return PB.toast(L('V tomhle jazyce zatím nejsou fakty.', 'No facts in this language yet.'));
         saveS();
         G = { lang: PB.lang, players: s.players.slice(), think: s.think, stars: s.stars,
-          facts: drawFacts(Math.min(s.rounds, avail)), round: 0, scores: s.players.map(() => 0) };
+          facts: drawFacts(Math.min(s.rounds, avail), s.know), round: 0, scores: s.players.map(() => 0) };
         save();
         PB.keepAwake();
         fact();
@@ -348,10 +360,17 @@
         <div class="gp-fact small">${blank(f.q, done ? f.a : '', done ? 'filled' : '')}</div>
         ${done ? `<div class="box small">${PB.esc(f.why || '')}${f.src ? `<div class="muted small">${L('Zdroj: ', 'Source: ')}${PB.esc(f.src)}</div>` : ''}${f.ok === false ? `<div class="muted small">${PB.ico('warn')} ${L('Fakt zatím není ověřený ze zdrojů.', 'This fact is not verified against sources yet.')}</div>` : ''}</div>` : ''}
         <div class="stack gp-revs">${order.slice(0, shown).reverse().map(card).join('')}</div>
+        ${done ? `<button class="btn secondary small" data-disc style="align-self:flex-start">${PB.hidden.has('g', f.id) ? L('Vrátit fakt', 'Bring this fact back') : L('Vyřadit fakt', 'Remove this fact')}</button>` : ''}
         <div class="grow"></div>
         <button class="btn big" data-next>${done ? L('Body za kolo', 'Round scores') : shown === order.length - 1 ? L('Odhalit pravdu', 'Reveal the truth') : L('Další odpověď', 'Next answer')}</button>`,
       (root) => {
         PB.on(root, '[data-pause]', () => pause(draw));
+        PB.on(root, '[data-disc]', (e, el) => {
+          const label = () => { el.textContent = PB.hidden.has('g', f.id) ? L('Vrátit fakt', 'Bring this fact back') : L('Vyřadit fakt', 'Remove this fact'); };
+          if (PB.hidden.has('g', f.id)) { PB.hidden.remove('g', f.id); label(); return; }
+          PB.hidden.add('g', f.id); label(); PB.sfx.skip();
+          PB.toast(L('Fakt vyřazen.', 'Fact removed.'), { action: L('Zpět', 'Undo'), onAction: () => { PB.hidden.remove('g', f.id); label(); } });
+        });
         PB.on(root, '[data-next]', () => {
           if (done) { delta.forEach((d, i) => (G.scores[i] += d)); return roundScores(delta); }
           shown++;
