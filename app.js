@@ -66,10 +66,10 @@
   // already know the word, so they get cross-references. Tap the entry for the next one.
   const KALBA = {
     en: [
-      '<b>kalba!</b> <i>(KAL-ba), noun, Czech, informal</i> A lively party with plenty of drinking; a bender.',
-      '<b>kalba!</b> <i>noun</i> 1. A night that was supposed to be "just one game". 2. A night that ends at 3 a.m. with someone arguing about the rules.',
-      '<b>kalba!</b> <i>noun</i> One more round (of anything).',
-      '<b>kalba!</b> <i>noun</i> Not to be confused with the city in the UAE, which is much quieter.',
+      '<b>kalba!</b> <i>(KAL-ba), noun, Czech, informal.</i> A lively party with plenty of drinking; a bender.',
+      '<b>kalba!</b> <i>noun.</i> 1. A night that was supposed to be "just one game". 2. A night that ends at 3 a.m. with someone arguing about the rules.',
+      '<b>kalba!</b> <i>noun.</i> One more round (of anything).',
+      '<b>kalba!</b> <i>noun.</i> Not to be confused with the city in the UAE, which is much quieter.',
     ],
     cs: [
       '<b>kalba, -y, ž.</b> <i>(hovor.)</i> bujará zábava. <i>Viz též:</i> jen na jednu hru.',
@@ -428,7 +428,6 @@
     PB.render(`
       <div class="hd">
         <h1 class="logo" aria-label="Kalba!">kalba<span class="bang" aria-hidden="true"><i></i>${PB.mark()}</span></h1>
-        <div class="sub">${PB.L('Hry na dlouhý večer. Jeden mobil, který koluje.', 'Party games for a long night. One phone, passed around.')}</div>
         <button class="dict" data-dict aria-live="polite">${PB.kalba()}</button>
       </div>
       <div class="games">
