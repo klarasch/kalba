@@ -174,7 +174,7 @@
     const r = ROUNDS()[G.round];
     const finish = (timeLeft) => { timer.stop(); summary(guessed, timeLeft); };
     PB.render(`
-      <div class="top"><span class="pill">${r.emoji} ${r.name}</span><div class="title"></div><span class="pill" data-left>🃏 ${G.deck.length}</span></div>
+      <div class="top">${PB.pauseBtn()}<span class="pill">${r.emoji} ${r.name}</span><div class="title"></div><span class="pill" data-left>🃏 ${G.deck.length}</span></div>
       <div class="play">
         <div class="timer" data-t>${secs}</div>
         <div class="bar"><i data-bar style="width:100%"></i></div>
@@ -204,6 +204,14 @@
       PB.on(root, '[data-skip]', () => {
         if (G.deck.length > 1) G.deck.push(G.deck.shift());
         PB.sfx.skip(); show();
+      });
+      PB.on(root, '[data-pause]', () => {
+        timer.pause();
+        PB.menu(L('Pauza', 'Paused'), [
+          { label: L('Pokračovat', 'Resume'), fn: () => timer.resume() },
+          { label: L('Ukončit tah', 'End this turn'), cls: 'secondary', fn: () => finish(0) },
+          { label: L('Odejít (hra zůstane uložená)', 'Leave (game stays saved)'), cls: 'secondary', fn: () => { PB.stopAll(); PB.home(); } },
+        ]);
       });
     });
   }

@@ -58,6 +58,16 @@
     d.querySelector('[data-no]').onclick = () => d.remove();
     d.querySelector('[data-yes]').onclick = () => { d.remove(); onYes(); };
   };
+  // Pause menu: items = [{label, cls, fn}]. Tapping outside does nothing on purpose.
+  PB.menu = (title, items) => {
+    const d = document.createElement('div');
+    d.className = 'dlg';
+    d.innerHTML = `<div class="dlgbox"><p>${PB.esc(title)}</p>${items.map((it, i) => `<button class="btn ${it.cls || ''}" data-i="${i}">${PB.esc(it.label)}</button>`).join('')}</div>`;
+    document.body.appendChild(d);
+    d.querySelectorAll('[data-i]').forEach((b) => (b.onclick = () => { d.remove(); items[+b.dataset.i].fn(); }));
+    PB.track(() => d.remove());
+  };
+  PB.pauseBtn = () => `<button class="iconbtn" data-pause aria-label="pause">❚❚</button>`;
   PB.toast = (msg) => {
     const t = document.createElement('div');
     t.className = 'toast'; t.textContent = msg;

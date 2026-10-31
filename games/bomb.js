@@ -72,10 +72,10 @@
   function fuse(s, cat, letter) {
     const [a, b] = FUSES[s.fuse] || FUSES.mid;
     const len = a + Math.random() * (b - a);
-    const t0 = performance.now();
+    let elapsed = 0, last = performance.now(), paused = false;
     PB.keepAwake();
     PB.render(`
-      <div class="top"><div class="title"></div></div>
+      <div class="top">${PB.pauseBtn()}<div class="title"></div></div>
       <div class="play">
         <div class="word" style="min-height:120px">${PB.esc(cat)}${letter ? ` · <span style="color:var(--accent)">${letter}</span>` : ''}</div>
         <div class="bomb" data-b>💣</div>
@@ -88,7 +88,10 @@
       // Ticks speed up as the fuse burns down.
       const tick = () => {
         if (!alive) return;
-        const p = (performance.now() - t0) / 1000 / len;
+        const now = performance.now();
+        if (paused) { last = now; return setTimeout(tick, 200); }
+        elapsed += now - last; last = now;
+        const p = elapsed / 1000 / len;
         if (p >= 1) return explode(s);
         flip = !flip;
         flip ? PB.sfx.tick() : PB.sfx.tock();
@@ -96,6 +99,14 @@
         setTimeout(tick, Math.max(110, 700 - p * 600));
       };
       tick();
+      PB.on(root, '[data-pause]', () => {
+        paused = true;
+        PB.menu(L('Pauza', 'Paused'), [
+          { label: L('Pokračovat', 'Resume'), fn: () => { paused = false; } },
+          { label: L('Zneškodnit a zpět', 'Defuse and go back'), cls: 'secondary', fn: () => { PB.stopAll(); round(s); } },
+          { label: L('Odejít', 'Leave'), cls: 'secondary', fn: () => { PB.stopAll(); PB.home(); } },
+        ]);
+      });
     });
   }
 
