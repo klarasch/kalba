@@ -26,6 +26,87 @@
   PB.$$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
   PB.vibrate = (p) => { try { navigator.vibrate && navigator.vibrate(p); } catch (e) {} };
 
+
+  // ---------- icons: UI line icons (currentColor) and two-ink game art ----------
+  const UI = {
+    back: '<path d="M19 12H6M11 6l-6 6 6 6"/>',
+    close: '<path d="M6 6l12 12M18 6 6 18"/>',
+    pause: '<path d="M9 5v14M15 5v14" stroke-width="3.2"/>',
+    sound: '<path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>',
+    mute: '<path d="M4 9h4l5-4v14l-5-4H4z"/><path d="m17 9 5 6M22 9l-5 6"/>',
+    check: '<path d="M5 12.5 9.5 17 19 7" stroke-width="3"/>',
+    plus: '<path d="M12 5v14M5 12h14" stroke-width="3"/>',
+    clock: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/>',
+    cards: '<rect x="4" y="6" width="12" height="15" rx="2"/><path d="M8 3h10a2 2 0 0 1 2 2v13"/>',
+    star: '<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+    trophy: '<path d="M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3M12 14v4M8 21h8"/>',
+    talk: '<path d="M4 5h16v11h-9l-5 4v-4H4z"/><path d="M8 10h8"/>',
+    hand: '<path d="M9 12V5a1.5 1.5 0 0 1 3 0v6M12 11V4a1.5 1.5 0 0 1 3 0v7M15 11V6a1.5 1.5 0 0 1 3 0v7c0 4.5-2.7 8-7 8-3 0-5-1.8-6.2-4.5L3.3 13a1.5 1.5 0 0 1 2.6-1.5L9 15"/>',
+    warn: '<path d="M12 4 2.5 20h19z"/><path d="M12 10v4M12 17v.5"/>',
+  };
+  PB.ico = (n) => `<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${UI[n] || ''}</svg>`;
+  // Game art: s = the shape printed twice (two inks, out of register), x = ink line details on top.
+  const ART = {
+    hat: { s: '<path d="M15 30V17c0-5.5 4-9 9-9s9 3.5 9 9v13z"/><path d="M4 33c0-2 4-3.5 8-3.5h24c4 0 8 1.5 8 3.5s-8 5-20 5-20-3-20-5z"/>', x: '<path class="ln" d="M15 24h18"/>' },
+    mask: { s: '<path fill-rule="evenodd" d="M4 19c5-5 14-5 20-1 6-4 15-4 20 1 0 9-4 15-10 15-4 0-6-3-10-3s-6 3-10 3C8 34 4 28 4 19zM11 22a4 3 0 1 0 8 0 4 3 0 1 0-8 0zM29 22a4 3 0 1 0 8 0 4 3 0 1 0-8 0z"/>', x: '' },
+    bomb: { s: '<circle cx="21" cy="29" r="14"/><path d="m27 18 5-5 4 4-5 5z"/>', x: '<path class="ln" d="M34 14c2-4 6-6 10-4"/>' },
+    head: { s: '<circle cx="24" cy="33" r="12"/><rect x="13" y="5" width="22" height="15" rx="2"/>', x: '' },
+    gap: { s: '<path d="M5 9h38v24H21l-9 8v-8H5z"/>', x: '<path class="ln" d="M14 21h7M27 21h7"/>' },
+    phone: { s: '<rect x="15" y="5" width="18" height="33" rx="4.5" transform="rotate(-14 24 22)"/>', x: '<rect x="18.5" y="9.5" width="11" height="21" rx="1.5" transform="rotate(-14 24 22)" style="fill:var(--card)"/><path class="ln" d="M7 15c-2.5 4-2.5 9 0 13M43 18c2 3 2 7 0 10"/>' },
+  };
+  // PB.art(name): game art, or a UI icon / digit on a card disc. cls '' = bare art (e.g. inside a home card).
+  PB.art = (n, cls = 'disc') => {
+    const a = ART[n];
+    if (a) return `<span class="art ${cls}"><svg viewBox="0 0 48 48" aria-hidden="true"><g class="l1">${a.s}</g><g class="l2">${a.s}</g>${a.x}</svg></span>`;
+    if (/^\d$/.test(n)) return `<span class="art ${cls} ui"><span class="huge">${n}</span></span>`;
+    return `<span class="art ${cls} ui"><svg viewBox="0 0 24 24" aria-hidden="true">${UI[n] || ''}</svg></span>`;
+  };
+  // The logo mark: a box of the game inks, printed with an offset.
+  PB.mark = () => '<svg viewBox="0 0 46 46" aria-hidden="true"><rect x="4" y="4" width="17" height="17" rx="4" fill="#1f4be0"/><rect x="1" y="1" width="17" height="17" rx="4" fill="#ff3d8b"/><rect x="28" y="4" width="17" height="17" rx="4" fill="#6b3df0"/><rect x="25" y="1" width="17" height="17" rx="4" fill="#00a86b"/><rect x="4" y="28" width="17" height="17" rx="4" fill="#ffb300"/><rect x="1" y="25" width="17" height="17" rx="4" fill="#ff4a1c"/><rect x="28" y="28" width="17" height="17" rx="4" fill="#0097a7"/><rect x="25" y="25" width="17" height="17" rx="4" fill="#ff8a1f"/></svg>';
+
+  // ---------- visual effects (skipped when the phone asks for reduced motion) ----------
+  PB.reduced = () => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } };
+  PB.fx = (() => {
+    let cv, cx, ps = [], raf = 0;
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const fit = () => {
+      if (!cv || !cv.isConnected) { cv = document.createElement('canvas'); cv.className = 'fxlayer'; document.body.appendChild(cv); cx = cv.getContext('2d'); }
+      const d = devicePixelRatio || 1;
+      if (cv.width !== Math.round(innerWidth * d) || cv.height !== Math.round(innerHeight * d)) { cv.width = innerWidth * d; cv.height = innerHeight * d; }
+      cx.setTransform(d, 0, 0, d, 0, 0);
+    };
+    const loop = () => {
+      fit(); cx.clearRect(0, 0, innerWidth, innerHeight);
+      ps = ps.filter((p) => p.life > 0);
+      for (const p of ps) {
+        p.vy += p.g; p.vx *= .985; p.vy *= .985; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life--;
+        cx.save(); cx.globalAlpha = Math.min(1, p.life / 18); cx.translate(p.x, p.y); cx.rotate(p.rot); cx.fillStyle = p.c;
+        if (p.shape === 'circle') { cx.beginPath(); cx.arc(0, 0, p.s, 0, 7); cx.fill(); }
+        else if (p.shape === 'tri') { cx.beginPath(); cx.moveTo(0, -p.s); cx.lineTo(p.s, p.s); cx.lineTo(-p.s, p.s); cx.fill(); }
+        else cx.fillRect(-p.s, -p.s * .5, p.s * 2, p.s);
+        cx.restore();
+      }
+      raf = ps.length ? requestAnimationFrame(loop) : (cx.clearRect(0, 0, innerWidth, innerHeight), 0);
+    };
+    const inks = () => { const cs = getComputedStyle(document.documentElement); return ['--g1', '--g2', '--y', '--ink', '--card'].map((v) => cs.getPropertyValue(v).trim()); };
+    const api = {
+      inks,
+      burst(x, y, n, o = {}) {
+        if (PB.reduced()) return;
+        const colors = o.colors || inks(), shapes = o.shape || ['circle', 'tri', 'rect'];
+        for (let i = 0; i < n; i++) {
+          const a = o.angle != null ? o.angle + rnd(-o.spread, o.spread) : rnd(0, Math.PI * 2), sp = rnd(.3, 1) * (o.speed || 6);
+          ps.push({ x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, g: o.g ?? .2, life: rnd(.6, 1) * (o.life || 60), s: rnd(.6, 1) * (o.size || 4), rot: rnd(0, 6), vr: rnd(-.3, .3), c: colors[i % colors.length], shape: shapes[i % shapes.length] });
+        }
+        if (!raf) raf = requestAnimationFrame(loop);
+      },
+      burstAt(el, n, o) { if (!el) return; const r = el.getBoundingClientRect(); api.burst(r.left + r.width / 2, r.top + r.height / 2, n, o); },
+      flash() { const f = document.createElement('div'); f.className = 'flash'; document.body.appendChild(f); setTimeout(() => f.remove(), 650); },
+      shake(el) { if (PB.reduced()) return; el = el || document.getElementById('app'); el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); setTimeout(() => el.classList.remove('shake'), 600); },
+    };
+    return api;
+  })();
+
   const app = () => document.getElementById('app');
   PB.render = (html, bind) => {
     const root = app();
@@ -37,7 +118,7 @@
 
   PB.top = (title, opts = {}) => `
     <div class="top">
-      <button class="iconbtn" data-back aria-label="back">${opts.close ? '✕' : '←'}</button>
+      <button class="iconbtn" data-back aria-label="${opts.close ? 'close' : 'back'}">${PB.ico(opts.close ? 'close' : 'back')}</button>
       <div class="title">${PB.esc(title)}</div>
       ${opts.right || ''}
     </div>`;
@@ -67,7 +148,7 @@
     d.querySelectorAll('[data-i]').forEach((b) => (b.onclick = () => { d.remove(); items[+b.dataset.i].fn(); }));
     PB.track(() => d.remove());
   };
-  PB.pauseBtn = () => `<button class="iconbtn" data-pause aria-label="pause">❚❚</button>`;
+  PB.pauseBtn = () => `<button class="iconbtn" data-pause aria-label="pause">${PB.ico('pause')}</button>`;
   PB.toast = (msg) => {
     const t = document.createElement('div');
     t.className = 'toast'; t.textContent = msg;
@@ -120,8 +201,25 @@
     o.connect(g).connect(c.destination);
     o.start(t0); o.stop(t0 + dur + 0.02);
   };
+  const noise = (dur, { vol = 0.3, type = 'lowpass', f = 1200, f2 = null, q = 1, when = 0 } = {}) => {
+    if (!PB.soundOn) return;
+    const c = ac(); if (!c) return;
+    const t0 = c.currentTime + when, buf = c.createBuffer(1, Math.ceil(c.sampleRate * dur), c.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    const src = c.createBufferSource(), fl = c.createBiquadFilter(), g = c.createGain();
+    src.buffer = buf; fl.type = type; fl.Q.value = q; fl.frequency.setValueAtTime(f, t0);
+    if (f2) fl.frequency.exponentialRampToValueAtTime(f2, t0 + dur);
+    g.gain.setValueAtTime(vol, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+    src.connect(fl).connect(g).connect(c.destination); src.start(t0);
+  };
   PB.sfx = {
     unlock() { ac(); },
+    deal() { noise(0.12, { vol: 0.18, type: 'bandpass', f: 1800, f2: 4200, q: 0.8 }); },
+    whoosh() { noise(0.28, { vol: 0.25, type: 'bandpass', f: 400, f2: 2600, q: 0.7 }); },
+    flip() { noise(0.07, { vol: 0.2, type: 'bandpass', f: 2500, q: 1.2 }); },
+    crackle() { if (Math.random() < 0.3) noise(0.02, { vol: 0.05, type: 'highpass', f: 3000 }); },
+    hop(i) { tone(500 + (i % 4) * 90, 0.05, 'square', 0.06); noise(0.06, { vol: 0.12, type: 'bandpass', f: 220, q: 2 }); },
+    sting() { [523, 659, 784, 1046].forEach((f, i) => tone(f, 0.9, 'triangle', 0.13, i * 0.03)); noise(0.8, { vol: 0.15, type: 'highpass', f: 5000 }); },
     tick() { tone(1200, 0.05, 'square', 0.12); },
     tock() { tone(800, 0.05, 'square', 0.12); },
     good() { tone(660, 0.1, 'sine', 0.3); tone(990, 0.15, 'sine', 0.3, 0.08); },
@@ -177,7 +275,7 @@
       return `
         <h3>${PB.L('Balíčky', 'Decks')}</h3>
         <div class="chips" data-decks>
-          ${decks.map((d) => `<button class="chip ${s.decks.includes(d.id) ? 'on' : ''}" data-id="${d.id}">${d.emoji} ${PB.esc(d.name)}</button>`).join('')}
+          ${decks.map((d) => `<button class="chip ${s.decks.includes(d.id) ? 'on' : ''}" data-id="${d.id}">${PB.esc(d.name)}</button>`).join('')}
         </div>
         <h3>${PB.L('Obtížnost', 'Difficulty')}</h3>
         <div class="chips" data-levels>
@@ -223,7 +321,7 @@
     // Editable list of names. s[key] is an array of strings.
     names(key, list, placeholder) {
       return `<div class="stack" data-names="${key}">
-        ${list.map((n, i) => `<div class="namerow"><input type="text" value="${PB.esc(n)}" data-i="${i}" placeholder="${PB.esc(placeholder)} ${i + 1}" maxlength="24"><button class="iconbtn" data-rm="${i}">✕</button></div>`).join('')}
+        ${list.map((n, i) => `<div class="namerow"><input type="text" value="${PB.esc(n)}" data-i="${i}" placeholder="${PB.esc(placeholder)} ${i + 1}" maxlength="24"><button class="iconbtn" data-rm="${i}" aria-label="remove">${PB.ico('close')}</button></div>`).join('')}
         <button class="btn secondary" data-add>+ ${PB.L('Přidat', 'Add')}</button></div>`;
     },
     bindNames(root, key, s, rerender, opts = {}) {
@@ -246,7 +344,7 @@
     PB.render(`
       ${PB.top(title || '', { close: true })}
       <div class="play">
-        <div class="huge">📱</div>
+        ${PB.art('phone')}
         <div class="muted">${PB.L('Předej mobil', 'Pass the phone to')}</div>
         <div class="who">${PB.esc(name)}</div>
         ${sub ? `<div class="muted">${sub}</div>` : ''}
@@ -259,27 +357,37 @@
   };
 
   // ---------- games registry + home ----------
+  // Each game registers { id, icon, ink: [main, second], onInk?, name(), tagline(), start }.
+  // A new game only needs its two inks and an icon; the whole look follows from them.
   PB.games = [];
   PB.register = (g) => PB.games.push(g);
+  PB.setGame = (g) => {
+    const r = document.documentElement, meta = document.querySelector('meta[name=theme-color]');
+    if (!g) { delete r.dataset.game; ['--g1', '--g2', '--on-g'].forEach((v) => r.style.removeProperty(v)); }
+    else { r.dataset.game = g.id; r.style.setProperty('--g1', g.ink[0]); r.style.setProperty('--g2', g.ink[1]); r.style.setProperty('--on-g', g.onInk || '#ffffff'); }
+    if (meta) meta.content = g ? g.ink[0] : getComputedStyle(r).getPropertyValue('--paper').trim() || '#f5f3ee';
+  };
 
   PB.home = () => {
     PB.stopAll();
     PB.keepAwake(false);
+    PB.setGame(null);
     PB.render(`
-      <div class="top">
-        <div class="title"><span style="font-size:26px">🎉</span></div>
-        <button class="iconbtn" data-sound>${PB.soundOn ? '🔊' : '🔇'}</button>
-        <button class="iconbtn" data-lang>${PB.lang === 'cs' ? 'CZ' : 'EN'}</button>
+      <div class="hd">
+        <h1 class="logo" aria-label="Partybox">partyb${PB.mark()}x</h1>
+        <div class="sub">${PB.L('Hry na dlouhý večer. Jeden mobil, který koluje.', 'Party games for a long night. One phone, passed around.')}</div>
       </div>
-      <h1>Partybox</h1>
-      <p class="muted">${PB.L('Hry na dlouhý večer. Stačí jeden mobil, který koluje. Funguje i offline.', 'Party games for a long night. One phone, passed around. Works offline.')}</p>
       <div class="games">
-        ${PB.games.map((g) => `<button class="gamecard" data-g="${g.id}"><div class="emo">${g.emoji}</div><div><b>${PB.esc(g.name())}</b><span>${PB.esc(g.tagline())}</span></div></button>`).join('')}
+        ${PB.games.map((g) => `<button class="gamecard" data-g="${g.id}" style="--g1:${g.ink[0]};--g2:${g.ink[1]}">${PB.art(g.icon, '')}<span class="tx"><b>${PB.esc(g.name())}</b><span>${PB.esc(g.tagline())}</span></span></button>`).join('')}
+      </div>
+      <div class="homebar">
+        <button class="iconbtn" data-lang>${PB.lang === 'cs' ? 'Čeština' : 'English'}</button>
+        <button class="iconbtn" data-sound aria-pressed="${PB.soundOn}">${PB.ico(PB.soundOn ? 'sound' : 'mute')} ${PB.soundOn ? PB.L('Zvuk', 'Sound') : PB.L('Ticho', 'Muted')}</button>
       </div>
       <div class="grow"></div>
-      <div class="footer">${PB.L('Vlastní obsah, otevřený kód (MIT).', 'Original content, open source (MIT).')} <a href="https://github.com/klarasch/partybox" target="_blank" rel="noopener">GitHub</a></div>
+      <div class="footer">${PB.L('Funguje i offline. Vlastní obsah, otevřený kód (MIT).', 'Works offline. Original content, open source (MIT).')} <a href="https://github.com/klarasch/partybox" target="_blank" rel="noopener">GitHub</a></div>
     `, (root) => {
-      PB.on(root, '[data-g]', (e, el) => PB.games.find((g) => g.id === el.dataset.g).start());
+      PB.on(root, '[data-g]', (e, el) => { const g = PB.games.find((x) => x.id === el.dataset.g); PB.sfx.deal(); PB.setGame(g); g.start(); });
       PB.on(root, '[data-lang]', () => { PB.setLang(PB.lang === 'cs' ? 'en' : 'cs'); PB.home(); });
       PB.on(root, '[data-sound]', () => { PB.soundOn = !PB.soundOn; PB.store.set('sound', PB.soundOn); PB.home(); });
     });
