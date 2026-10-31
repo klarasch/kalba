@@ -4,7 +4,7 @@
   const L = (a, b) => PB.L(a, b);
   const SAVE = 'gap:save';
   const NAME = () => L('Díra', 'The Gap');
-  const defaults = { players: ['', '', '', ''], rounds: 8, think: 60, stars: true };
+  const defaults = { players: ['', '', '', ''], rounds: 8, think: 60, stars: true, adult: false };
   let G = null; // running game
 
   const pname = (i) => (G.players[i] || '').trim() || L('Hráč ', 'Player ') + (i + 1);
@@ -12,12 +12,14 @@
   // Compare answers loosely: case, accents, punctuation and extra spaces don't matter.
   const norm = (s) => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
     .replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
-  const factsFor = () => (window.PB_GAP || []).filter((d) => d.lang === PB.lang).flatMap((d) => d.facts);
+  // 18+ facts only join the deck when the table switches them on.
+  const factsFor = (adult) => (window.PB_GAP || []).filter((d) => d.lang === PB.lang).flatMap((d) => d.facts)
+    .filter((f) => adult || !f.adult);
   const blank = (q, fill, cls) => PB.esc(q).replace('___', `<span class="gp-blank ${cls || ''}">${fill ? PB.esc(fill) : '&nbsp;'.repeat(12)}</span>`);
 
   // Fresh facts first: remember which ids this device has already played.
-  function drawFacts(n) {
-    const all = factsFor(), key = 'gap:used:' + PB.lang;
+  function drawFacts(n, adult) {
+    const all = factsFor(adult), key = 'gap:used:' + PB.lang;
     let used = PB.store.get(key, []);
     let fresh = all.filter((f) => !used.includes(f.id));
     if (fresh.length < n) { used = []; fresh = all; }
@@ -43,7 +45,7 @@
 
   function setup() {
     const { s, save: saveS } = PB.settings('gap', defaults);
-    const avail = factsFor().length;
+    const avail = () => factsFor(s.adult).length;
     const draw = () => PB.render(`
       ${PB.top(NAME())}
       <div class="box rules">${L(
@@ -56,8 +58,9 @@
         ${PB.ui.stepper('rounds', L('Počet kol', 'Rounds'), s.rounds)}
         ${PB.ui.stepper('think', L('Čas na vymýšlení', 'Thinking time'), s.think, ' s')}
         ${PB.ui.toggle('stars', L('Hlasovat i o nejvtipnější', 'Also vote for the funniest'), s.stars, L('Hvězda = bod navíc, od 3 hráčů', 'A star = extra point, 3+ players'))}
+        ${PB.ui.toggle('adult', L('Fakty 18+', '18+ facts'), s.adult, L('Přimíchá fakty o sexu, chlastu a tělních funkcích', 'Mixes in facts about sex, booze and bodily functions'))}
       </div>
-      <p class="muted small">${L('Faktů v balíčku: ', 'Facts in the deck: ')}${avail}</p>
+      <p class="muted small">${L('Faktů v balíčku: ', 'Facts in the deck: ')}<span data-avail>${avail()}</span></p>
       <div class="spacer"></div>
       <button class="btn big" data-go>${L('Začít', 'Start')}</button>
     `, (root) => {
@@ -66,12 +69,14 @@
       PB.ui.bindStepper(root, 'rounds', s, { min: 3, max: 20 });
       PB.ui.bindStepper(root, 'think', s, { min: 0, max: 180, step: 15, unit: ' s' });
       PB.ui.bindToggle(root, 'stars', s);
+      PB.ui.bindToggle(root, 'adult', s, () => (PB.$('[data-avail]', root).textContent = avail()));
       PB.on(root, '[data-go]', () => {
         if (s.players.length < 2) return PB.toast(L('Potřebujete aspoň 2 hráče.', 'You need at least 2 players.'));
-        if (!avail) return PB.toast(L('V tomhle jazyce zatím nejsou fakty.', 'No facts in this language yet.'));
+        const n = avail();
+        if (!n) return PB.toast(L('V tomhle jazyce zatím nejsou fakty.', 'No facts in this language yet.'));
         saveS();
         G = { lang: PB.lang, players: s.players.slice(), think: s.think, stars: s.stars,
-          facts: drawFacts(Math.min(s.rounds, avail)), round: 0, scores: s.players.map(() => 0) };
+          facts: drawFacts(Math.min(s.rounds, n), s.adult), round: 0, scores: s.players.map(() => 0) };
         save();
         PB.keepAwake();
         fact();
@@ -185,11 +190,17 @@
       allowed: (i, k) => !G.opts[k].authors.includes(i),
       denied: L('Pro svou vlastní nemůžeš', "You can't pick your own"),
       votes: G.votes,
-      onDone: () => (G.stars && G.players.length >= 3 && G.opts.some((o) => o.authors.some((a) => typeof a === 'number')) ? starVote() : reveal()),
+      onDone: () => (G.stars && G.players.length >= 3 && starsPossible() ? starVote() : reveal()),
     });
   }
+  // A star vote only makes sense when there are two fakes and someone can star a fake that isn't theirs.
+  const playerFakes = () => G.opts.map((o, k) => ({ o, k })).filter(({ o }) => o.authors.some((a) => typeof a === 'number'));
+  const starsPossible = () => {
+    const fakes = playerFakes();
+    return fakes.length >= 2 && G.players.some((p, i) => fakes.some(({ o }) => !o.authors.includes(i)));
+  };
   function starVote() {
-    const fakes = G.opts.map((o, k) => ({ o, k })).filter(({ o }) => o.authors.some((a) => typeof a === 'number'));
+    const fakes = playerFakes();
     board({
       title: L('Která lež je nejvtipnější?', 'Which fake is the funniest?'),
       fact: '',
