@@ -1,6 +1,6 @@
 # Kalba! 🎉
 
-**Play it:** https://klarasch.github.io/kalba/ (add it to your home screen, it works offline)
+**Play it:** https://ksch.cz/kalba/ (add it to your home screen, it works offline)
 
 Party games for a long night. One phone, passed around. Works offline (PWA). Czech & English, with Czech-specific decks.
 
