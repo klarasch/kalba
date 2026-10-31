@@ -374,3 +374,33 @@ button.btn.small { width: auto; flex: none; padding: 8px 14px; font-size: 15px; 
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .flash { animation: flash .6s ease-out forwards !important; opacity: .5; }
 }
+
+/* Vabank: ten answer tiles in two columns, a bank tile, chips of players who are out. */
+.vb-info { display: flex; gap: 6px; flex-wrap: wrap; }
+.vb-tiles { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 6px; }
+.vb-tile { min-height: 0; overflow: hidden; background: var(--card); color: var(--ink); border: 2px solid var(--key); border-radius: 12px; padding: 5px 8px; display: flex; flex-direction: column; box-shadow: 3px 3px 0 var(--key); }
+.vb-tile span { font: 700 clamp(13px, 3.6vw, 17px)/1.15 var(--body); overflow: hidden; }
+.vb-tile em { font: 600 11px var(--body); font-style: normal; opacity: .75; }
+.vb-tile .gp-slots { margin-top: auto; height: 22px; flex-basis: 22px; }
+.vb-tile.open { box-shadow: none; }
+.vb-tile.open.yes { background: var(--y); color: var(--on-y); }
+.vb-tile.open.no { background: transparent; color: var(--on-g); border-style: dashed; }
+.vb-tile.open.no span { text-decoration: line-through; }
+.vb-bank { flex: 0 0 auto; flex-direction: row; align-items: center; gap: 10px; background: var(--g2); color: var(--ink); }
+.vb-bank span { display: flex; align-items: center; gap: 6px; font-family: var(--disp); font-weight: 800; }
+.vb-bank .gp-slots { flex: 1; margin: 0; }
+.gp-chip b, .gp-chip s { margin-left: 4px; }
+.gp-chip.out { opacity: .55; cursor: default; box-shadow: none; }
+.gp-chip.bank { background: var(--y); color: var(--on-y); opacity: 1; }
+.vb-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+.vb-row { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border: 2px solid var(--key); border-radius: 12px; background: var(--card); color: var(--ink); font-weight: 700; }
+.vb-row.yes { background: var(--y); color: var(--on-y); }
+.vb-row.no { opacity: .7; }
+@media (orientation: landscape) and (max-height: 560px) {
+  .vb-board .gp-mid { grid-template-areas: "head opts" "fact opts" "ctrl opts"; }
+  .vb-board .vb-info { grid-area: fact; align-self: start; }
+  .vb-board .vb-tiles { grid-area: opts; gap: 5px; }
+  .vb-board .vb-tile { padding: 3px 8px; }
+  .vb-board .vb-tile .gp-slots { height: 20px; flex-basis: 20px; }
+  .vb-board .vb-bank { grid-area: fact; align-self: end; }
+}

@@ -58,6 +58,7 @@
     bomb: { s: '<circle cx="21" cy="29" r="14"/><path d="m27 18 5-5 4 4-5 5z"/>', x: '<path class="ln" d="M34 14c2-4 6-6 10-4"/>' },
     head: { s: '<circle cx="24" cy="33" r="12"/><rect x="13" y="5" width="22" height="15" rx="2"/>', x: '' },
     gap: { s: '<path d="M5 9h38v24H21l-9 8v-8H5z"/>', x: '<path class="ln" d="M14 21h7M27 21h7"/>' },
+    vabank: { s: '<rect x="5" y="31" width="25" height="9" rx="4.5"/><rect x="8" y="22" width="25" height="9" rx="4.5"/><rect x="5" y="13" width="25" height="9" rx="4.5"/><circle cx="36" cy="14" r="8"/>', x: '<path class="ln" d="M36 10v8M33 14h6"/>' },
     phone: { s: '<rect x="15" y="5" width="18" height="33" rx="4.5" transform="rotate(-14 24 22)"/>', x: '<rect x="18.5" y="9.5" width="11" height="21" rx="1.5" transform="rotate(-14 24 22)" style="fill:var(--card)"/><path class="ln" d="M7 15c-2.5 4-2.5 9 0 13M43 18c2 3 2 7 0 10"/>' },
   };
   // PB.art(name): game art, or a UI icon / digit on a card disc. cls '' = bare art (e.g. inside a home card).
