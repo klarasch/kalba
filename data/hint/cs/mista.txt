@@ -1,0 +1,33 @@
+# Místa a nálady
+id: hint-cs-mista
+lang: cs
+games: hint
+knowledge: czech
+
+[easy]
+nádraží v noci
+čekárna u zubaře
+chata bez signálu
+opuštěná plovárna
+zarostlá zahrada
+půda u babičky
+vesnická náves
+obchoďák v neděli
+sídlištní pískoviště
+prázdná třída
+venkovská hospoda
+lesní mýtina
+chladný kostel v létě
+zastávka na znamení
+sklep s bramborami
+konečná autobusu
+úřad v osm ráno
+horská bouda
+rozhledna v mlze
+zámecký park
+zahrádkářská kolonie
+lázeňská kolonáda
+knihovna před zavíračkou
+benzinka u dálnice
+prázdný stadion
+vrátnice v továrně

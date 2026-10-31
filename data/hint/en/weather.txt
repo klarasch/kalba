@@ -1,0 +1,34 @@
+# Weather and Seasons
+id: hint-en-weather
+lang: en
+games: hint
+knowledge: worldwide
+
+[easy]
+first frost
+heatwave
+summer storm
+fog rolling in
+double rainbow
+black ice
+late summer evening
+April showers
+snowball fight
+muddy boots
+leaves turning gold
+spring blossom
+hailstorm
+windy beach
+frozen lake
+drizzle all day
+sunburn
+blizzard
+sticky humid night
+crisp autumn morning
+power cut candles
+melting snowman
+dew on spiderwebs
+golden hour
+grey January
+lightning over the sea
+puddle jumping

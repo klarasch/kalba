@@ -19,5 +19,26 @@ decks/en/actions.txt
 bomb/cs.txt
 bomb/en.txt
 
+hint/cs/mista.txt
+hint/cs/detstvi.txt
+hint/cs/pocity.txt
+hint/cs/smysly.txt
+hint/cs/chvile.txt
+hint/cs/kuchyne.txt
+hint/cs/pocasi.txt
+hint/cs/lide.txt
+hint/cs/noc.txt
+hint/cs/vylety.txt
+hint/en/places.txt
+hint/en/childhood.txt
+hint/en/feelings.txt
+hint/en/senses.txt
+hint/en/milestones.txt
+hint/en/kitchen.txt
+hint/en/weather.txt
+hint/en/people.txt
+hint/en/night.txt
+hint/en/trips.txt
+
 names/cs.txt
 names/en.txt

@@ -1,0 +1,33 @@
+# Places and Moods
+id: hint-en-places
+lang: en
+games: hint
+knowledge: worldwide
+
+[easy]
+airport at dawn
+laundromat at night
+roadside motel
+diner at 3 a.m.
+seaside town in winter
+dusty attic
+school gym
+dentist's waiting room
+garage sale
+abandoned mall
+lighthouse
+cabin in the woods
+bowling alley
+roller rink
+foggy train platform
+grand hotel lobby
+desert gas station
+office on Friday afternoon
+greenhouse
+flea market
+pier at sunset
+empty parking lot
+furniture showroom
+college campus in summer
+quiet museum room
+corner pub on Sunday

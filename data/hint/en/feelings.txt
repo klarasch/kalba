@@ -1,0 +1,34 @@
+# Feelings
+id: hint-en-feelings
+lang: en
+games: hint
+knowledge: worldwide
+
+[easy]
+Sunday scaries
+second-hand embarrassment
+pure relief
+nervous excitement
+quiet pride
+jealousy
+boredom
+wanderlust
+guilty pleasure
+awkward goodbye
+bittersweet
+a crush
+a fresh start
+impostor syndrome
+hangry
+FOMO
+food coma
+post-holiday blues
+smug satisfaction
+the giggles
+stubbornness
+being in the zone
+curiosity
+suspicion
+gratitude
+overwhelm
+calm

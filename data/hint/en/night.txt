@@ -1,0 +1,33 @@
+# Night and the City
+id: hint-en-night
+lang: en
+games: hint
+knowledge: worldwide
+
+[easy]
+last bus home
+neon diner
+night bus
+corner shop open late
+lit office windows
+rooftop bar
+taxi in the rain
+empty main street
+gig in a basement
+late-night pizza slice
+dawn after the party
+lights on the river
+city skyline
+New Year's countdown
+karaoke booth
+bouncer at the door
+barefoot walk home
+noisy upstairs neighbors
+24-hour gym
+street musician
+fire escape
+drive-in movie
+jazz bar
+closing time
+rain on the windshield
+wrong turn at night

@@ -1,0 +1,33 @@
+# Holidays and Trips
+id: hint-en-trips
+lang: en
+games: hint
+knowledge: worldwide
+
+[easy]
+road trip snacks
+camping in the rain
+lost luggage
+hostel bunk bed
+red-eye flight
+hotel breakfast buffet
+beach umbrella
+ski lift
+passport control
+souvenir shop
+postcards
+folding a paper map
+packing the night before
+train through the mountains
+toasting marshmallows
+cruise ship
+backpacking
+ordering by pointing
+jet lag
+sandcastle
+waterpark
+holiday photo slideshow
+hiking to the summit
+highway rest stop
+gondola in Venice
+duty-free

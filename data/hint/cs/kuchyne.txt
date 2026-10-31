@@ -1,0 +1,34 @@
+# Jídlo a kuchyně
+id: hint-cs-kuchyne
+lang: cs
+games: hint
+knowledge: czech
+
+[easy]
+babiččina spíž
+kapr ve vaně
+školní jídelna
+nedělní svíčková
+ranní kafe
+smažák na koupališti
+chlebíčky na oslavě
+polévka z pytlíku
+pečení cukroví
+zavařování okurek
+houbová smaženice
+buchty z trouby
+lednička o půlnoci
+párek v rohlíku
+nakládaný hermelín
+utopenec
+guláš z kotlíku
+bramborák na pouti
+chleba se sádlem
+řízek v alobalu
+ovocné knedlíky
+olizování vařečky
+trdelník pro turisty
+grilovačka na zahradě
+točená kofola
+večeře u televize
+zbytky od včerejška

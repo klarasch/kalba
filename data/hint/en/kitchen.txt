@@ -1,0 +1,34 @@
+# Food and Kitchen
+id: hint-en-kitchen
+lang: en
+games: hint
+knowledge: worldwide
+
+[easy]
+holiday leftovers
+burnt toast
+Sunday roast
+midnight snack
+grandma's cookie jar
+cafeteria tray
+food truck
+Saturday pancakes
+instant noodles
+backyard barbecue
+birthday candles
+raw cookie dough
+dinner party
+takeout on the couch
+farmers' market
+cold pizza for breakfast
+potluck
+picnic basket
+a pot of tea
+brunch with friends
+an empty fridge
+homemade soup
+overcooked pasta
+mystery casserole
+school bake sale
+smoke alarm dinner
+fancy tasting menu

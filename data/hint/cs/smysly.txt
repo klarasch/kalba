@@ -1,0 +1,34 @@
+# Vůně, zvuky, doteky
+id: hint-cs-smysly
+lang: cs
+games: hint
+knowledge: worldwide
+
+[easy]
+vůně posečené trávy
+praskání v kamnech
+vrzající schody
+déšť na plechové střeše
+cvrčci v létě
+vůně mokrého psa
+čerstvě povlečená postel
+vůně benzínky
+skřípání křídy
+bublinková fólie
+mech pod bosou nohou
+písek v botách
+nádražní hlášení | czech
+tikání hodin v tichu
+vůně nové knihy
+lepkavá cukrová vata
+šumění moře v mušli
+pálení kopřiv
+vůně šeříku
+zvonění tramvaje
+křupání sněhu pod nohama
+hebká kočičí srst
+studená klika v zimě
+sekačka v sobotu ráno
+vůně kadidla v kostele
+šumění rádia mezi stanicemi
+vůně hoblin v dílně

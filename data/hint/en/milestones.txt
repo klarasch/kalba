@@ -1,0 +1,34 @@
+# Moments in Life
+id: hint-en-milestones
+lang: en
+games: hint
+knowledge: worldwide
+
+[easy]
+first kiss
+prom night
+first paycheck
+getting your license
+your first apartment
+wedding toast
+first day at work
+graduation day
+job interview
+surprise party
+leaving home
+first car
+the proposal
+first date
+baby on the way
+high school reunion
+first concert
+coming home at last
+housewarming party
+first hangover
+first tattoo
+bachelor party
+retirement party
+meeting the parents
+adopting a dog
+first time abroad
+learning to swim

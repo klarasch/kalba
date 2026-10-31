@@ -1,0 +1,33 @@
+# Dětství
+id: hint-cs-detstvi
+lang: cs
+games: hint
+knowledge: czech
+
+[easy]
+Večerníček
+první školní den
+klíč na krku
+schovávaná za tmy
+školní výlet
+bojovka na táboře
+kolotoč na pouti
+skákání přes gumu
+bunkr v lese
+první jízda bez koleček
+sbírání kartiček
+žvýkačky s obrázky
+vysvědčení před prázdninami
+úkol na poslední chvíli
+nedělní pohádka
+pouštění draka
+Mikuláš a čert
+polštářová bitva
+hrad z dek
+lízátko od doktorky
+křídy na chodníku
+žákovská knížka
+šplh na tyči
+baterka pod peřinou
+svačina v aktovce
+přespávání u kamarádky

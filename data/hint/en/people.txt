@@ -1,0 +1,34 @@
+# People You Know
+id: hint-en-people
+lang: en
+games: hint
+knowledge: worldwide
+
+[easy]
+leaf blower neighbor
+the bar regular
+gym bro
+overly chatty barber
+friend who never replies
+dad at the grill
+nosy neighbor
+the know-it-all
+cyclist in lycra
+selfie stick tourist
+substitute teacher
+lady with five cats
+office birthday organizer
+the nosy aunt
+dog walker
+influencer
+guy who fixes everything
+karaoke legend
+uncle with bad jokes
+kind bus driver
+hipster barista
+marathon runner
+the new kid
+class clown
+landlord who never answers
+early-morning jogger
+group chat planner

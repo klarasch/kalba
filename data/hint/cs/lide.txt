@@ -1,0 +1,34 @@
+# Lidé, které znáš
+id: hint-cs-lide
+lang: cs
+games: hint
+knowledge: czech
+
+[easy]
+soused s vrtačkou
+štamgast u výčepu
+paní z trafiky
+tělocvikář
+kamarád, co chodí pozdě
+strejda u grilu
+chalupář
+sousedka za záclonou
+věčný student
+cyklista v elasťácích
+hipster s knírem
+tramp s kytarou
+školnice
+houbař za svítání
+děda na lavičce
+influencerka
+kolega, co ví všechno
+šofér na konečné
+babička s plnou taškou
+rybář na břehu
+pejskař v parku
+teta, co vyzvídá
+brigádník
+ochranka v obchoďáku
+bývalý spolužák
+opravář, co přijde zítra
+dobrovolný hasič

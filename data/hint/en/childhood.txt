@@ -1,0 +1,33 @@
+# Childhood
+id: hint-en-childhood
+lang: en
+games: hint
+knowledge: worldwide
+
+[easy]
+snow day
+lunchbox
+sleepover
+treehouse
+ice cream truck
+tooth fairy
+Saturday morning cartoons
+summer camp
+school bus
+show and tell
+trick-or-treating
+blanket fort
+sticker collection
+lemonade stand
+playground swings
+piano lessons
+being picked last
+finger painting
+nap time
+field trip
+cereal box toy
+monster under the bed
+staying up past bedtime
+hide and seek
+training wheels
+report card day

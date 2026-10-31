@@ -1,0 +1,33 @@
+# Noc a město
+id: hint-cs-noc
+lang: cs
+games: hint
+knowledge: czech
+
+[easy]
+letní kino
+poslední vlak domů
+noční tramvaj
+večerka na rohu
+rozsvícená okna paneláku
+lampa v dešti
+taxík ve tři ráno
+prázdné náměstí
+koncert v klubu
+kebab po půlnoci
+svítání po mejdanu
+střecha s výhledem
+most nad řekou
+hvězdy nad sídlištěm
+silvestrovský ohňostroj
+blikající neon
+karaoke bar
+noční rozjezd
+cesta domů pěšky
+sousedova párty za zdí
+zavírací doba v hospodě
+noční směna
+park o půlnoci
+zapomenuté klíče
+mokrá dlažba
+poslední světlo v kanceláři

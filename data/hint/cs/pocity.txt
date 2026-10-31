@@ -1,0 +1,34 @@
+# Pocity
+id: hint-cs-pocity
+lang: cs
+games: hint
+knowledge: worldwide
+
+[easy]
+tréma před vystoupením
+úleva v cíli
+motýli v břiše
+stesk po domově
+škodolibá radost
+trapné ticho
+déjà vu
+nostalgie
+hrdost na sebe
+žárlivost
+zvědavost
+rozpaky
+euforie
+vnitřní klid
+lenost
+ospalost po obědě
+štěstí bez důvodu
+vděčnost
+netrpělivost
+zamilovanost
+vztek na tiskárnu
+pocit, že něco zapomínáš
+výčitky svědomí
+záchvat smíchu
+nadšení z nového
+tichá závist
+odvaha na poslední chvíli

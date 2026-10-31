@@ -1,0 +1,34 @@
+# Počasí a roční období
+id: hint-cs-pocasi
+lang: cs
+games: hint
+knowledge: worldwide
+
+[easy]
+první sníh
+babí léto
+noční bouřka
+inverze nad městem
+duha po dešti
+mlha nad rybníkem
+ledovka na chodníku
+tropická noc
+aprílové počasí
+šedivý listopad
+jarní tání
+krupobití
+vichřice
+zamrzlý rybník
+padající listí
+kvetoucí třešně
+rozpálený asfalt
+první teplý den
+rampouchy
+letní liják
+jinovatka na trávě
+slunce po týdnu deště
+ranní rosa
+ledové květy na okně
+tma ve čtyři odpoledne
+sněhulák
+sníh na Velikonoce

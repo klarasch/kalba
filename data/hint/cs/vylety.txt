@@ -1,0 +1,33 @@
+# Prázdniny a výlety
+id: hint-cs-vylety
+lang: cs
+games: hint
+knowledge: czech
+
+[easy]
+spaní pod širákem
+stan v dešti
+sjíždění řeky
+noční cesta k moři
+lyžák
+hrad s průvodcem
+nafukovací lehátko
+koupání v lomu
+opékání buřtů
+sbírání borůvek
+turistické známky
+stopování
+vlak plný kol
+lanovka na Sněžku
+zmrzlina u přehrady
+vodácký barel
+bloudění podle mapy
+kolona na hranicích
+all inclusive v Turecku
+letiště brzy ráno
+kufr, co nejde zavřít
+pohlednice domů
+vrchol po výstupu
+chata s kamarády
+vinný sklep na Moravě
+spálená záda

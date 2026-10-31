@@ -1,0 +1,34 @@
+# Smells, Sounds and Textures
+id: hint-en-senses
+lang: en
+games: hint
+knowledge: worldwide
+
+[easy]
+rain on hot pavement
+crackle of vinyl
+sunscreen
+popcorn at the movies
+squeaky sneakers
+velvet
+wet sand between toes
+ice cubes clinking
+dial-up tone
+new car smell
+chlorine at the pool
+crunching autumn leaves
+a cat purring
+peeling a sticker
+church bells
+warm laundry
+hot car seats
+campfire smoke
+fresh coffee grounds
+the cold pillow side
+distant thunder
+cinnamon
+a ticking radiator
+waves at night
+musty old books
+static shock
+wind chimes

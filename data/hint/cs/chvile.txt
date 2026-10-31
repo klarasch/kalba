@@ -1,0 +1,33 @@
+# Životní chvíle
+id: hint-cs-chvile
+lang: cs
+games: hint
+knowledge: worldwide
+
+[easy]
+první pusa
+maturitní ples | czech
+první výplata
+první vlastní byt
+řidičák na první pokus
+první tanec novomanželů
+první den v práci
+poslední zvonění | czech
+pracovní pohovor
+oslava s překvapením
+odchod z domova
+první auto
+zásnuby
+první rande
+narození miminka
+sraz po dvaceti letech
+promoce
+výpověď z nudné práce
+návrat z dlouhé cesty
+kolaudačka | czech
+první kocovina
+první šedivý vlas
+rozlučka se svobodou
+první den v důchodu
+výhra v tombole
+seznámení s rodiči partnera
