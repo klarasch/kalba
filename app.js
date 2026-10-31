@@ -572,6 +572,118 @@
     });
   };
 
+  // Shared voting board (The Gap, Hint). The phone lies flat; each player's chip sits on the edge
+  // facing their seat, and everyone drags their chip onto an option, several fingers at once.
+  // cfg: { seats, voters?, chip(i), title, fact?, opts: [{k, text}], allowed(i, k), denied, votes, optional?, onDone, onPause(resume) }
+  PB.voteBoard = (cfg) => {
+    PB.stopAll();
+    const n = cfg.seats, voters = cfg.voters || [...Array(n).keys()];
+    PB.render(`<div class="gp-board" data-board>
+      <div class="gp-mid">
+        <div class="gp-head">${PB.pauseBtn()}<div class="gp-title">${cfg.title}</div></div>
+        ${cfg.fact ? `<div class="gp-fact tiny">${cfg.fact}</div>` : ''}
+        <div class="gp-opts" data-opts>
+          ${cfg.opts.map((o, j) => `<div class="gp-opt" data-k="${o.k}"><b>${j + 1}</b><div><span>${PB.esc(o.text)}</span><i class="gp-slots"></i></div></div>`).join('')}
+        </div>
+        <div class="row gp-ctrl"><button class="btn secondary" data-count>3, 2, 1</button><button class="btn" data-done>${PB.L('Hotovo', 'Done')}</button></div>
+      </div>
+      ${voters.map((i) => `<div class="gp-chip" data-p="${i}">${PB.esc(cfg.chip(i).slice(0, 14))}</div>`).join('')}
+    </div>`, (root) => {
+      const b = PB.$('[data-board]', root);
+      const chips = PB.$$('.gp-chip', b);
+      // Messages go in the middle: a toast at the bottom would cover the bottom seat's chip.
+      const say = (msg) => {
+        const m = document.createElement('div');
+        m.className = 'gp-msg'; m.textContent = msg;
+        b.appendChild(m); setTimeout(() => m.remove(), 1800);
+      };
+      const seat = (i) => {
+        // Walk the edge clockwise from bottom centre: bottom, left, top, right.
+        const W = b.clientWidth, H = b.clientHeight, m = 26;
+        const w = W - 2 * m, h = H - 2 * m, per = 2 * (w + h);
+        let d = ((i / n) * per + w / 2) % per; // distance from the bottom-right corner going left
+        if (d < w) return { x: W - m - d, y: H - m, r: 0 };
+        d -= w; if (d < h) return { x: m, y: H - m - d, r: 90 };
+        d -= h; if (d < w) return { x: m + d, y: m, r: 180 };
+        d -= w; return { x: W - m, y: m + d, r: -90 };
+      };
+      const layout = () => {
+        const bb = b.getBoundingClientRect();
+        const groups = {};
+        Object.keys(cfg.votes).forEach((i) => (groups[cfg.votes[i]] = groups[cfg.votes[i]] || []).push(+i));
+        chips.forEach((c) => {
+          if (c.classList.contains('drag')) return;
+          const i = +c.dataset.p, k = cfg.votes[i];
+          if (k == null) {
+            const s = seat(i);
+            c.classList.remove('in');
+            c.style.left = s.x + 'px'; c.style.top = s.y + 'px'; c.style.transform = `translate(-50%,-50%) rotate(${s.r}deg)`;
+          } else {
+            const slot = PB.$(`[data-k="${k}"] .gp-slots`, b).getBoundingClientRect();
+            const g = groups[k], idx = g.indexOf(i);
+            const step = Math.min(64, (slot.width - 40) / Math.max(1, g.length - 1 || 1));
+            c.classList.add('in');
+            c.style.left = (slot.left - bb.left + 20 + idx * step) + 'px';
+            c.style.top = (slot.top - bb.top + slot.height / 2) + 'px';
+            c.style.transform = 'translate(-50%,-50%)';
+          }
+        });
+        PB.$('[data-done]', b).classList.toggle('secondary', !cfg.optional && Object.keys(cfg.votes).length < voters.length);
+      };
+      chips.forEach((c) => {
+        const i = +c.dataset.p;
+        c.addEventListener('pointerdown', (e) => {
+          e.preventDefault();
+          c.setPointerCapture(e.pointerId);
+          c.classList.add('drag');
+          const bb = b.getBoundingClientRect();
+          const move = (ev) => { c.style.left = (ev.clientX - bb.left) + 'px'; c.style.top = (ev.clientY - bb.top - 24) + 'px'; };
+          move(e);
+          const up = (ev) => {
+            c.removeEventListener('pointermove', move);
+            c.removeEventListener('pointerup', up);
+            c.removeEventListener('pointercancel', up);
+            c.classList.remove('drag');
+            const hit = ev.type === 'pointerup' && document.elementsFromPoint(ev.clientX, ev.clientY - 24).find((el) => el.dataset && el.dataset.k != null);
+            if (hit) {
+              const k = +hit.dataset.k;
+              if (cfg.allowed(i, k)) { cfg.votes[i] = k; PB.sfx.tick(); }
+              else { say(cfg.denied); PB.sfx.skip(); }
+            } else delete cfg.votes[i];
+            layout();
+          };
+          c.addEventListener('pointermove', move);
+          c.addEventListener('pointerup', up);
+          c.addEventListener('pointercancel', up);
+        });
+      });
+      const onResize = () => layout();
+      window.addEventListener('resize', onResize);
+      PB.track(() => window.removeEventListener('resize', onResize));
+      layout();
+      PB.on(b, '[data-pause]', () => cfg.onPause(layout));
+      PB.on(b, '[data-count]', () => PB.countdown(b));
+      PB.on(b, '[data-done]', () => {
+        const missing = voters.length - Object.keys(cfg.votes).length;
+        if (missing > 0 && !cfg.optional) PB.ask(PB.L(`Ještě nehlasovali ${missing}. Přesto pokračovat?`, `${missing} still haven't voted. Continue anyway?`), cfg.onDone);
+        else cfg.onDone();
+      });
+    });
+  };
+  // "3, 2, 1, point!" over a board, so nobody copies anyone.
+  PB.countdown = (b) => {
+    const o = document.createElement('div');
+    o.className = 'gp-count';
+    b.appendChild(o);
+    let k = 3;
+    const step = () => {
+      if (!o.isConnected) return;
+      if (k > 0) { o.textContent = k; PB.sfx.tock(); k--; setTimeout(step, 700); }
+      else { o.textContent = PB.L('Ukažte!', 'Point!'); PB.sfx.good(); PB.vibrate(150); setTimeout(() => o.remove(), 900); }
+    };
+    step();
+  };
+
   // The list of discarded cards with a restore button per row. back() returns to the setup screen.
   PB.hiddenScreen = (items, restore, back) => {
     const draw = () => {
