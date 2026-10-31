@@ -349,6 +349,17 @@ button.btn.small { width: auto; flex: none; padding: 8px 14px; font-size: 15px; 
 .gp-rev.truth { background: var(--y); color: var(--on-y); box-shadow: 5px 5px 0 var(--g2); }
 .gp-rev-a { font: 800 21px var(--disp); }
 .gp-msg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: var(--ink); color: var(--paper); border: 2.5px solid var(--key); padding: 12px 16px; border-radius: var(--r); font-weight: 700; z-index: 4; pointer-events: none; text-align: center; max-width: 70%; }
+/* Phone turned sideways on the table: fact and buttons on the left, answers on the right. */
+@media (orientation: landscape) and (max-height: 560px) {
+  .gp-mid { inset: 46px 64px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); grid-template-rows: auto 1fr auto; grid-template-areas: "head opts" "fact opts" "ctrl opts"; gap: 8px 14px; }
+  .gp-head { grid-area: head; }
+  .gp-mid > .gp-fact { grid-area: fact; align-self: start; overflow: hidden; }
+  .gp-opts { grid-area: opts; gap: 6px; }
+  .gp-ctrl { grid-area: ctrl; }
+  .gp-opt { padding: 4px 10px; }
+  .gp-opt b { font-size: 18px; }
+  .gp-slots { height: 22px; flex-basis: 22px; }
+}
 
 /* ---------- reduced motion: keep feedback, drop movement ---------- */
 @media (prefers-reduced-motion: reduce) {
