@@ -48,6 +48,7 @@
     swap: '<path d="M4 9h14l-4-4M20 15H6l4 4"/>',
     flag: '<path d="M6 21V4M6 5h12l-3 4.2L18 13H6"/>',
     dice: '<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8.5 8.5h.01M15.5 8.5h.01M12 12h.01M8.5 15.5h.01M15.5 15.5h.01" stroke-width="3.2"/>',
+    pose: '<circle cx="12" cy="4.5" r="2"/><path d="M12 7.5V14l-4 7M12 14l4 7M12 9.5 6.5 6M12 9.5l6-1"/>',
     undo: '<path d="M9 5 4 10l5 5"/><path d="M4 10h10a6 6 0 0 1 0 12h-3"/>',
   };
   PB.ico = (n) => `<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${UI[n] || ''}</svg>`;

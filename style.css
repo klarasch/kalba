@@ -266,6 +266,15 @@ button.btn.small { width: auto; flex: none; padding: 8px 14px; font-size: 15px; 
 .hidbar > span { white-space: nowrap; }
 .hidbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-weight: 700; margin: 6px 0 4px; }
 .hidbar[hidden] { display: none; }
+/* A quiet secondary action inside a list row (e.g. put a card aside), so it never reads like the row's main toggle. */
+.list .it .aside { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 6px 2px; font: 600 14px var(--body); text-decoration: underline; text-underline-offset: 3px; opacity: .72; }
+.list .it .aside.on { opacity: 1; text-decoration: none; background: var(--y); color: var(--on-y); border-radius: 999px; padding: 4px 10px; }
+.list .it .aside .i { width: 16px; height: 16px; }
+.list .it .aside:focus-visible { outline: 3px solid var(--g2); outline-offset: 2px; }
+.list .it.wrap { flex-wrap: wrap; row-gap: 4px; }
+.list .it.wrap > span:first-child { flex: 1 1 55%; }
+.list .it.wrap .acts { margin-left: auto; }
+details > summary { cursor: pointer; font-weight: 700; padding: 6px 0; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; font-size: 14px; }
 .legend .i { width: 18px; height: 18px; }
 
