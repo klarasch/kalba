@@ -600,13 +600,18 @@
       };
       const seat = (i) => {
         // Walk the edge clockwise from bottom centre: bottom, left, top, right.
-        const W = b.clientWidth, H = b.clientHeight, m = 26;
+        // Stay inside the safe area (status bar, notch, home indicator in the installed app).
+        const cs = getComputedStyle(b), pl = parseFloat(cs.paddingLeft) || 0, pt = parseFloat(cs.paddingTop) || 0;
+        const W = b.clientWidth - pl - (parseFloat(cs.paddingRight) || 0), H = b.clientHeight - pt - (parseFloat(cs.paddingBottom) || 0), m = 26;
         const w = W - 2 * m, h = H - 2 * m, per = 2 * (w + h);
         let d = ((i / n) * per + w / 2) % per; // distance from the bottom-right corner going left
-        if (d < w) return { x: W - m - d, y: H - m, r: 0 };
-        d -= w; if (d < h) return { x: m, y: H - m - d, r: 90 };
-        d -= h; if (d < w) return { x: m + d, y: m, r: 180 };
-        d -= w; return { x: W - m, y: m + d, r: -90 };
+        let p;
+        if (d < w) p = { x: W - m - d, y: H - m, r: 0 };
+        else if ((d -= w) < h) p = { x: m, y: H - m - d, r: 90 };
+        else if ((d -= h) < w) p = { x: m + d, y: m, r: 180 };
+        else { d -= w; p = { x: W - m, y: m + d, r: -90 }; }
+        p.x += pl; p.y += pt;
+        return p;
       };
       const layout = () => {
         const bb = b.getBoundingClientRect();
@@ -737,16 +742,16 @@
     PB.keepAwake(false);
     PB.setGame(null);
     PB.render(`
+      <div class="homebar">
+        <button class="iconbtn" data-lang aria-label="${PB.L('Jazyk', 'Language')}">${PB.lang === 'cs' ? 'Čeština' : 'English'}</button>
+        <button class="iconbtn" data-sound aria-pressed="${PB.soundOn}" aria-label="${PB.soundOn ? PB.L('Zvuk', 'Sound') : PB.L('Ticho', 'Muted')}">${PB.ico(PB.soundOn ? 'sound' : 'mute')}</button>
+      </div>
       <div class="hd">
         <h1 class="logo" aria-label="Kalba!">kalba<span class="bang" aria-hidden="true"><i></i>${PB.mark()}</span></h1>
         <button class="dict" data-dict aria-live="polite">${PB.kalba()}</button>
       </div>
       <div class="games">
         ${PB.games.map((g) => `<button class="gamecard" data-g="${g.id}" style="--g1:${g.ink[0]};--g2:${g.ink[1]}">${PB.art(g.icon, '')}<span class="tx"><b>${PB.esc(g.name())}</b><span>${PB.esc(g.tagline())}</span></span></button>`).join('')}
-      </div>
-      <div class="homebar">
-        <button class="iconbtn" data-lang>${PB.lang === 'cs' ? 'Čeština' : 'English'}</button>
-        <button class="iconbtn" data-sound aria-pressed="${PB.soundOn}">${PB.ico(PB.soundOn ? 'sound' : 'mute')} ${PB.soundOn ? PB.L('Zvuk', 'Sound') : PB.L('Ticho', 'Muted')}</button>
       </div>
       <div class="grow"></div>
       <div class="footer">${PB.L('Funguje i offline. Vlastní obsah, otevřený kód (MIT).', 'Works offline. Original content, open source (MIT).')} <a href="https://github.com/klarasch/partybox" target="_blank" rel="noopener">GitHub</a></div>
