@@ -100,7 +100,7 @@ input[type=text], textarea {
 .iconbtn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--key); }
 .iconbtn.sm { min-width: 38px; height: 38px; padding: 0 8px; border-radius: 10px; font-size: 18px; }
 .iconbtn.sm .i { width: 20px; height: 20px; }
-.iconbtn.on { background: var(--ink); color: var(--paper); }
+.iconbtn.on { background: var(--y); color: var(--on-y); }
 .iconbtn:disabled { opacity: .45; box-shadow: none; transform: none; }
 
 /* ---------- buttons ---------- */
@@ -176,11 +176,10 @@ button.btn .i { width: 24px; height: 24px; }
 }
 /* Selection pills carry a checkbox (or a radio dot for single choice: add `radio` to .chips, Bomb's data-fuse does the same) so the state never depends on colour alone. */
 .chip::before { content: ""; width: 19px; height: 19px; flex: none; box-sizing: border-box; border: 2px solid currentColor; border-radius: 6px; opacity: .5; }
-/* Selected = solid ink. Yellow is kept for actions (the primary button), so a chosen option never looks like "next". */
-.chip.on { background: var(--ink); color: var(--paper); }
-.chip.on::before { opacity: 1; border-color: var(--y); background: var(--y) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5 9.5 17 19 7' fill='none' stroke='%2318161c' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 15px no-repeat; }
+.chip.on { background: var(--y); color: var(--on-y); }
+.chip.on::before { opacity: 1; border-color: #18161c; background: #18161c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5 9.5 17 19 7' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 15px no-repeat; }
 [data-fuse] .chip::before, .chips.radio .chip::before { border-radius: 50%; }
-[data-fuse] .chip.on::before, .chips.radio .chip.on::before { background: var(--y) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5' fill='%2318161c'/%3E%3C/svg%3E") center / 19px no-repeat; }
+[data-fuse] .chip.on::before, .chips.radio .chip.on::before { background: #18161c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5' fill='white'/%3E%3C/svg%3E") center / 19px no-repeat; }
 
 .chips.radio[data-guess] .chip { min-width: 64px; justify-content: center; font-size: 18px; }
 
@@ -246,7 +245,10 @@ input[type=text]:focus, textarea:focus { outline: 3px solid var(--g2); outline-o
 .pill .i { width: 17px; height: 17px; }
 .who { font-size: 40px; line-height: 1.05; }
 
-.score { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; font-size: 18px; box-shadow: 3px 3px 0 var(--key); }
+/* Scores are information, not buttons: flat (no offset shadow), so they never compete with the primary button. */
+.score { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 16px; font-size: 18px; border-width: 2px; box-shadow: none; }
+.score > span:first-child { flex: 1; min-width: 0; text-align: left; }
+.score .now { font: 800 12px var(--body); text-transform: uppercase; letter-spacing: .06em; background: var(--ink); color: var(--paper); border-radius: 999px; padding: 3px 9px; vertical-align: 2px; margin-left: 6px; white-space: nowrap; }
 .score b { font: 800 26px var(--disp); }
 .score.lead { background: var(--y); color: var(--on-y); }
 .stack > .score:nth-child(odd) { rotate: -.6deg; } .stack > .score:nth-child(even) { rotate: .5deg; }
@@ -269,7 +271,7 @@ button.btn.small { width: auto; flex: none; padding: 8px 14px; font-size: 15px; 
 .hidbar[hidden] { display: none; }
 /* A quiet secondary action inside a list row (e.g. put a card aside), so it never reads like the row's main toggle. */
 .list .it .aside { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 6px 2px; font: 600 14px var(--body); text-decoration: underline; text-underline-offset: 3px; opacity: .72; }
-.list .it .aside.on { opacity: 1; text-decoration: none; background: var(--ink); color: var(--paper); border-radius: 999px; padding: 4px 10px; }
+.list .it .aside.on { opacity: 1; text-decoration: none; background: var(--y); color: var(--on-y); border-radius: 999px; padding: 4px 10px; }
 .list .it .aside .i { width: 16px; height: 16px; }
 .list .it .aside:focus-visible { outline: 3px solid var(--g2); outline-offset: 2px; }
 .list .it.wrap { flex-wrap: wrap; row-gap: 4px; }
@@ -423,4 +425,4 @@ details > summary { cursor: pointer; font-weight: 700; padding: 6px 0; }
 
 /* Hint */
 .hn-card { width: 100%; font: 800 20px/1.2 var(--disp); text-align: left; color: inherit; border-style: solid; cursor: pointer; }
-.hn-card.on { background: var(--ink); color: var(--paper); box-shadow: 5px 5px 0 var(--g2); }
+.hn-card.on { background: var(--y); color: var(--on-y); box-shadow: 5px 5px 0 var(--g2); }

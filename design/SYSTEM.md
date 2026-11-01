@@ -18,7 +18,7 @@ Rules for anything new: a game, a screen, a button. Reference: design/colour-lab
 - Secondary: `.btn.secondary` (white). Positive in-game action: `.btn.good` (ink).
 - Icon-only buttons: `.iconbtn` (white, outline, 3px offset shadow, 46px). Never a bare outlined icon without the shadow. Small inline variants inside list rows: `.iconbtn.sm` (38px).
 - Text surfaces: `.box`, `.word` (the hero card), `.score`, `.list .it`, `.gp-fact`.
-- Choices: `.chips` + `.chip` (checkbox inside; radio dot for single choice). Selected states are solid ink (`--ink` on `--paper`), never yellow: yellow means "action", so a chosen option can't be mistaken for the next button. Settings rows: PB.ui.stepper, PB.ui.toggle. Names: PB.ui.tags (pills).
+- Choices: `.chips` + `.chip` (checkbox inside; radio dot for single choice). Settings rows: PB.ui.stepper, PB.ui.toggle. Names: PB.ui.tags (pills).
 - Feedback: PB.toast (with an Undo action for anything destructive), PB.sfx, PB.vibrate, PB.fx.
 - Never underlined links in the app. Never emoji: PB.ico for line icons, PB.art for two-ink game art.
 

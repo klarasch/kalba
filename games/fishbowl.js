@@ -294,7 +294,7 @@
         <div class="who">${PB.esc(teamName(t, G.team))}</div>
         ${explainer ? `<p>${G.carry != null ? L('Pokračuje', 'Carrying on') : L('Vysvětluje', 'Explaining')}: <b>${PB.esc(explainer)}</b></p>` : `<p class="muted">${L('Vyberte, kdo vysvětluje. Ostatní z týmu hádají.', 'Pick who explains. The rest of the team guesses.')}</p>`}
         <p><span class="pill">${PB.ico('clock')} ${Math.round(secs)} s${G.carry != null ? ' (' + L('přenesený čas', 'carried time') + ')' : ''}</span> <span class="pill">${PB.ico('cards')} ${G.deck.length}</span></p>
-        <div class="stack" style="margin-top:12px">${G.teams.map((x, i) => `<div class="score ${i === G.team ? 'lead' : ''}"><span>${PB.esc(teamName(x, i))}</span><b>${total(x)}</b></div>`).join('')}</div>
+        <div class="stack" style="margin-top:12px">${G.teams.map((x, i) => `<div class="score"><span>${PB.esc(teamName(x, i))}${i === G.team ? `<span class="now">${L('Na tahu', 'Up next')}</span>` : ''}</span><b>${total(x)}</b></div>`).join('')}</div>
       </div>
       <button class="btn big" data-go>${L('Start', 'Start')}</button>
     `, (root) => {
