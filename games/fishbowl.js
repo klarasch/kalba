@@ -394,20 +394,21 @@
         ? `${spare.length ? `<button class="aside ${it.repl ? 'on' : ''}" data-rep="${i}" aria-pressed="${it.repl}">${it.repl ? PB.ico('check') + ' ' : ''}${L('Nahradit novou', 'Replace with a new one')}</button>` : ''}
            <button class="aside" data-as="${i}">${L('Vrátit', 'Undo')}</button>`
         : `<button class="aside" data-as="${i}">${L('Odložit', 'Put aside')}</button>${PB.ico(it.got ? 'check' : 'close')}`;
-      return `<div class="it ${it.aside || !it.got ? 'off' : ''} ${it.aside ? 'wrap' : ''}" data-i="${i}"><span>${PB.esc(it.w)}${it.aside ? `<br><span class="muted small">${L('Odloženo z této hry', 'Out of this game')}</span>` : ''}</span><span class="acts">${acts}</span></div>`;
+      return `<div class="it ${it.aside ? 'off' : ''} ${it.aside ? 'wrap' : ''}" data-i="${i}"><span>${PB.esc(it.w)}${it.aside ? `<br><span class="muted small">${L('Odloženo z této hry', 'Out of this game')}</span>` : ''}</span><span class="acts">${acts}</span></div>`;
     };
     const draw = () => { const y = window.scrollY; const p = plan();
       // Who gets the phone next: the same player if the round ends with time to carry, otherwise the next team.
       const carries = !p.deck.length && G.round < NR() - 1 && timeLeft >= 3;
       const ni = (G.team + 1) % G.teams.length, nextName = explainerOf(ni) || teamName(G.teams[ni], ni);
       const label = !p.deck.length && G.round >= NR() - 1 ? L('Na výsledky', 'See the results') : carries ? L('Pokračovat', 'Continue') : L(`Pokračovat a předat mobil: ${nextName}`, `Continue, then pass the phone to ${nextName}`);
-      const got = items.map((it, i) => [it, i]).filter(([it]) => it.was), miss = items.map((it, i) => [it, i]).filter(([it]) => !it.was);
+      // Cards sit in the list matching their current state, so a corrected card moves across.
+      const got = items.map((it, i) => [it, i]).filter(([it]) => it.got), miss = items.map((it, i) => [it, i]).filter(([it]) => !it.got);
       PB.render(`
       ${PB.top(L('Konec tahu', 'Turn over'), { close: true })}
       <h2>${PB.esc(teamName(t, G.team))}: +${p.score}</h2>
-      <div class="box">${L('<b>Mobil zatím nepředávej.</b> Projděte karty a opravte, co nesedí: ťuknutím kartu přepneš mezi uhodnutou a neuhodnutou.', '<b>Don’t pass the phone yet.</b> Go through the cards and fix anything that’s off: tap a card to switch it between guessed and not guessed.')}</div>
+      <div class="box">${L('<b>Mobil zatím nepředávej.</b> Projděte karty a opravte, co nesedí: ťuknutím kartu přesuneš mezi uhodnuté a neuhodnuté.', '<b>Don’t pass the phone yet.</b> Go through the cards and fix anything that’s off: tap a card to move it between guessed and not guessed.')}</div>
       <h3>${L('Uhodnuté', 'Guessed')}</h3>
-      ${got.length ? `<div class="list">${got.map(([it, i]) => row(it, i)).join('')}</div>` : `<p class="muted small">${L('Tentokrát nic. Nevadí!', 'Nothing this time. No worries!')}</p>`}
+      ${got.length ? `<div class="list">${got.map(([it, i]) => row(it, i)).join('')}</div>` : `<p class="muted small">${L('Zatím nic. Nevadí!', 'Nothing yet. No worries!')}</p>`}
       ${miss.length ? `<h3>${L('Neuhodnuté', 'Not guessed')}</h3>
       <p class="muted small" style="margin-top:0">${L('Karta, kterou nikdo nezná, se dá odložit, aby se na ní hra nezasekla.', 'A card nobody knows can be put aside so the game doesn’t get stuck on it.')}</p>
       <div class="list">${miss.map(([it, i]) => row(it, i)).join('')}</div>` : ''}
