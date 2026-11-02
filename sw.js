@@ -1,5 +1,5 @@
 // Offline cache. Bump VERSION when files change.
-const VERSION = 'pb-v24';
+const VERSION = 'pb-v25';
 const FILES = [
   './', 'index.html', 'style.css', 'app.js', 'manifest.webmanifest',
   'data/gap-cs.js', 'data/gap-en.js', 'data/vabank-cs.js', 'data/vabank-en.js', 'data/index.txt',
@@ -37,7 +37,7 @@ self.addEventListener('activate', (e) => {
 });
 // Network first (so updates arrive when online), cache as offline fallback.
 self.addEventListener('fetch', (e) => {
-  if (e.request.method !== 'GET') return;
+  if (e.request.method !== 'GET' || new URL(e.request.url).origin !== location.origin) return;
   e.respondWith(
     fetch(e.request).then((r) => {
       const copy = r.clone();
